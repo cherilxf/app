@@ -1,3 +1,120 @@
 page-home {
 
 }
+.home-header{
+
+}
+.location{
+  font-size: 1.2em;
+  color: #000;
+  margin-left: 4%;
+  float: left;
+  line-height: 32px;
+}
+.search{
+  float: right;
+  width: 80%;
+  height: 100%;
+  padding-right: 2%;
+  margin:4px 0;
+  position: relative;
+}
+.search input{
+  display: inline-block;
+  width: 100%;
+  line-height: 24px;
+  padding-left: .4em;
+  border: 1px solid #eeeeee;
+  border-radius: 4em;
+}
+.search-btn{
+  width: 5.2em;
+  height: 92%;
+  line-height: 92%;
+  margin: 0;
+  background-color: #62BEFF;
+  border-radius: 4em;
+  position: absolute;
+  top: 0;
+  right: .62em;
+}
+.banner{
+  margin-bottom: .6em;
+}
+.banner img{
+  width: 100%;
+  height: 16rem;
+}
+.banner ion-slides ion-slide{
+  opacity: 1;
+}
+
+.home-reying,
+.home-comesoon{
+  border-top: 2px solid #555;
+  border-bottom: 2px solid #555;
+  margin-top: 1.4rem;
+  border-radius: 1.4rem;
+}
+.home-recommend {
+  margin-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.home-reying-title strong,
+.home-comesoon-title strong,
+.home-recommend-title strong{
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #FF282F;
+  vertical-align: middle;
+  margin: .1rem .45rem 0 .8rem;
+}
+.home-content-more,
+.home-content-refresh{
+  float: right;
+  font-size: 10px;
+  color: #666;
+  text-align: center;
+  margin-top: .6rem;
+  padding-right: 22px;
+  position: relative;
+}
+.moreIcon{
+  position: absolute;
+  top: .12rem;
+  right: .65rem;
+}
+.freshIcon{
+  position: absolute;
+  top: 0;
+  right: 4.8rem;
+}
+.ion-row {
+  height: 100%;
+  flex-wrap: wrap;
+}
+.home-reying-content ion-col,
+.home-comesoon-content ion-col,
+.home-recommend-content ion-col{
+  text-align: center;
+  padding: .6rem ;
+}
+.home-reying-content img,
+.home-comesoon-content img,
+.home-recommend-content img{
+  border: 1px solid #eee;
+  width: 100%;
+  height: 12rem;
+}
+.home-reying-content span,
+.home-comesoon-content span,
+.home-recommend-content span{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}

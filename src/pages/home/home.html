@@ -1,17 +1,106 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+<ion-header class="home-header">
+  <a class="location" href="#">
+    广州
+    <ion-icon name="md-arrow-dropdown"></ion-icon>
+  </a>
+  <div class="search">
+    <input type="text" maxlength="20" autocomplete="true" placeholder="搜电影、影院、人">
+    <button ion-button class="search-btn">
+      <ion-icon name="search" class=""></ion-icon>
+      搜索
+    </button>
+  </div>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content class="clearFix">
+  <!-- 轮播图 -->
+  <div class="banner">
+    <ion-slides pager="true" loop="true" autoplay="2000">
+      <ion-slide>
+        <img src="assets/imgs/MEAN.jpg" alt="">
+      </ion-slide>
+      <ion-slide>
+        <img src="assets/imgs/MEAN.jpg" alt="">
+      </ion-slide>
+      <ion-slide>
+        <img src="assets/imgs/MEAN.jpg" alt="">
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div class="home-reying">
+    <div class="home-reying-title">
+      <strong>正在热映</strong>
+      <a class="home-content-more">更多正在热映<ion-icon name="moreIcon" class="moreIcon"></ion-icon></a>
+    </div>
+    <div class="home-reying-content">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液</span>
+          </ion-col>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液毒液毒液毒液</span>
+          </ion-col>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液毒液毒液毒液</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+  <div class="home-comesoon">
+    <div class="home-comesoon-title">
+      <strong>即将上映</strong>
+      <a class="home-content-more">更多即将上映<ion-icon name="moreIcon" class="moreIcon"></ion-icon></a>
+    </div>
+    <div class="home-comesoon-content">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液</span>
+          </ion-col>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液毒液毒液毒液</span>
+          </ion-col>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液毒液毒液毒液</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+  <div class="home-recommend">
+    <div class="home-recommend-title">
+      <strong>精彩推荐</strong>
+      <a class="home-content-refresh"><ion-icon name="freshIcon" class="freshIcon"></ion-icon>换一换</a>
+    </div>
+    <div class="home-recommend-content">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液毒液毒液毒液</span>
+          </ion-col>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液毒液毒液毒液</span>
+          </ion-col>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液毒液毒液毒液</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
 </ion-content>

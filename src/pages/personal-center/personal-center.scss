@@ -1,0 +1,33 @@
+page-personal-center {
+
+}
+.personal-center-header{
+  width: 100%;
+  height: 25%;
+  background-image: url('../../assets/imgs/personalCenterHeader.jpg');
+  background-size: cover;
+}
+.personal-center-header ion-list ion-item{
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background:rgba(255,255,255,0);
+}
+.personal-center-header ion-list ion-item h2{
+  font-size: 2.6rem;
+  color: #fff;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.personal-center-header ion-list ion-item img{
+  width: 6rem;
+  height: 6rem;
+  border-radius: 3rem;
+}
+.list-md .item-block .item-inner{
+  border: 0;
+}
+.item-block{
+  border-bottom: 1px solid #eee;
+}
