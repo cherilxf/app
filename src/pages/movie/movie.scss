@@ -4,34 +4,149 @@ page-movie {
 .movie-header{
 
 }
-.movie-category{
-  text-align: center;
-  position: relative;
+.movie-header ion-segment{
+  width: 48%;
+  margin-left: 22%;
 }
-.movie-category li{
-  color: #FF282F;
-  margin-top: .3rem;
-  border: .02rem solid #FF282F;
-  padding: .1rem .6rem .2rem;
-  position: absolute;
-  top: 0;
-  left: 50%;
+.movie-header .label-md,
+.movie-header .item-md [item-left],
+.movie-header .item-md [item-right]{
+  margin: .6rem 0;
 }
-.movie-category li:first-child{
-  border-right: 0;
-  transform: translate(-100%);
+.movie-header .item-md.item-block .item-inner{
+  padding-right: 0;
 }
-.movie-category li:last-child{
+.movie-header .segment-md .segment-button{
+  width: 4rem;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.65rem;
+  color: #00A0E2;
+  border: 1px solid #00A0E2;
+  padding: 0;
+  margin: 0;
+}
+.movie-header .segment-md .segment-button:nth-last-child{
   border-left: 0;
 }
-.movie-category .active{
+.movie-header .segment-md .segment-button.segment-activated{
   color: #fff;
-  background-color: #FF282F;
+  background-color: #00A0E2;
 }
-.movie-category li span{
-  font-size: 1.6rem;
-}
-.movie-header ion-icon{
-  margin: .4rem;
+.movie-title .item-md{
+  padding: 0;
 }
 
+.movieList-tabs .segment-md .segment-button{
+  height: 3.4rem;
+  font-size: 1.6rem;
+  color: #F51933;
+  padding: 0;
+  margin: 0 4.8rem;
+  border-bottom: 0;
+}
+.movieList-tabs .segment-md .segment-button.segment-activated{
+  font-weight: 600;
+  border-bottom: 2px solid #F51933;
+}
+.movieList-item{
+  border: 1px solid #eee;
+}
+.movieList-item h2,
+.movieList-item p,
+.cinema-content p:nth-of-type(1) {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.movieList-item ion-thumbnail img{
+  width: 6.4rem;
+  height: 8.6rem;
+}
+.movieList-item h2{
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.movieList-item p{
+  font-size: 1.4rem;
+}
+.movieList-item button{
+  font-size: 1.4rem !important;
+  color: #fff;
+  background-color: #F51933;
+}
+
+.reying-movieList p:nth-of-type(2){
+  position: relative;
+}
+.reying-movieList p:nth-of-type(2) span{
+  font-size: .6rem;
+  padding: 0 .1rem;
+  position: absolute;
+  top: 0.25rem;
+  left: 5rem;
+}
+.comesoon-movieList p:nth-of-type(2) span{
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #F51933;
+  margin: 0 .4rem;
+}
+
+.cinema-sort ion-item{
+  width: 100%;
+  height: 4rem;
+}
+
+.cinema-content{
+  position: relative;
+  padding-left: 2rem;
+  border-bottom: 1px solid #eee;
+}
+.cinema-content .cinema-icon{
+  position: absolute;
+  top: 1.22rem;
+  left: .2rem;
+}
+.cinema-content h2 {
+  font-weight: 700;
+  position: relative;
+}
+
+.cinema-content-price {
+  font-size: 1.4rem;
+  font-weight: normal;
+  color: #F51933;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.cinema-content p:nth-of-type(2) span {
+  display: inline-block;
+  font-size: 1rem;
+  padding: .1rem .2rem;
+  border: 1px solid #00A0E2;
+}
+
+.cinema-content p:nth-of-type(2) span:first-child {
+  background-color: #00A0E2;
+}
+
+.cinema-content p:nth-of-type(3) span {
+  display: inline-block;
+  border: 1px solid #00A0E2;
+  padding: 0.1rem .2rem 0;
+}
+
+.cinema-content p:nth-of-type(4) {
+  font-size: 1rem;
+  color: #a8a8a8;
+}
+
+.cinema-content p:nth-of-type(4) span {
+  color: #fff;
+  padding: .2rem;
+  margin-right: .4rem;
+  background-color: #FF7500;
+}

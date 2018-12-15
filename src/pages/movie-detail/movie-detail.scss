@@ -1,0 +1,230 @@
+.movieDetail-header{
+
+}
+
+.movieDetail-header .toolbar-md{
+  padding: 0;
+  min-height: 48px;
+}
+
+.movieDetail-content{
+  width: 100%;
+  height: 100%;
+}
+.movieDetail-top .item-md.item-block,
+.movieDetail-top .item-md.item-block .item-inner{
+  border-bottom: 0;
+}
+.movieDetail-top ion-item ion-thumbnail img{
+  height: 8.4rem;
+}
+.movieDetail-top ion-item h2{
+  font-weight: 700;
+}
+.movieDetail-top ion-item p:nth-of-type(2) span{
+  font-size: 1rem;
+  padding: .2rem;
+  margin-left: .6rem;
+}
+.movieDetail-top ion-item p:nth-of-type(3) span{
+  font-weight: 700;
+  color: #F51933;
+}
+
+.watch-btn{
+  padding: 0 .8rem;
+  margin: 1rem 0;
+}
+.watch-btn .button-md{
+  width: 26%;
+  height: 2.6rem;
+  line-height: 2.6rem;
+  border-radius: 3.2rem;
+}
+.watch-btn button{
+  margin: 0 .6rem;
+}
+.watch-btn button span{
+  font-size: 1.6rem;
+  margin-right: .4rem;
+}
+
+.movieDetail-actor{
+  width: 100%;
+  overflow: hidden;
+}
+.movieDetail-actor span{
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-top: 1px solid #eee;
+  padding: .8rem 0 .8rem 1rem;
+
+}
+
+.movieDetail-actor .swiper-container{
+  overflow-x: scroll;
+  scroll:hidden;
+  background-color: #eeeeee;
+}
+.movieDetail-actor .swiper-container .swiper-wrapper .swiper-slide{
+  width: 25%;
+  height: 100%;
+}
+.movieDetail-actor .label-md,
+.discussion-bottom .label-md{
+  margin: 0;
+}
+.movieDetail-actor .item-md{
+  padding: 0 10px 10px;
+}
+.movieDetail-actor .item-block .item-inner{
+  padding: 0;
+  border: 0;
+}
+.movieDetail-actor .swiper-slide p{
+  font-size: 1rem;
+  text-align: center;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.movieDetail-actor .swiper-slide p:first-of-type{
+  color: #000;
+  font-size: 1.6rem;
+}
+
+.movieDetail-bottom{
+  width: 100%;
+  height: 100%;
+  margin-top: .8rem;
+}
+
+.movieDetail-tabsContent .list-md{
+  margin-bottom: 0;
+  border: 1px solid #eee;
+}
+.movieDetail-tabsContent ion-label{
+  white-space: normal;
+}
+
+.movieDetail-tabs{
+  width: 100%;
+  background-color: #eee;
+}
+
+.movieDetail-tabs .toolbar-md{
+  padding: 0;
+  min-height: 0;
+}
+.movieDetail-tabs .movieDetail-tab{
+  width: 33%;
+  height: 38px;
+  font-size: 1.5rem;
+  color: #333;
+  line-height: 38px;
+  border: 0;
+  padding: 0;
+  margin: 0 2.4rem;
+}
+.movieDetail-tabs .movieDetail-tabActive{
+  color: #00A0E2;
+  font-weight: 700;
+  border-bottom: 2px solid #00A0E2;
+}
+
+.film-summary{
+  width: 100%;
+  background-color: #fff;
+  overflow: hidden;
+}
+.film-summary p{
+  font-size: 1.6rem;
+  margin-top: .8rem;
+  padding: 0 .8rem;
+  line-height: 2rem;
+  text-align: left;
+  text-indent: 35px;
+}
+
+.film-comment{
+
+}
+.film-comment ion-item img{
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 1.7rem;
+}
+.film-comment .item-md [item-start]{
+  margin-bottom: 0;
+}
+.film-comment ion-item p,
+.discussion ion-item p{
+  color: #000;
+  font-size: 1.8rem;
+  margin-left: .8rem;
+  margin-bottom: 0;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.film-comment-item .comment-content,
+.discussion-item .discussion-content{
+  font-size: 1.4rem;
+  text-align: left;
+  text-indent: 32px;
+  padding: 0 .8rem;
+  margin: 1rem 0 .4rem;
+}
+.film-comment-item .comment-top{
+  border-bottom: 0;
+}
+.film-comment-item .comment-bottom{
+
+}
+.comment-bottom .item-md [item-left],
+.comment-bottom .item-md [item-right],
+.discussion-bottom .item-md [item-left],
+.discussion-bottom .item-md [item-right]{
+  margin: 0;
+  margin-bottom: .4rem;
+}
+.comment-bottom .item-block,
+.discussion-bottom .item-block{
+  padding-left: .8rem;
+  min-height: 0;
+}
+.comment-bottom .comment-time{
+  font-size: 1.4rem;
+  color: #666;
+}
+.comment-bottom .dianzan,
+.comment-bottom .commentIcon,
+.discussion-bottom .dianzan,
+.discussion-bottom .commentIcon{
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0 .4rem;
+}
+.discussion{
+
+}
+.discussion ion-item img{
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 1.2rem;
+}
+.discussion ion-item p{
+  font-size: 1.6rem;
+  color: #666;
+  margin-bottom: .3rem;
+}
+.discussion .item-block{
+  min-height: 0;
+}
+
+.movieDetail-footer .button-md{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { PersonalInfoSettingPage } from "../personal-info-setting/personal-info-setting";
+
+
 /**
  * Generated class for the PersonalCenterPage page.
  *
@@ -10,10 +13,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
+  templateUrl: 'setting.html',
+})
+export class SettingPage {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+}
+
+@Component({
   selector: 'page-personal-center',
   templateUrl: 'personal-center.html',
 })
 export class PersonalCenterPage {
+
+  year: any;
+  month: any;
+  day: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -22,4 +38,15 @@ export class PersonalCenterPage {
     console.log('ionViewDidLoad PersonalCenterPage');
   }
 
+  goSetting(){
+    this.navCtrl.push(SettingPage,{
+
+    })
+  }
+
+  goInfoSetting(){
+    this.navCtrl.push(PersonalInfoSettingPage,{
+
+    })
+  }
 }

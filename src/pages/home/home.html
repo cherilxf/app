@@ -15,15 +15,9 @@
 <ion-content class="clearFix">
   <!-- 轮播图 -->
   <div class="banner">
-    <ion-slides pager="true" loop="true" autoplay="2000">
-      <ion-slide>
-        <img src="assets/imgs/MEAN.jpg" alt="">
-      </ion-slide>
-      <ion-slide>
-        <img src="assets/imgs/MEAN.jpg" alt="">
-      </ion-slide>
-      <ion-slide>
-        <img src="assets/imgs/MEAN.jpg" alt="">
+    <ion-slides pager loop="true" autoplay="2000">
+      <ion-slide *ngFor="let item of arr">
+        <img src="{{item.src}}" alt="" class="slide-image">
       </ion-slide>
     </ion-slides>
   </div>
@@ -31,50 +25,98 @@
   <div class="home-reying">
     <div class="home-reying-title">
       <strong>正在热映</strong>
-      <a class="home-content-more">更多正在热映<ion-icon name="moreIcon" class="moreIcon"></ion-icon></a>
+      <a class="home-content-more" (click)="goReyingMorePage()">更多正在热映<ion-icon name="moreIcon" class="moreIcon"></ion-icon></a>
     </div>
-    <div class="home-reying-content">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4>
-            <img src="assets/imgs/MEAN.jpg" alt="">
-            <span>毒液</span>
-          </ion-col>
-          <ion-col col-4>
-            <img src="assets/imgs/MEAN.jpg" alt="">
-            <span>毒液毒液毒液毒液</span>
-          </ion-col>
-          <ion-col col-4>
-            <img src="assets/imgs/MEAN.jpg" alt="">
-            <span>毒液毒液毒液毒液</span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+    <div class="home-reying-content home-content-slide">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <ion-item (click)="goMovieDetailPage()">
+              <img src="assets/imgs/MEAN.jpg" alt="">
+              <p>毒液毒液毒液毒液毒液毒液毒液毒液毒液毒液</p>
+            </ion-item>
+          </div>
+          <div class="swiper-slide">
+            <ion-item>
+              <img src="assets/imgs/MEAN.jpg" alt="">
+              <p>毒液</p>
+            </ion-item>
+          </div>
+          <div class="swiper-slide">
+            <ion-item>
+              <img src="assets/imgs/MEAN.jpg" alt="">
+              <p>毒液</p>
+            </ion-item>
+          </div>
+          <div class="swiper-slide">
+            <ion-item>
+              <img src="assets/imgs/MEAN.jpg" alt="">
+              <p>毒液</p>
+            </ion-item>
+          </div>
+          <div class="swiper-slide">
+            <ion-item>
+              <img src="assets/imgs/MEAN.jpg" alt="">
+              <p>毒液</p>
+            </ion-item>
+          </div>
+          <div class="swiper-slide">
+            <ion-item>
+              <img src="assets/imgs/MEAN.jpg" alt="">
+              <p>毒液</p>
+            </ion-item>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="home-comesoon">
     <div class="home-comesoon-title">
       <strong>即将上映</strong>
-      <a class="home-content-more">更多即将上映<ion-icon name="moreIcon" class="moreIcon"></ion-icon></a>
+      <a class="home-content-more" (click)="goComesoonMorePage()">更多即将上映<ion-icon name="moreIcon" class="moreIcon"></ion-icon></a>
     </div>
-    <div class="home-comesoon-content">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-4>
-            <img src="assets/imgs/MEAN.jpg" alt="">
-            <span>毒液</span>
-          </ion-col>
-          <ion-col col-4>
-            <img src="assets/imgs/MEAN.jpg" alt="">
-            <span>毒液毒液毒液毒液</span>
-          </ion-col>
-          <ion-col col-4>
-            <img src="assets/imgs/MEAN.jpg" alt="">
-            <span>毒液毒液毒液毒液</span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+    <div class="home-comesoon-content home-content-slide">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" (click)="goMovieDetailPage()">
+            <ion-item>
+              <img src="assets/imgs/MEAN.jpg" alt="">
+              <p>毒液</p>
+            </ion-item>
+          </div>
+          <div class="swiper-slide">
+            <ion-item>
+              <img src="assets/imgs/MEAN.jpg" alt="">
+              <p>毒液</p>
+            </ion-item>
+          </div>
+          <div class="swiper-slide">
+            <ion-item>
+              <img src="assets/imgs/MEAN.jpg" alt="">
+              <p>毒液</p>
+            </ion-item>
+          </div>
+          <div class="swiper-slide">
+            <ion-item>
+              <img src="assets/imgs/MEAN.jpg" alt="">
+              <p>毒液</p>
+            </ion-item>
+          </div>
+          <div class="swiper-slide">
+            <ion-item>
+              <img src="assets/imgs/MEAN.jpg" alt="">
+              <p>毒液</p>
+            </ion-item>
+          </div>
+          <div class="swiper-slide">
+            <ion-item>
+              <img src="assets/imgs/MEAN.jpg" alt="">
+              <p>毒液</p>
+            </ion-item>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -83,6 +125,7 @@
       <strong>精彩推荐</strong>
       <a class="home-content-refresh"><ion-icon name="freshIcon" class="freshIcon"></ion-icon>换一换</a>
     </div>
+
     <div class="home-recommend-content">
       <ion-grid>
         <ion-row>

@@ -1,0 +1,94 @@
+<!--
+  Generated template for the BuyTicketPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>购票详情</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="buyTicket-top">
+    <ion-item class="">
+      <h2>
+        金逸影城IMAX店
+      </h2>
+      <p>海珠区江南大道中180号富力海珠城商业广场B区7层金逸影城电影院</p>
+      <p>
+        <span>影城卡</span>
+        <span>观影小食</span>
+        <span>IMAX厅</span>
+        <span>4K厅</span>
+      </p>
+    </ion-item>
+  </div>
+
+  <div class="buyTicket-middle">
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-img src="assets/imgs/MEAN.jpg"></ion-img>
+      </ion-thumbnail>
+      <h2>海王<span>9.3分</span></h2>
+      <p>143分钟 | 动作 | 杰森莫玛 艾梅伯希尔德 威廉达福</p>
+    </ion-item>
+  </div>
+
+  <div class="buyTicket-bottom">
+    <div class="buyTicket-tabs">
+      <ion-segment [(ngModel)]="buyTicketTab" (ionChange)="segmentChanged($event)">
+        <ion-segment-button *ngFor="let item of tabArr" value="{{item.tabName}}" class="buyTicket-tab"
+                            [ngClass]="{'movieDetail-tabActive': tabActive == item.index}">
+          {{item.tabName}}
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+    <div class="buyTicket-tabsContent">
+      <div [ngSwitch]="buyTicketTab">
+        <ion-slides (ionSlideDidChange)="slideChanged()">
+          <ion-slide>
+            <div *ngSwitchCase="'今天'" class="movie-scene">
+              <ion-list>
+                <ion-item>
+                  <div item-left class="movie-scene-time">
+                    <h2>20:55</h2>
+                    <p>23:18 散场</p>
+                  </div>
+                  <div item-left class="movie-scene-type">
+                    <p>英语 3D</p>
+                    <p>4号厅气味电影床厅</p>
+                  </div>
+                  <div item-right class="movie-scene-price">
+                    <p>特惠<span>85.9</span>元</p>
+                    <p>会员卡56.7元</p>
+                  </div>
+                  <div item-right>
+                    <button ion-button class="movie-scene-buyBtn">购买</button>
+                  </div>
+                </ion-item>
+              </ion-list>
+            </div>
+          </ion-slide>
+
+          <ion-slide>
+            <div *ngSwitchCase="'明天'" class="movie-scene">
+              明天
+            </div>
+          </ion-slide>
+
+          <ion-slide>
+            <div *ngSwitchCase="'后天'" class="movie-scene">
+              后天
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+  </div>
+</ion-content>

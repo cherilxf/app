@@ -32,7 +32,7 @@ page-home {
   height: 92%;
   line-height: 92%;
   margin: 0;
-  background-color: #62BEFF;
+  background-color: #00A0E2;
   border-radius: 4em;
   position: absolute;
   top: 0;
@@ -41,12 +41,56 @@ page-home {
 .banner{
   margin-bottom: .6em;
 }
-.banner img{
+.banner .slide-image{
   width: 100%;
   height: 16rem;
 }
 .banner ion-slides ion-slide{
   opacity: 1;
+}
+
+.home-content-slide{
+  width: 100%;
+  overflow: hidden;
+}
+.home-content-slide span{
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  border-top: 1px solid #eee;
+  padding: .8rem 0 .8rem 1rem;
+}
+
+.home-content-slide .swiper-container{
+  overflow-x: scroll;
+  scroll:hidden;
+  background-color: #eeeeee;
+}
+.home-content-slide .swiper-container .swiper-wrapper .swiper-slide{
+  width: 33% !important;
+  height: 100%;
+}
+
+.home-content-slide .label-md{
+  margin: 0;
+}
+.home-content-slide .item-md{
+  padding: 1rem;
+}
+.home-content-slide .item-block .item-inner{
+  padding: 0;
+  border: 0;
+}
+.home-content-slide .swiper-slide p{
+  font-size: 1rem;
+  text-align: center;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.home-content-slide .swiper-slide p:first-of-type{
+  color: #000;
+  font-size: 1.4rem;
 }
 
 .home-reying,
@@ -67,7 +111,7 @@ page-home {
   display: inline-block;
   font-size: 1.6rem;
   font-weight: 700;
-  color: #FF282F;
+  color: #F51933;
   vertical-align: middle;
   margin: .1rem .45rem 0 .8rem;
 }
@@ -91,25 +135,16 @@ page-home {
   top: 0;
   right: 4.8rem;
 }
-.ion-row {
-  height: 100%;
-  flex-wrap: wrap;
-}
-.home-reying-content ion-col,
-.home-comesoon-content ion-col,
 .home-recommend-content ion-col{
   text-align: center;
   padding: .6rem ;
+  float: left;
 }
-.home-reying-content img,
-.home-comesoon-content img,
 .home-recommend-content img{
   border: 1px solid #eee;
   width: 100%;
   height: 12rem;
 }
-.home-reying-content span,
-.home-comesoon-content span,
 .home-recommend-content span{
   display: inline-block;
   width: 100%;

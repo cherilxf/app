@@ -35,3 +35,14 @@ ul{
   list-style: none outside none;
   list-style-type: none;
 }
+.back-button.show-back-button{
+  position: absolute;
+  z-index: 9999;
+}
+.toolbar-title-md{
+  text-align: center;
+  color: #000;
+  font-weight: 600;
+}
+
+

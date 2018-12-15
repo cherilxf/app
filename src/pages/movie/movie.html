@@ -5,26 +5,114 @@
   Ionic pages and navigation.
 -->
 <ion-header class="movie-header">
-  <nav>
-    <a class="location" href="#">
-      广州
-      <ion-icon name="md-arrow-dropdown"></ion-icon>
-    </a>
-    <ul class="movie-category">
-      <li [ngClass]="{'active': flag}" (click)="goMovieList()">
-        <span>电影</span>
-      </li>
-      <li [ngClass]="{'active': !flag}" (click)="goCinema()">
-        <span>影院</span>
-      </li>
-    </ul>
-    <ion-icon name="saoyisao" class="floatRight"></ion-icon>
-    <!--<ion-icon name="search" class="floatRight"></ion-icon>-->
-  </nav>
+  <ion-title class="movie-title" >
+    <ion-item>
+      <a class="location" href="#" item-left>
+        广州
+        <ion-icon name="md-arrow-dropdown"></ion-icon>
+      </a>
+      <ion-segment [(ngModel)]="MovieTabs" (ionChange)="MovieTabsChanged()">
+        <ion-segment-button value="电影" (click)="movieContentList()">
+          电影
+        </ion-segment-button>
+        <ion-segment-button value="影院">
+          影院
+        </ion-segment-button>
+      </ion-segment>
+      <ion-icon item-right name="saoyisao"></ion-icon>
+    </ion-item>
+  </ion-title>
 </ion-header>
 
 
-<ion-content>
-  <movie-list [hidden]="!flag"></movie-list>
-  <movie-cinema [hidden]="flag"></movie-cinema>
+<ion-content class="movie-content">
+  <div [ngSwitch]="MovieTabs" class="">
+    <ion-list *ngSwitchCase="'电影'">
+      <div class="movieList-content">
+        <div class="movieList-tabs">
+          <ion-segment [(ngModel)]="MovieListTabs" (ionChange)="MovieListTabsChanged()">
+            <ion-segment-button value="正在热映">
+              正在热映
+            </ion-segment-button>
+            <ion-segment-button value="即将上映">
+              即将上映
+            </ion-segment-button>
+          </ion-segment>
+        </div>
+        <div class="movieList-tabsContent">
+          <div [ngSwitch]="MovieListTabs">
+            <ion-slides (ionSlideDidChange)="slideChanged()">
+              <ion-slide>
+                <ion-list *ngSwitchCase="'正在热映'" class="reying-movieList">
+                  <ion-item class="movieList-item">
+                    <ion-thumbnail item-start>
+                      <img src="assets/imgs/MEAN.jpg">
+                    </ion-thumbnail>
+                    <h2>毒液：致命守护者</h2>
+                    <p>上映地区：<span>中国大陆、香港</span></p>
+                    <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+                    <!--<span ng-repeat="director in item.directors">{{director.name}}{{$last?'':'、'}}</span>-->
+                    <p>导演：<span>李安</span></p>
+                    <!--{{item.genres.join('、')}}-->
+                    <p>主演：<span>邓超</span></p>
+                    <button ion-button clear item-end>购买</button>
+                  </ion-item>
+
+                  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">
+
+                    </ion-infinite-scroll-content>
+                  </ion-infinite-scroll>
+                </ion-list>
+              </ion-slide>
+
+              <ion-slide>
+                <ion-list *ngSwitchCase="'即将上映'" class="comesoon-movieList">
+                  <ion-item class="movieList-item">
+                    <ion-thumbnail item-start>
+                      <img src="assets/imgs/MEAN.jpg">
+                    </ion-thumbnail>
+                    <h2>毒液：致命守护者</h2>
+                    <p>上映日期：<span>11月30号 周五</span></p>
+                    <p>有<span>12345345</span>人想看</p>
+                    <!--<span ng-repeat="director in item.directors">{{director.name}}{{$last?'':'、'}}</span>-->
+                    <p>导演：<span>李安</span></p>
+                    <!--{{item.genres.join('、')}}-->
+                    <p>主演：<span>邓超</span></p>
+                    <button ion-button clear item-end>预售</button>
+                  </ion-item>
+                </ion-list>
+              </ion-slide>
+            </ion-slides>
+          </div>
+        </div>
+      </div>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'影院'">
+      <ion-item class="cinema-content">
+        <ion-icon name="cinemaIcon" class="cinema-icon"></ion-icon>
+        <h2>
+          金逸影城IMAX店
+          <span class="cinema-content-price">39.9元起</span>
+        </h2>
+        <p>海珠区江南大道中180号富力海珠城商业广场B区7层金逸影城电影院</p>
+        <p>
+          <span>影城卡</span>
+          <span>观影小食</span>
+          <span>IMAX厅</span>
+          <span>4K厅</span>
+        </p>
+        <p>
+      <span>
+        <ion-icon name="cinemaTuipiao"></ion-icon>
+        <ion-icon name="cinema3dGlass"></ion-icon>
+        <ion-icon name="cinemaWifi"></ion-icon>
+        <ion-icon name="cinemaPark"></ion-icon>
+      </span>
+        </p>
+        <p><span>特惠</span>毒液：致命守护者等</p>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

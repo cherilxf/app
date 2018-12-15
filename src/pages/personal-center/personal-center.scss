@@ -3,15 +3,20 @@ page-personal-center {
 }
 .personal-center-header{
   width: 100%;
-  height: 25%;
   background-image: url('../../assets/imgs/personalCenterHeader.jpg');
   background-size: cover;
+}
+.personal-center-header ion-list{
+  margin-bottom: 0;
 }
 .personal-center-header ion-list ion-item{
   width: 100%;
   height: 100%;
   border: 0;
   background:rgba(255,255,255,0);
+}
+.personal-center-header ion-list ion-item:last-of-type{
+  margin-top: 1.4rem;
 }
 .personal-center-header ion-list ion-item h2{
   font-size: 2.6rem;
@@ -25,9 +30,45 @@ page-personal-center {
   height: 6rem;
   border-radius: 3rem;
 }
-.list-md .item-block .item-inner{
-  border: 0;
+
+.personal-center-content{
+
 }
-.item-block{
-  border-bottom: 1px solid #eee;
+.personal-center-content .item-block,
+.setting-content .item-block {
+  border: 1px solid #eee;
+}
+.personal-center-content p{
+  margin: 0;
+}
+.personal-center-content .col{
+  text-align: center;
+}
+.setting-content{
+  background-color: #eee;
+}
+.setting-content ion-label{
+  color: #000;
+  font-size: 1.6rem;
+}
+.setting-content p{
+  color: #666;
+}
+.setting-content ion-item img{
+  width: 6rem;
+  height: 6rem;
+  border-radius: 3rem;
+}
+.setting-content ion-item:first-of-type{
+  margin: .6rem 0;
+}
+.setting-content .login-out{
+  margin: .8rem .8rem;
+}
+.setting-content .login-out button{
+  width: 100%;
+  font-size: 1.6rem;
+}
+.setting-content .button-md{
+  margin: 0;
 }

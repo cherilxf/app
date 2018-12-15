@@ -4,7 +4,7 @@ page-ranking-list {
 .ranking-header{
   width: 100%;
   height: 8%;
-  background-image: url('../../assets/imgs/paihangbangHeader.jpg');
+  background-image: url('../../assets/imgs/rankingHeader.jpg');
   background-size: cover;
 }
 .ranking-header ion-icon{
@@ -22,16 +22,25 @@ page-ranking-list {
   padding: 0;
   min-height: 0;
 }
+.ranking-content .item-block{
+  border: 1px solid #eee;
+}
 .ranking-tabs .ranking-tab{
   font-size: 1.6rem;
   height: 3rem;
   line-height: 3rem;
   color: #fff;
-  background-color: #1296db;
+  background-color: #00A0E2;
+}
+.ranking-tabs .segment-md .segment-button.activated,
+.ranking-tabs .segment-md .segment-button.segment-activated{
+  font-size: 1.8rem;
+  color: #000;
+  border-color: #00A0E2;
 }
 .ranking-tabs .ranking-tab:nth-of-type(2){
-  border-left: 1px solid #fff;
-  border-right: 1px solid #fff;
+  border-left: 1px solid #f4f4f4;
+  border-right: 1px solid #f4f4f4;
 }
 
 .ranking-movieList ion-item h2,
@@ -60,5 +69,5 @@ page-ranking-list {
 .ranking-newMovie p:nth-of-type(3) span,
 .ranking-boxOffice p:nth-of-type(1) span{
   padding: 0 .2rem;
-  color: #FF2C25;
+  color: #F51933;
 }

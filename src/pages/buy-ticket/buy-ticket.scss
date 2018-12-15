@@ -1,0 +1,89 @@
+page-buy-ticket {
+
+}
+
+.buyTicket-top{
+
+}
+
+.buyTicket-top ion-item h2{
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.buyTicket-top ion-item p:first-of-type{
+  font-size: 1.4rem;
+}
+.buyTicket-top ion-item p:last-of-type span{
+  display: inline-block;
+  font-size: 1rem;
+  color: #62BEFF;
+  padding: 0 .2rem;
+  border: 1px solid #62BEFF;
+}
+
+.buyTicket-middle{
+
+}
+.buyTicket-middle h2{
+  width: 100%;
+  text-align: center;
+}
+.buyTicket-middle h2 span{
+  color: #FF2C25;
+  margin-left: .4rem;
+}
+.buyTicket-middle p{
+  width: 100%;
+  font-size: 1.3rem;
+  text-align: center;
+}
+.buyTicket-bottom{
+
+}
+
+.buyTicket-tabs .segment-md .segment-button{
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #000;
+  border: 0;
+  padding: 0;
+  margin: 0 1rem;
+}
+.buyTicket-tabs .segment-md .segment-button.segment-activated{
+  font-size: 1.8rem;
+  color: #1296db;
+  border-bottom: 2px solid #1296db;
+}
+
+.movie-scene {
+
+}
+
+.movie-scene-time h2{
+  font-size: 1.6rem;
+  color: #000;
+  font-weight: 600;
+}
+.movie-scene-time p,
+.movie-scene-type p:last-of-type{
+  font-size: 1rem;
+}
+.movie-scene-type{
+  padding-top: .268rem;
+}
+.movie-scene-type p:first-of-type{
+  font-size: 1.2rem;
+  color: #000;
+}
+.movie-scene-price p:first-of-type{
+  font-size: 1.4rem;
+  color: #FF2C25;
+}
+.movie-scene-price p:first-of-type span{
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.movie-scene-price p:last-of-type {
+  font-size: 1.2rem;
+  color: #19FF18;
+}

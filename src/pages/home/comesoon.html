@@ -1,0 +1,32 @@
+<!--
+  Generated template for the ComesoonPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>电影：即将上映</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list class="comesoon-movieList">
+    <ion-item class="movieList-item">
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/MEAN.jpg">
+      </ion-thumbnail>
+      <h2>毒液：致命守护者</h2>
+      <p>上映日期：<span>11月30号 周五</span></p>
+      <p>有<span>12345345</span>人想看</p>
+      <!--<span ng-repeat="director in item.directors">{{director.name}}{{$last?'':'、'}}</span>-->
+      <p>导演：<span>李安</span></p>
+      <!--{{item.genres.join('、')}}-->
+      <p>主演：<span>邓超</span></p>
+      <button ion-button clear item-end>预售</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

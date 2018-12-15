@@ -1,8 +1,82 @@
-page-fenlei {
+.fenlei-header{
 
 }
-#text{
-  width: 200%;
-  height: 4rem;
-  background-color: red;
+
+.fenlei-title{
+  width: 100%;
+  height: 8%;
+  background-image: url('../../assets/imgs/fenleiHeader.jpg');
+  background-size: cover;
+}
+.fenlei-header .toolbar-title-md{
+  margin-bottom: .8rem;
+}
+.fenlei-title ion-icon{
+  position: absolute;
+  top: .8rem;
+  left: 2rem;
+}
+.fenlei-header .toolbar-title-md{
+  font-size: 2.4rem;
+  margin-top: .8rem;
+  background:rgba(255,255,255,0);
+}
+
+.fenlei-header .toolbar-md{
+  padding: 0;
+  min-height: 0;
+}
+.fenlei-content{
+
+}
+.fenlei-content .item-block{
+  border: 1px solid #eee;
+}
+.fenlei-tabs{
+  width: 100%;
+  overflow: hidden;
+}
+.fenlei-tabs .swiper-container{
+  overflow-x: scroll;
+  scroll:hidden;
+  background-color: #eeeeee;
+}
+.fenlei-tabs .swiper-container .swiper-wrapper .swiper-slide{
+  width: 20%;
+}
+.fenlei-tabs .fenlei-tab{
+  width: 100%;
+  height: 3rem;
+  font-size: 1.45rem;
+  color: #333;
+  line-height: 3rem;
+  border: 0;
+  padding: 0;
+  margin: 0 1.18rem;
+}
+.fenlei-tabs .fenleiNav-active{
+  color: #00A0E2;
+  font-weight: 700;
+  border-bottom: 2px solid #00A0E2;
+}
+
+.fenlei-movieList ion-item h2,
+.fenlei-movieList p span{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.fenlei-movieList ion-item ion-thumbnail img{
+  width: 80px;
+  height: 100px;
+}
+.fenlei-movieList ion-item p:nth-of-type(1){
+  position: relative;
+}
+.fenlei-movieList ion-item p:nth-of-type(1) span{
+  font-size: .6rem;
+  padding: 0 .1rem;
+  position: absolute;
+  top: 0.25rem;
+  left: 5rem;
 }

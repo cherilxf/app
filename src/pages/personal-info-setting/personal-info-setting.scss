@@ -1,0 +1,72 @@
+page-personal-info-setting {
+
+}
+
+.personalInfo-setting-header,
+.infoSetting-header{
+  position: relative;
+}
+
+.personalInfo-setting{
+  background-color: #eee;
+}
+.personalInfo-setting .item-select .label-md,
+.personalInfo-setting .item-input .label-md,
+.personalInfo-setting .item-datetime .label-md{
+  color: #000;
+}
+.personalInfo-setting .item-md ion-icon[item-right]{
+  margin-top: 15px;
+}
+.personalInfo-setting .item-block{
+  border: 1px solid #eee;
+}
+
+.personalInfo-setting p{
+  font-size: 1.6rem;
+}
+.personalInfo-setting .head-portrait img{
+  width: 3rem;
+  height: 3rem;
+}
+
+.infoSetting-header .saveInfo{
+  font-size: 1.6rem;
+  color: #000;
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+}
+.nameSetting-content,
+.sexSetting-content,
+.descriptionSetting-content{
+  background-color: #eee;
+}
+.nameSetting-content ion-input{
+  font-size: 1.6rem;
+  background-color: #fff;
+  padding: .8rem;
+  margin-top: .6rem;
+}
+
+.nameSetting-content .text-input-md{
+  margin: .2rem 1rem;
+}
+.birthdaySetting-content .datetime-text{
+  color: #666;
+}
+.birthdaySetting-content .datetime-md{
+  padding-right: 0;
+}
+
+.descriptionSetting-content .item-input ion-textarea{
+  height: 16rem;
+  padding: 0 .4rem;
+}
+.descriptionSetting-content .text-input-md{
+  height: 13.88rem;
+}
+.descriptionSetting-content .item-md,
+.descriptionSetting-content .item-md.item-block .item-inner{
+  padding: 0;
+}
