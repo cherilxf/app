@@ -3,5 +3,16 @@
   "integrations": {
     "cordova": {}
   },
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://173.18.1.133:10001/api"
+    },
+    {
+      "path": "/media-repo",
+      "proxyUrl": "http://172.18.8.11:8080",
+      "rejectUnuthorized": false
+    }
+  ]
 }
