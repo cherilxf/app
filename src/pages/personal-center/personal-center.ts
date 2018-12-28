@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { PersonalInfoSettingPage } from "../personal-info-setting/personal-info-setting";
+import { PersonalInfoSettingPage } from "./personal-info-setting/personal-info-setting";
+import { SettingPage } from "./setting/setting";
 
 
 /**
@@ -12,15 +13,6 @@ import { PersonalInfoSettingPage } from "../personal-info-setting/personal-info-
  */
 
 @IonicPage()
-@Component({
-  templateUrl: 'setting.html',
-})
-export class SettingPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-}
-
 @Component({
   selector: 'page-personal-center',
   templateUrl: 'personal-center.html',

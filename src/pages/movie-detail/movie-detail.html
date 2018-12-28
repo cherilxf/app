@@ -18,11 +18,11 @@
         <ion-thumbnail item-start>
           <img src="assets/imgs/MEAN.jpg">
         </ion-thumbnail>
-        <h2>无名之辈</h2>
+        <h2>{{movieDetailData.title}}</h2>
         <p>喜剧 / 爱情 / 中国大陆 / 108分钟</p>
-        <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-        <p><span>9.2万</span>人想看</p>
-        <p>主演：<span>邓超</span></p>
+        <p>豆瓣评分<span class="badge-ios-danger">{{movieDetailData.rating.average}}</span></p>
+        <p><span>{{movieDetailData.wish_count}}</span>人想看</p>
+        <p>主演：<span *ngFor="let cast of movieDetailData.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span></p>
       </ion-item>
     </div>
 

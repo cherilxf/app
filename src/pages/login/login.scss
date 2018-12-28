@@ -1,3 +1,52 @@
 page-login {
 
 }
+.login-content{
+  margin-top: .6rem;
+  background-color: #eee;
+}
+.login-content .item-md ion-icon[item-right]{
+  margin: 0 .2rem 0 0;
+  padding-top: .6rem;
+}
+.login-content .item-input .label-md {
+  color: #000;
+  margin: .6rem .2rem .6rem 0;
+}
+.login-content .text-input-md{
+  font-size: 1.4rem;
+  margin: 0;
+  padding-left: .6rem;
+}
+.login-content .list-md .item-input:last-child{
+  border: 0;
+}
+.login-content .item-input-has-focus{
+  border-bottom-color: #000;
+}
+
+.login-box{
+  margin: 0 1rem;
+  overflow: hidden;
+}
+.login-box .loginBtn{
+  font-size: 1.6rem;
+  background-color: #F51933;
+}
+.login-box .forgot-password{
+  font-size: 1.4rem;
+  margin: .4rem 0 2rem;
+  background-color: #eee;
+}
+.login-box .forgot-password:active {
+  color: #F51933;
+}
+
+.register-box{
+  width: 100%;
+  text-align: center;
+}
+.register-box .registerBtn{
+  height: 3rem;
+  background-color: #00A0E2;
+}

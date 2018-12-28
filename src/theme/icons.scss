@@ -144,3 +144,28 @@
 .ion-md-followIcon:before {
   content: url("../assets/fonts/follow.svg");
 }
+
+.ion-md-accoundIcon:before {
+  content: url("../assets/fonts/accoundIcon.svg");
+}
+
+.ion-md-passwordIcon:before {
+  content: url("../assets/fonts/passwordIcon.svg");
+}
+.ion-md-passwordIcon-outline:before {
+  content: url("../assets/fonts/passwordIcon_1.svg");
+}
+/*
+.tab-button[aria-selected=false] .ion-md-passwordIcon-outline:before {
+  content: url("../assets/fonts/passwordIcon.svg");
+}
+.tab-button[aria-selected=true] .ion-md-passwordIcon-outline:before {
+  content: url("../assets/fonts/passwordIcon_1.svg");
+}*/
+.ion-md-pwSeeIcon:before {
+  content: url("../assets/fonts/pwSeeIcon.svg");
+}
+.ion-md-pwSeeIcon-outline:before {
+  content: url("../assets/fonts/pwSeeIcon_1.svg");
+}
+

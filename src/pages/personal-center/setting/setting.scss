@@ -1,0 +1,34 @@
+page-setting {
+
+}
+.setting-content{
+  background-color: #eee;
+}
+.setting-content ion-label{
+  color: #000;
+  font-size: 1.6rem;
+}
+.setting-content ion-label h2{
+  font-size: 2.2rem;
+}
+.setting-content p{
+  color: #666;
+}
+.setting-content ion-item img{
+  width: 5rem;
+  height: 5rem;
+  border-radius: 2.5rem;
+}
+.setting-content ion-item:first-of-type{
+  margin: .6rem 0;
+}
+.setting-content .login-out{
+  margin: .8rem .8rem;
+}
+.setting-content .login-out button{
+  width: 100%;
+  font-size: 1.6rem;
+}
+.setting-content .button-md{
+  margin: 0;
+}

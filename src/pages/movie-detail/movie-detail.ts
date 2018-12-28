@@ -3,6 +3,8 @@ import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 
 import {CommentDetailPage} from "../comment-detail/comment-detail";
 import {CinemaPage} from "../cinema/cinema";
+import {HomeService} from "../home/home.service";
+import {MovieDetailService} from "./movie-detail.service";
 
 
 declare let Swiper: any;
@@ -19,6 +21,7 @@ declare let $;
 @Component({
   selector: 'page-movie-detail',
   templateUrl: 'movie-detail.html',
+  providers: [MovieDetailService]
 })
 export class MovieDetailPage {
   @ViewChild(Slides) slides: Slides;
@@ -32,12 +35,26 @@ export class MovieDetailPage {
     {"index": "2", "tabName": "讨论区"}
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public movieDetailData = {};
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private movieDetailService: MovieDetailService) {
+    this.getMovieDetailData();
     this.initSwiper();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MovieDetailPage');
+    // console.log('ionViewDidLoad MovieDetailPage');
+  }
+
+  getMovieDetailData(){
+    let movieId = this.navParams.get('movieId');
+    // console.log(movieId);
+    this.movieDetailService.getMovieDetailData(movieId).subscribe(data => {
+      this.movieDetailData = data.data;
+      console.log(this.movieDetailData);
+    }, error => {
+      alert(error);
+    });
   }
 
   initSwiper() {
@@ -147,5 +164,7 @@ export class MovieDetailPage {
       id: 10001
     });
   }
+
+  // this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length() - 3));
 
 }

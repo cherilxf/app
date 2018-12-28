@@ -2,29 +2,14 @@ import {Component, ViewChild} from '@angular/core';
 import {NavController, NavParams, IonicPage, Slides} from 'ionic-angular';
 
 import {MovieDetailPage} from "../movie-detail/movie-detail";
+import {ReyingPage} from "./reying/reying";
+import {ComesoonPage} from "./comesoon/comesoon";
 
 import {HomeService} from './home.service';
 
 declare let Swiper: any;
 
 @IonicPage()
-@Component({
-  templateUrl: 'reying.html',
-})
-export class ReyingPage {
-  constructor(params: NavParams) {
-
-  }
-}
-@Component({
-  templateUrl: 'comesoon.html',
-})
-export class ComesoonPage {
-  constructor(params: NavParams) {
-
-  }
-}
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -33,6 +18,10 @@ export class ComesoonPage {
 export class HomePage {
   @ViewChild(Slides) slides: Slides;
   homeSwiper: any;
+
+  home_reying_movie: any;
+
+  home_comesoon_movie: any;
 
   public arr = [
     {"src": "assets/imgs/MEAN.jpg"},
@@ -43,12 +32,29 @@ export class HomePage {
     {"src": "assets/imgs/MEAN.jpg"},
   ];
 
-  constructor(public navCtrl: NavController, private HomeService: HomeService) {  // 实例化
-    console.log(this.HomeService.getData());
+  constructor(public navCtrl: NavController, private homeService: HomeService) {  // 实例化
+    this.getReyingMovie();
+    this.getComesoonMovie();
     this.initSwiper();
   }
 
   ionViewWillEnter() {
+  }
+
+  getReyingMovie() {
+    this.homeService.getReyingMovieData().subscribe(data => {
+      this.home_reying_movie = data.data;
+    }, error => {
+      alert(error);
+    });
+  }
+
+  getComesoonMovie() {
+    this.homeService.getComesoonMovieData().subscribe(data => {
+      this.home_comesoon_movie = data.data;
+    }, error => {
+      alert(error);
+    });
   }
 
   initSwiper() {
@@ -71,9 +77,10 @@ export class HomePage {
     this.slides.stopAutoplay();
   }
 
-  goMovieDetailPage() {
+  goMovieDetailPage(movie) {
+    // console.log(item.id);
     this.navCtrl.push(MovieDetailPage, {
-      movieID: "123456"
+      movieId: movie.id
     });
   }
 

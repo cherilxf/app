@@ -100,6 +100,12 @@ page-home {
   margin-top: 1.4rem;
   border-radius: 1.4rem;
 }
+
+.home-reying .swiper-slide img,
+.home-comesoon .swiper-slide img{
+  width: 100%;
+  max-height: 11rem;
+}
 .home-recommend {
   margin-top: 1rem;
   border-top: 1px solid #eee;

@@ -30,40 +30,10 @@
     <div class="home-reying-content home-content-slide">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <ion-item (click)="goMovieDetailPage()">
-              <img src="assets/imgs/MEAN.jpg" alt="">
-              <p>毒液毒液毒液毒液毒液毒液毒液毒液毒液毒液</p>
-            </ion-item>
-          </div>
-          <div class="swiper-slide">
-            <ion-item>
-              <img src="assets/imgs/MEAN.jpg" alt="">
-              <p>毒液</p>
-            </ion-item>
-          </div>
-          <div class="swiper-slide">
-            <ion-item>
-              <img src="assets/imgs/MEAN.jpg" alt="">
-              <p>毒液</p>
-            </ion-item>
-          </div>
-          <div class="swiper-slide">
-            <ion-item>
-              <img src="assets/imgs/MEAN.jpg" alt="">
-              <p>毒液</p>
-            </ion-item>
-          </div>
-          <div class="swiper-slide">
-            <ion-item>
-              <img src="assets/imgs/MEAN.jpg" alt="">
-              <p>毒液</p>
-            </ion-item>
-          </div>
-          <div class="swiper-slide">
-            <ion-item>
-              <img src="assets/imgs/MEAN.jpg" alt="">
-              <p>毒液</p>
+          <div class="swiper-slide" *ngFor="let item of home_reying_movie">
+            <ion-item (click)="goMovieDetailPage(item)">
+              <img src="{{item.images.small}}" alt="{{item.alt}}">
+              <p>{{item.title}}</p>
             </ion-item>
           </div>
         </div>
@@ -79,40 +49,10 @@
     <div class="home-comesoon-content home-content-slide">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" (click)="goMovieDetailPage()">
-            <ion-item>
-              <img src="assets/imgs/MEAN.jpg" alt="">
-              <p>毒液</p>
-            </ion-item>
-          </div>
-          <div class="swiper-slide">
-            <ion-item>
-              <img src="assets/imgs/MEAN.jpg" alt="">
-              <p>毒液</p>
-            </ion-item>
-          </div>
-          <div class="swiper-slide">
-            <ion-item>
-              <img src="assets/imgs/MEAN.jpg" alt="">
-              <p>毒液</p>
-            </ion-item>
-          </div>
-          <div class="swiper-slide">
-            <ion-item>
-              <img src="assets/imgs/MEAN.jpg" alt="">
-              <p>毒液</p>
-            </ion-item>
-          </div>
-          <div class="swiper-slide">
-            <ion-item>
-              <img src="assets/imgs/MEAN.jpg" alt="">
-              <p>毒液</p>
-            </ion-item>
-          </div>
-          <div class="swiper-slide">
-            <ion-item>
-              <img src="assets/imgs/MEAN.jpg" alt="">
-              <p>毒液</p>
+          <div class="swiper-slide" *ngFor="let item of home_comesoon_movie">
+            <ion-item (click)="goMovieDetailPage()" >
+              <img src="{{item.images.small}}" alt="{{item.alt}}">
+              <p>{{item.title}}</p>
             </ion-item>
           </div>
         </div>

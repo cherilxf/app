@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header class="movie-header">
-  <ion-title class="movie-title" >
+  <ion-title class="movie-title">
     <ion-item>
       <a class="location" href="#" item-left>
         广州
@@ -44,17 +44,15 @@
             <ion-slides (ionSlideDidChange)="slideChanged()">
               <ion-slide>
                 <ion-list *ngSwitchCase="'正在热映'" class="reying-movieList">
-                  <ion-item class="movieList-item">
+                  <ion-item class="movieList-item" *ngFor="let item of movie_reying_movie">
                     <ion-thumbnail item-start>
-                      <img src="assets/imgs/MEAN.jpg">
+                      <img src="{{item.images.small}}" alt="{{item.alt}}">
                     </ion-thumbnail>
-                    <h2>毒液：致命守护者</h2>
+                    <h2>{{item.title}}</h2>
                     <p>上映地区：<span>中国大陆、香港</span></p>
-                    <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-                    <!--<span ng-repeat="director in item.directors">{{director.name}}{{$last?'':'、'}}</span>-->
-                    <p>导演：<span>李安</span></p>
-                    <!--{{item.genres.join('、')}}-->
-                    <p>主演：<span>邓超</span></p>
+                    <p>豆瓣评分<span class="badge-ios-danger">{{item.rating.average}}</span></p>
+                    <p>导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span></p>
+                    <p>主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span></p>
                     <button ion-button clear item-end>购买</button>
                   </ion-item>
 
@@ -68,17 +66,15 @@
 
               <ion-slide>
                 <ion-list *ngSwitchCase="'即将上映'" class="comesoon-movieList">
-                  <ion-item class="movieList-item">
+                  <ion-item class="movieList-item" *ngFor="let item of movie_comesoon_movie">
                     <ion-thumbnail item-start>
-                      <img src="assets/imgs/MEAN.jpg">
+                      <img src="{{item.images.small}}" alt="{{item.alt}}">
                     </ion-thumbnail>
-                    <h2>毒液：致命守护者</h2>
+                    <h2>{{item.title}}</h2>
                     <p>上映日期：<span>11月30号 周五</span></p>
-                    <p>有<span>12345345</span>人想看</p>
-                    <!--<span ng-repeat="director in item.directors">{{director.name}}{{$last?'':'、'}}</span>-->
-                    <p>导演：<span>李安</span></p>
-                    <!--{{item.genres.join('、')}}-->
-                    <p>主演：<span>邓超</span></p>
+                    <p>有<span>{{item.collect_count}}</span>人想看</p>
+                    <p>导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span></p>
+                    <p>主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span></p>
                     <button ion-button clear item-end>预售</button>
                   </ion-item>
                 </ion-list>

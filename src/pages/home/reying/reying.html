@@ -14,17 +14,15 @@
 <ion-content>
   <div>
     <ion-list class="reying-movieList">
-      <ion-item class="movieList-item">
+      <ion-item class="movieList-item" *ngFor="let item of reying_movie_data">
         <ion-thumbnail item-start>
-          <img src="assets/imgs/MEAN.jpg">
+          <img src="{{item.images.small}}">
         </ion-thumbnail>
-        <h2>毒液：致命守护者</h2>
+        <h2>{{item.title}}</h2>
         <p>上映地区：<span>中国大陆、香港</span></p>
-        <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-        <!--<span ng-repeat="director in item.directors">{{director.name}}{{$last?'':'、'}}</span>-->
-        <p>导演：<span>李安</span></p>
-        <!--{{item.genres.join('、')}}-->
-        <p>主演：<span>邓超</span></p>
+        <p>豆瓣评分<span class="badge-ios-danger">{{item.rating.average}}</span></p>
+        <p>导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span></p>
+        <p>主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span></p>
         <button ion-button clear item-end>购买</button>
       </ion-item>
 
