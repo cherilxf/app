@@ -12,54 +12,253 @@
 </ion-header>
 
 <ion-content class="ranking-content">
-  <ion-toolbar class="ranking-tabs">
-    <ion-segment [(ngModel)]="MovieRanking">
-      <ion-segment-button class="ranking-tab" value="todayTopRanking">
-        今日Top
-      </ion-segment-button>
-      <ion-segment-button class="ranking-tab" value="newMovieRanking">
-        新片热映
-      </ion-segment-button>
-      <ion-segment-button class="ranking-tab" value="boxOfficeRanking">
-        实时票房
-      </ion-segment-button>
-    </ion-segment>
-  </ion-toolbar>
-  <div [ngSwitch]="MovieRanking" class="ranking-movieList">
-    <ion-list *ngSwitchCase="'todayTopRanking'" class="ranking-todayTop">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/imgs/MEAN.jpg">
-        </ion-thumbnail>
-        <h2>毒液：致命守护者</h2>
-        <p>导演：<span>李安</span></p>
-        <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-        <p>观影人数<span>2222</span>万</p>
-      </ion-item>
-    </ion-list>
+  <ion-segment class="ranking-tabs" [(ngModel)]="MovieRanking" (ionChange)="segmentChanged($event)">
+    <ion-segment-button class="ranking-tab" value="todayTopRanking">
+      今日Top
+    </ion-segment-button>
+    <ion-segment-button class="ranking-tab" value="newMovieRanking">
+      口碑高评
+    </ion-segment-button>
+    <ion-segment-button class="ranking-tab" value="boxOfficeRanking">
+      实时票房
+    </ion-segment-button>
+  </ion-segment>
+  <div class="ranking-movieList">
+    <div class="ranking-todayTop" [hidden]="!(MovieRanking == 'todayTopRanking')">
+      <ion-scroll scrollY="true">
+        <ion-list class="todayTop-list">
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者aaa</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+        </ion-list>
+      </ion-scroll>
+    </div>
 
-    <ion-list *ngSwitchCase="'newMovieRanking'" class="ranking-newMovie">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/imgs/MEAN.jpg">
-        </ion-thumbnail>
-        <h2>毒液：致命守护者</h2>
-        <p>上映日期：<span>11月30号</span></p>
-        <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-        <p>观影人数<span>2222</span>万</p>
-      </ion-item>
-    </ion-list>
+    <div class="ranking-newMovie" [hidden]="!(MovieRanking == 'newMovieRanking')">
+      <ion-scroll scrollY="true">
+        <ion-list class="newMovie-list">
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者aaa</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+        </ion-list>
+      </ion-scroll>
+    </div>
 
-    <ion-list *ngSwitchCase="'boxOfficeRanking'" class="ranking-boxOffice">
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="assets/imgs/MEAN.jpg">
-        </ion-thumbnail>
-        <h2>毒液：致命守护者</h2>
-        <p>累计票房<span>2222</span>万</p>
-        <p>导演：<span>李安</span></p>
-        <p>主演：<span>邓超</span></p>
-      </ion-item>
-    </ion-list>
+    <div class="ranking-boxOffice" [hidden]="!(MovieRanking == 'boxOfficeRanking')" >
+      <ion-scroll scrollY="true">
+        <ion-list class="boxOffice-list">
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/MEAN.jpg">
+            </ion-thumbnail>
+            <h2>毒液：致命守护者aaa</h2>
+            <p>导演：<span>李安</span></p>
+            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p>观影人数<span>2222</span>万</p>
+          </ion-item>
+        </ion-list>
+      </ion-scroll>
+    </div>
   </div>
 </ion-content>

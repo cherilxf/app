@@ -32,7 +32,11 @@ page-personal-center {
 }
 
 .personal-center-content{
-
+  background-color: #eee;
+}
+.personal-center-content ion-grid{
+  background-color: #fff;
+  margin: .6rem 0;
 }
 .personal-center-content .item-block,
 .setting-content .item-block {

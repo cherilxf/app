@@ -27,8 +27,10 @@
   <ion-grid>
     <ion-row>
       <ion-col col-3>
-        <ion-icon name="movieTicket"></ion-icon>
-        <p>电影票</p>
+        <div (click)="goMyTicketPage()">
+          <ion-icon name="movieTicket"></ion-icon>
+          <p>电影票</p>
+        </div>
       </ion-col>
       <ion-col col-3>
         <ion-icon name="youhuiquan"></ion-icon>
@@ -47,7 +49,19 @@
   <ion-list>
     <ion-item>
       <h2 item-left>
-        我的浏览记录
+        会员中心
+      </h2>
+      <ion-icon item-right name="youjiantou"></ion-icon>
+    </ion-item>
+    <ion-item (click)="goWishMoviePage()">
+      <h2 item-left>
+        想看的电影
+      </h2>
+      <ion-icon item-right name="youjiantou"></ion-icon>
+    </ion-item>
+    <ion-item (click)="goHaveSeenMoviePage()">
+      <h2 item-left>
+        看过的电影
       </h2>
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>
@@ -59,13 +73,13 @@
     </ion-item>
     <ion-item>
       <h2 item-left>
-        想看的电影
+        发起的讨论
       </h2>
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>
     <ion-item>
       <h2 item-left>
-        看过的电影
+        银行卡特惠
       </h2>
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>

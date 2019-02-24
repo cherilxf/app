@@ -16,8 +16,8 @@
   <!-- 轮播图 -->
   <div class="banner">
     <ion-slides pager loop="true" autoplay="2000">
-      <ion-slide *ngFor="let item of arr">
-        <img src="{{item.src}}" alt="" class="slide-image">
+      <ion-slide *ngFor="let item of banner_imgs">
+        <img src="{{item.bannerImg}}" alt="" class="slide-image">
       </ion-slide>
     </ion-slides>
   </div>
@@ -50,7 +50,7 @@
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide" *ngFor="let item of home_comesoon_movie">
-            <ion-item (click)="goMovieDetailPage()" >
+            <ion-item (click)="goMovieDetailPage(item)" >
               <img src="{{item.images.small}}" alt="{{item.alt}}">
               <p>{{item.title}}</p>
             </ion-item>

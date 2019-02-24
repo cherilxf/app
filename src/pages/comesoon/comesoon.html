@@ -1,0 +1,35 @@
+<!--
+  Generated template for the ComesoonPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar class="comesoon-movie-header">
+    <ion-title>电影：即将上映</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="comesoon-movie-content">
+    <ion-list class="comesoon-movie-list">
+      <ion-item class="movie-list-item" *ngFor="let item of movie_comesoon_data">
+        <ion-thumbnail item-start>
+          <img src="{{item.images.small}}">
+        </ion-thumbnail>
+        <h2>{{item.title}}</h2>
+        <p>上映日期：<span>11月30号 周五</span></p>
+        <p>有<span>{{item.collect_count}}</span>人想看</p>
+        <p>导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span></p>
+        <p>主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span></p>
+        <button ion-button clear item-end>预售</button>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="0">
+      <ion-infinite-scroll-content class="load-more" loadingSpinner="bubbles" loadingText="{{loadMore.loadingText}}">
+
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+</ion-content>

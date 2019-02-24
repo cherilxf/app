@@ -1,0 +1,82 @@
+.movie-content-box{
+  width: 100%;
+  height: 100%;
+}
+
+.movie-content-header{
+  width: 100%;
+  position: relative;
+}
+.movie-content-header ion-segment{
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  position: fixed;
+  top: 4.2rem;
+  left: 0;
+  z-index: 999;
+}
+.movie-content-header .segment-md .segment-button{
+  height: 3.4rem;
+  font-size: 1.6rem;
+  color: #F51933;
+  padding: 0;
+  margin: 0 4.8rem;
+  border-bottom: 0;
+}
+.movie-content-header .segment-md .segment-button.segment-activated{
+  font-weight: 600;
+  border-bottom: 2px solid #F51933;
+}
+
+.movie-content-list{
+  padding-top: 3.4rem;
+}
+.movie-content-list,
+.movie-content-list .slide-zoom,
+.movie-content-list ion-scroll{
+  width: 100%;
+  height: 100%;
+}
+.movie-list-item{
+  border: 1px solid #eee;
+}
+.movie-list-item h2,
+.movie-list-item p,
+.cinema-list-item p:nth-of-type(1) {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.movie-list-item ion-thumbnail img{
+  width: 6.4rem;
+  height: 8.6rem;
+}
+.movie-list-item h2{
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.movie-list-item p{
+  font-size: 1.4rem;
+}
+.movie-list-item button{
+  font-size: 1.4rem !important;
+  color: #fff;
+  background-color: #F51933;
+}
+
+.reying-movie-list .movie-list-item p:nth-of-type(2){
+  position: relative;
+}
+.reying-movie-list .movie-list-item p:nth-of-type(2) span{
+  font-size: .6rem;
+  padding: 0 .1rem;
+  position: absolute;
+  top: 0.25rem;
+  left: 5rem;
+}
+.comesoon-movie-list .movie-list-item p:nth-of-type(2) span{
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #F51933;
+  margin: 0 .4rem;
+}

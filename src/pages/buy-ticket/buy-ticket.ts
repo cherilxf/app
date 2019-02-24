@@ -1,5 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
+import {CinemaService} from "../cinema/cinema.service";
+import {BuyTicketService} from "./buy-ticket.service";
 
 /**
  * Generated class for the BuyTicketPage page.
@@ -12,22 +14,39 @@ import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 @Component({
   selector: 'page-buy-ticket',
   templateUrl: 'buy-ticket.html',
+  providers: [BuyTicketService]
 })
 export class BuyTicketPage {
   @ViewChild(Slides) slides: Slides;
 
-  public tabArr = [
+  public tabArr: any[] = [
     {"index": "0", "tabName": "今天"},
     {"index": "1", "tabName": "明天"},
     {"index": "2", "tabName": "后天"}
   ];
   public buyTicketTab = '今天';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public movieId : String;
+  public cinemaId : String;
+  public cinemaDeatilData: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private buyTicketService: BuyTicketService) {
+    this.movieId = this.navParams.get('movieId');
+    this.cinemaId = this.navParams.get('cinemaId');
+    this.getCinemaDetail(this.cinemaId);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BuyTicketPage');
+    // console.log('ionViewDidLoad BuyTicketPage');
+  }
+
+  getCinemaDetail(cinemaId){
+    this.buyTicketService.getCinemaDetailData(this.movieId).subscribe(data => {
+      console.log(data.data);
+      this.cinemaDeatilData = data.data;
+    }, error => {
+      alert(error);
+    });
   }
 
   segmentChanged(event) {

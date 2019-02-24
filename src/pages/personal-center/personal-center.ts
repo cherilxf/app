@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { PersonalInfoSettingPage } from "./personal-info-setting/personal-info-setting";
 import { SettingPage } from "./setting/setting";
+import {MovieTicketPage} from "./movie-ticket/movie-ticket";
+import {WishMoviePage} from "./wish-movie/wish-movie";
+import {HaveSeenMoviePage} from "./have-seen-movie/have-seen-movie";
 
 
 /**
@@ -38,6 +41,24 @@ export class PersonalCenterPage {
 
   goInfoSetting(){
     this.navCtrl.push(PersonalInfoSettingPage,{
+
+    })
+  }
+
+  goMyTicketPage(){
+    this.navCtrl.push(MovieTicketPage,{
+
+    })
+  }
+
+  goWishMoviePage(){
+    this.navCtrl.push(WishMoviePage,{
+
+    })
+  }
+
+  goHaveSeenMoviePage(){
+    this.navCtrl.push(HaveSeenMoviePage,{
 
     })
   }

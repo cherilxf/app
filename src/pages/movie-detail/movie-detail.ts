@@ -3,7 +3,6 @@ import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 
 import {CommentDetailPage} from "../comment-detail/comment-detail";
 import {CinemaPage} from "../cinema/cinema";
-import {HomeService} from "../home/home.service";
 import {MovieDetailService} from "./movie-detail.service";
 
 
@@ -29,16 +28,16 @@ export class MovieDetailPage {
 
   public movieDetailTab = '影片简介';
   public tabActive = '0';
-  public tabArr = [
+  public tabArr: any[] = [
     {"index": "0", "tabName": "影片简介"},
     {"index": "1", "tabName": "影评"},
     {"index": "2", "tabName": "讨论区"}
   ];
+  public buyBtn_Show: boolean = true;
 
-  public movieDetailData = {};
+  public movieDetailData: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private movieDetailService: MovieDetailService) {
-    this.getMovieDetailData();
     this.initSwiper();
   }
 
@@ -46,7 +45,11 @@ export class MovieDetailPage {
     // console.log('ionViewDidLoad MovieDetailPage');
   }
 
-  getMovieDetailData(){
+  ngAfterViewInit() {
+    this.getMovieDetailData();
+  }
+
+  getMovieDetailData() {
     let movieId = this.navParams.get('movieId');
     // console.log(movieId);
     this.movieDetailService.getMovieDetailData(movieId).subscribe(data => {
@@ -63,49 +66,73 @@ export class MovieDetailPage {
     });
   }
 
-  wantWatch(){
+  wantWatch() {
     let iconName = $('.watch-btn .wantWatch ion-icon').attr('name');
-    if(iconName == 'xiangkan'){
+    if (iconName == 'xiangkan') {
       $('.watch-btn .wantWatch').css({
         'color': '#FFA146',
         'background-color': '#FFF7C2'
       });
-      $('.watch-btn .wantWatch ion-icon').attr('name','xiangkan-outline').removeClass('ion-md-xiangkan').addClass('ion-md-xiangkan-outline');
-    }else if(iconName == 'xiangkan-outline'){
+      $('.watch-btn .wantWatch ion-icon').attr('name', 'xiangkan-outline').removeClass('ion-md-xiangkan').addClass('ion-md-xiangkan-outline');
+    } else if (iconName == 'xiangkan-outline') {
       $('.watch-btn .wantWatch').css({
         'color': '#000',
         'background-color': '#f8f8f8'
       });
-      $('.watch-btn .wantWatch ion-icon').attr('name','xiangkan').removeClass('ion-md-xiangkan-outline').addClass('ion-md-xiangkan');
+      $('.watch-btn .wantWatch ion-icon').attr('name', 'xiangkan').removeClass('ion-md-xiangkan-outline').addClass('ion-md-xiangkan');
     }
   }
 
   scrollContentEvent(event) {
-    if (event.scrollTop >= 380.8) {
+    if (event.scrollTop >= 389) {
       this.navFixed();
     } else {
       this.navUnFixed();
     }
   }
 
-  navFixed(){
+  navFixed() {
     $('.movieDetail-bottom .movieDetail-tabs').css({
       position: 'fixed',
-      top: 48,
+      top: 50,
       left: 0,
-      z_index: 9999
+      z_index: 999
     });
     $('.movieDetail-tabsContent ion-slides ion-slide').css({
       'padding-top': '40px',
     });
+    $('.film-summary').css({
+      'overflow-y': 'scroll'
+    });
+    $('.film-comment').css({
+      'overflow-y': 'scroll'
+    });
+    $('.discussion').css({
+      'overflow-y': 'scroll'
+    });
+    $('.movieDetail-footer').css({
+      'display': 'none'
+    })
   }
 
-  navUnFixed(){
+  navUnFixed() {
     $('.movieDetail-bottom .movieDetail-tabs').css({
       position: 'static',
     });
     $('.movieDetail-tabsContent ion-slides ion-slide').css({
       'padding-top': 0
+    });
+    $('.film-summary').css({
+      'overflow-y': 'hidden'
+    });
+    $('.film-comment').css({
+      'overflow-y': 'hidden'
+    });
+    $('.discussion').css({
+      'overflow-y': 'hidden'
+    });
+    $('.movieDetail-footer').css({
+      'display': 'block'
     });
   }
 
@@ -137,31 +164,32 @@ export class MovieDetailPage {
     }
   }
 
-  dianzanDo(index){
-    let dianzanBtn = $('.dianzan').eq(index-1);
+  dianzanDo(index) {
+    let dianzanBtn = $('.dianzan').eq(index - 1);
     let iconName = dianzanBtn.attr('name');
-    if(iconName == 'dianzan'){
+    if (iconName == 'dianzan') {
       dianzanBtn.css({
         'color': '#d81e06',
       });
-      dianzanBtn.attr('name','dianzan-outline').removeClass('ion-md-dianzan').addClass('ion-md-dianzan-outline');
-    }else if(iconName == 'dianzan-outline'){
+      dianzanBtn.attr('name', 'dianzan-outline').removeClass('ion-md-dianzan').addClass('ion-md-dianzan-outline');
+    } else if (iconName == 'dianzan-outline') {
       dianzanBtn.css({
         'color': '#000'
       });
-      dianzanBtn.attr('name','dianzan').removeClass('ion-md-dianzan-outline').addClass('ion-md-dianzan');
+      dianzanBtn.attr('name', 'dianzan').removeClass('ion-md-dianzan-outline').addClass('ion-md-dianzan');
     }
   }
+
   goCommentPage(index) {
-    this.navCtrl.push(CommentDetailPage,{
+    this.navCtrl.push(CommentDetailPage, {
       id: 10001
     });
     // this.navCtrl.pop();
   }
 
-  goCinemaPage(){
-    this.navCtrl.push(CinemaPage,{
-      id: 10001
+  goCinemaPage() {
+    this.navCtrl.push(CinemaPage, {
+      movieId: this.movieDetailData.id
     });
   }
 

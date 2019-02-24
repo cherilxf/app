@@ -1,9 +1,19 @@
 page-ranking-list {
 
 }
-.ranking-header{
+.segment-md .segment-button{
+  opacity: 1;
+}
+.ranking-content .segment-md .segment-button.activated,
+.ranking-content .segment-md .segment-button.segment-activated{
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #000;
+  background-color: #00A0E2;
+}
+
+.ranking-header .ranking-title{
   width: 100%;
-  height: 8%;
   background-image: url('../../assets/imgs/rankingHeader.jpg');
   background-size: cover;
 }
@@ -11,44 +21,57 @@ page-ranking-list {
   position: absolute;
   top: .8rem;
   left: 1.6rem;
+  z-index: 999;
 }
 .ranking-header .toolbar-title-md{
   font-size: 2.4rem;
   text-align: center;
-  margin-top: .8rem;
+  margin: .8rem 0;
   background:rgba(255,255,255,0);
 }
-.ranking-content .toolbar-md{
+.ranking-header .toolbar-md{
   padding: 0;
   min-height: 0;
 }
 .ranking-content .item-block{
   border: 1px solid #eee;
 }
+
+.ranking-tabs{
+  position: fixed;
+  top: 50px;
+  left: 0;
+  z-index: 999;
+}
 .ranking-tabs .ranking-tab{
   font-size: 1.6rem;
-  height: 3rem;
-  line-height: 3rem;
+  height: 3.2rem;
+  line-height: 3.2rem;
   color: #fff;
-  background-color: #00A0E2;
-}
-.ranking-tabs .segment-md .segment-button.activated,
-.ranking-tabs .segment-md .segment-button.segment-activated{
-  font-size: 1.8rem;
-  color: #000;
-  border-color: #00A0E2;
+  background-color: #61C3E3;
 }
 .ranking-tabs .ranking-tab:nth-of-type(2){
   border-left: 1px solid #f4f4f4;
   border-right: 1px solid #f4f4f4;
 }
 
+.ranking-movieList{
+  margin-top: 3.2rem;
+}
+.ranking-movieList,
+.ranking-todayTop,
+.ranking-newMovie,
+.ranking-boxOffice,
+.ranking-movieList ion-scroll{
+  height: 100%;
+}
 .ranking-movieList ion-item h2,
 .ranking-movieList p span{
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
 }
+
 .ranking-movieList ion-item ion-thumbnail img{
   width: 80px;
   height: 100px;

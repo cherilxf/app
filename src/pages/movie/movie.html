@@ -4,111 +4,41 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header class="movie-header">
-  <ion-title class="movie-title">
-    <ion-item>
-      <a class="location" href="#" item-left>
+<ion-header class="movie-ion-header">
+
+  <ion-navbar>
+    <ion-title class="movie-title">
+      <a class="location" href="#">
         广州
         <ion-icon name="md-arrow-dropdown"></ion-icon>
       </a>
-      <ion-segment [(ngModel)]="MovieTabs" (ionChange)="MovieTabsChanged()">
-        <ion-segment-button value="电影" (click)="movieContentList()">
-          电影
-        </ion-segment-button>
-        <ion-segment-button value="影院">
-          影院
-        </ion-segment-button>
-      </ion-segment>
-      <ion-icon item-right name="saoyisao"></ion-icon>
-    </ion-item>
-  </ion-title>
+      <ion-toolbar>
+        <ion-segment [(ngModel)]="MovieTabs" (ionChange)="MovieTabsChanged()">
+          <ion-segment-button value="电影">
+            电影
+          </ion-segment-button>
+          <ion-segment-button value="影院">
+            影院
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+      <ion-icon class="saoyisao" name="saoyisao"></ion-icon>
+    </ion-title>
+  </ion-navbar>
+
 </ion-header>
 
 
-<ion-content class="movie-content">
-  <div [ngSwitch]="MovieTabs" class="">
-    <ion-list *ngSwitchCase="'电影'">
-      <div class="movieList-content">
-        <div class="movieList-tabs">
-          <ion-segment [(ngModel)]="MovieListTabs" (ionChange)="MovieListTabsChanged()">
-            <ion-segment-button value="正在热映">
-              正在热映
-            </ion-segment-button>
-            <ion-segment-button value="即将上映">
-              即将上映
-            </ion-segment-button>
-          </ion-segment>
-        </div>
-        <div class="movieList-tabsContent">
-          <div [ngSwitch]="MovieListTabs">
-            <ion-slides (ionSlideDidChange)="slideChanged()">
-              <ion-slide>
-                <ion-list *ngSwitchCase="'正在热映'" class="reying-movieList">
-                  <ion-item class="movieList-item" *ngFor="let item of movie_reying_movie">
-                    <ion-thumbnail item-start>
-                      <img src="{{item.images.small}}" alt="{{item.alt}}">
-                    </ion-thumbnail>
-                    <h2>{{item.title}}</h2>
-                    <p>上映地区：<span>中国大陆、香港</span></p>
-                    <p>豆瓣评分<span class="badge-ios-danger">{{item.rating.average}}</span></p>
-                    <p>导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span></p>
-                    <p>主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span></p>
-                    <button ion-button clear item-end>购买</button>
-                  </ion-item>
+<ion-content class="movie-ion-content">
+  <div class="movie" [hidden]="!(MovieTabs == '电影')">
+      <movie></movie>
+  </div>
 
-                  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-                    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="正在加载更多...">
-
-                    </ion-infinite-scroll-content>
-                  </ion-infinite-scroll>
-                </ion-list>
-              </ion-slide>
-
-              <ion-slide>
-                <ion-list *ngSwitchCase="'即将上映'" class="comesoon-movieList">
-                  <ion-item class="movieList-item" *ngFor="let item of movie_comesoon_movie">
-                    <ion-thumbnail item-start>
-                      <img src="{{item.images.small}}" alt="{{item.alt}}">
-                    </ion-thumbnail>
-                    <h2>{{item.title}}</h2>
-                    <p>上映日期：<span>11月30号 周五</span></p>
-                    <p>有<span>{{item.collect_count}}</span>人想看</p>
-                    <p>导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span></p>
-                    <p>主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span></p>
-                    <button ion-button clear item-end>预售</button>
-                  </ion-item>
-                </ion-list>
-              </ion-slide>
-            </ion-slides>
-          </div>
-        </div>
-      </div>
-    </ion-list>
-
-    <ion-list *ngSwitchCase="'影院'">
-      <ion-item class="cinema-content">
-        <ion-icon name="cinemaIcon" class="cinema-icon"></ion-icon>
-        <h2>
-          金逸影城IMAX店
-          <span class="cinema-content-price">39.9元起</span>
-        </h2>
-        <p>海珠区江南大道中180号富力海珠城商业广场B区7层金逸影城电影院</p>
-        <p>
-          <span>影城卡</span>
-          <span>观影小食</span>
-          <span>IMAX厅</span>
-          <span>4K厅</span>
-        </p>
-        <p>
-      <span>
-        <ion-icon name="cinemaTuipiao"></ion-icon>
-        <ion-icon name="cinema3dGlass"></ion-icon>
-        <ion-icon name="cinemaWifi"></ion-icon>
-        <ion-icon name="cinemaPark"></ion-icon>
-      </span>
-        </p>
-        <p><span>特惠</span>毒液：致命守护者等</p>
-      </ion-item>
-    </ion-list>
+  <div class="cinema" [hidden]="!(MovieTabs == '影院')">
+    <!--<div class="cinema-content">-->
+    <ion-scroll scrollY="true" class="cinema-content">
+      <cinema></cinema>
+    </ion-scroll>
+    <!--</div>-->
   </div>
 </ion-content>

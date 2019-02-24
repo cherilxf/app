@@ -1,0 +1,55 @@
+cinema {
+
+}
+
+.cinema-sort ion-item{
+  width: 100%;
+  height: 4rem;
+}
+
+.cinema-list-item{
+  position: relative;
+  padding-left: 2rem;
+  border-bottom: 1px solid #eee;
+}
+.cinema-list-item .cinema-icon{
+  position: absolute;
+  top: 1.22rem;
+  left: .2rem;
+}
+.cinema-list-item h2 {
+  font-weight: 700;
+  position: relative;
+}
+.cinema-list-item-price {
+  font-size: 1.4rem;
+  font-weight: normal;
+  color: #F51933;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.cinema-list-item p:nth-of-type(2) span {
+  display: inline-block;
+  font-size: 1rem;
+  padding: .1rem .2rem;
+  border: 1px solid #00A0E2;
+}
+.cinema-list-item p:nth-of-type(2) span:first-child {
+  background-color: #00A0E2;
+}
+.cinema-list-item p:nth-of-type(3) span {
+  display: inline-block;
+  border: 1px solid #00A0E2;
+  padding: 0.1rem .2rem 0;
+}
+.cinema-list-item p:nth-of-type(4) {
+  font-size: 1rem;
+  color: #a8a8a8;
+}
+.cinema-list-item p:nth-of-type(4) span {
+  color: #fff;
+  padding: .2rem;
+  margin-right: .4rem;
+  background-color: #FF7500;
+}

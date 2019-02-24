@@ -1,0 +1,26 @@
+page-wish-movie {
+
+}
+.wish-movie-content{
+  background-color: #eee;
+}
+.wish-movie-list .wish-movie-number{
+  color: #000;
+  font-weight: 600;
+  margin: 0 .2rem;
+}
+.wish-movie-list .item-md ion-avatar[item-left], .item-md ion-thumbnail[item-left], .item-md ion-avatar[item-start], .item-md ion-thumbnail[item-start]{
+  margin: 0;
+}
+.wish-movie-list ion-item{
+  border-bottom: 1px solid #eee;
+}
+.wish-movie-list .item-md ion-thumbnail img{
+  width: 6rem;
+  height: 8rem;
+}
+.wish-movie-list p{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}

@@ -23,8 +23,9 @@ import { WelcomePage } from "../pages/welcome/welcome";
 import { LoginPage } from "../pages/login/login";
 
 import { HomePage } from '../pages/home/home';
-import { ReyingPage } from "../pages/home/reying/reying";
-import { ComesoonPage } from "../pages/home/comesoon/comesoon";
+
+import { ReyingPage } from "../pages/reying/reying";
+import { ComesoonPage } from "../pages/comesoon/comesoon";
 
 import { MoviePage } from '../pages/movie/movie';
 import { RankingListPage } from '../pages/ranking-list/ranking-list';
@@ -33,6 +34,9 @@ import { FenleiPage } from '../pages/fenlei/fenlei';
 import { PersonalCenterPage } from '../pages/personal-center/personal-center';
 import { SettingPage } from "../pages/personal-center/setting/setting";
 import { PersonalInfoSettingPage } from "../pages/personal-center/personal-info-setting/personal-info-setting";
+import { MovieTicketPage } from "../pages/personal-center/movie-ticket/movie-ticket";
+import { WishMoviePage } from "../pages/personal-center/wish-movie/wish-movie";
+import { HaveSeenMoviePage } from "../pages/personal-center/have-seen-movie/have-seen-movie";
 import {
   NameSettingPage,
   SexSettingPage,
@@ -70,6 +74,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PersonalCenterPage,
     SettingPage,
     PersonalInfoSettingPage,
+    MovieTicketPage,
+    WishMoviePage,
+    HaveSeenMoviePage,
     NameSettingPage,
     SexSettingPage,
     DescriptionSettingPage,
@@ -115,6 +122,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PersonalCenterPage,
     SettingPage,
     PersonalInfoSettingPage,
+    MovieTicketPage,
+    WishMoviePage,
+    HaveSeenMoviePage,
     NameSettingPage,
     SexSettingPage,
     DescriptionSettingPage,

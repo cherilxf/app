@@ -29,6 +29,9 @@
 .fenlei-content{
 
 }
+.fenlei-content .swiper-slide{
+  align-items: normal;
+}
 .fenlei-content .item-block{
   border: 1px solid #eee;
 }
@@ -37,12 +40,12 @@
   overflow: hidden;
 }
 .fenlei-tabs .swiper-container{
+  width: 100%;
   overflow-x: scroll;
-  scroll:hidden;
-  background-color: #eeeeee;
+  background-color: #eee;
 }
 .fenlei-tabs .swiper-container .swiper-wrapper .swiper-slide{
-  width: 20%;
+  width: 20% !important;
 }
 .fenlei-tabs .fenlei-tab{
   width: 100%;
@@ -60,6 +63,10 @@
   border-bottom: 2px solid #00A0E2;
 }
 
+.fenlei-movieList{
+  width: 100%;
+  height: 100%;
+}
 .fenlei-movieList ion-item h2,
 .fenlei-movieList p span{
   overflow: hidden;

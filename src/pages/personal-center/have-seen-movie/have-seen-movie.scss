@@ -1,0 +1,18 @@
+page-have-seen-movie {
+
+}
+.have-seen-movie-content{
+  background-color: #eee;
+}
+.have-seen-movie-list ion-item{
+  border-bottom: 1px solid #eee;
+}
+.have-seen-movie-list .item-md ion-thumbnail img{
+  width: 6rem;
+  height: 8rem;
+}
+.have-seen-movie-list p{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}

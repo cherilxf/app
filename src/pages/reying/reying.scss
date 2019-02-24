@@ -1,0 +1,48 @@
+page-reying {
+
+}
+.reying-movie-header{
+
+}
+.reying-movie-content{
+
+}
+
+
+.movie-list-item{
+  border: 1px solid #eee;
+}
+.movie-list-item h2,
+.movie-list-item p,
+.cinema-list-item p:nth-of-type(1) {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.movie-list-item ion-thumbnail img{
+  width: 6.4rem;
+  height: 8.6rem;
+}
+.movie-list-item h2{
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.movie-list-item p{
+  font-size: 1.4rem;
+}
+.movie-list-item button{
+  font-size: 1.4rem !important;
+  color: #fff;
+  background-color: #F51933;
+}
+
+.reying-movie-list .movie-list-item p:nth-of-type(2){
+  position: relative;
+}
+.reying-movie-list .movie-list-item p:nth-of-type(2) span{
+  font-size: .6rem;
+  padding: 0 .1rem;
+  position: absolute;
+  top: 0.25rem;
+  left: 5rem;
+}

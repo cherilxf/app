@@ -11,7 +11,7 @@
   </ion-title>
 
   <ion-toolbar class="fenlei-tabs">
-    <ion-segment [(ngModel)]="fenleiNav" class="fenlei-tabs-box">
+    <ion-segment class="fenlei-tabs-box" [(ngModel)]="fenleiNav">
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide" *ngFor="let item of arr" (click)="selectNavItem(item.index,$event)">
@@ -26,23 +26,97 @@
 </ion-header>
 
 <ion-content class="fenlei-content">
-  <div [ngSwitch]="fenleiNav">
+  <!--<div [ngSwitch]="fenleiNav">-->
     <ion-slides (ionSlideDidChange)="slideChanged()">
       <ion-slide *ngFor="let item of arr">
-        <ion-list *ngSwitchCase="item.navName" class="fenlei-movieList">
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>产地：<span>香港、中国大陆</span></p>
-            <p>导演：<span>李安</span></p>
-          </ion-item>
-        </ion-list>
+        <ion-scroll class="fenlei-movieList" scrollY="true" [hidden]="!(fenleiNav == item.navName)">
+          <ion-list>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/MEAN.jpg">
+              </ion-thumbnail>
+              <h2>毒液：致命守护者</h2>
+              <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+              <p>产地：<span>香港、中国大陆</span></p>
+              <p>导演：<span>李安</span></p>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/MEAN.jpg">
+              </ion-thumbnail>
+              <h2>毒液：致命守护者</h2>
+              <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+              <p>产地：<span>香港、中国大陆</span></p>
+              <p>导演：<span>李安</span></p>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/MEAN.jpg">
+              </ion-thumbnail>
+              <h2>毒液：致命守护者</h2>
+              <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+              <p>产地：<span>香港、中国大陆</span></p>
+              <p>导演：<span>李安</span></p>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/MEAN.jpg">
+              </ion-thumbnail>
+              <h2>毒液：致命守护者</h2>
+              <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+              <p>产地：<span>香港、中国大陆</span></p>
+              <p>导演：<span>李安</span></p>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/MEAN.jpg">
+              </ion-thumbnail>
+              <h2>毒液：致命守护者</h2>
+              <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+              <p>产地：<span>香港、中国大陆</span></p>
+              <p>导演：<span>李安</span></p>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/MEAN.jpg">
+              </ion-thumbnail>
+              <h2>毒液：致命守护者</h2>
+              <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+              <p>产地：<span>香港、中国大陆</span></p>
+              <p>导演：<span>李安</span></p>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/MEAN.jpg">
+              </ion-thumbnail>
+              <h2>毒液：致命守护者</h2>
+              <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+              <p>产地：<span>香港、中国大陆</span></p>
+              <p>导演：<span>李安</span></p>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/MEAN.jpg">
+              </ion-thumbnail>
+              <h2>毒液：致命守护者</h2>
+              <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+              <p>产地：<span>香港、中国大陆</span></p>
+              <p>导演：<span>李安</span></p>
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/MEAN.jpg">
+              </ion-thumbnail>
+              <h2>毒液：致命守护者</h2>
+              <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+              <p>产地：<span>香港、中国大陆</span></p>
+              <p>导演：<span>李安</span></p>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
       </ion-slide>
     </ion-slides>
-  </div>
+  <!--</div>-->
 </ion-content>
 
 

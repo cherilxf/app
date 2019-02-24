@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import {AppConfig} from "../../app/app.config";
-import {Observable} from "rxjs/Observable";
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { map, filter, catchError } from 'rxjs/operators';
+import 'rxjs/Rx';
+
+import { AppConfig } from "../../app/app.config";
 
 @Injectable()
 export class MovieService {
@@ -9,15 +12,25 @@ export class MovieService {
 
   }
 
-  getReyingMovieData (): Observable<any> {
+  getReyingMovieData(start, count): Observable<any> {
 
     let url = "/movie/reying_movie";
-    return this.http.get<any>(AppConfig.getUrl() + url).pipe();
+    return this.http.get<any>(AppConfig.getUrl() + url, {
+      params: {
+        start: start,
+        count: count
+      }
+    }).pipe();
   }
 
-  getComesoonMovieData (): Observable<any> {
+  getComesoonMovieData(start,count): Observable<any> {
 
     let url = "/movie/comesoon_movie";
-    return this.http.get<any>(AppConfig.getUrl() + url).pipe();
+    return this.http.get<any>(AppConfig.getUrl() + url, {
+      params: {
+        start: start,
+        count: count
+      }
+    }).pipe();
   }
 }
