@@ -16,16 +16,16 @@
       <ion-slide>
         <ion-scroll scrollY="true" [hidden]="!(MovieListTabs == '正在热映')">
           <ion-list class="reying-movie-list">
-            <ion-item class="movie-list-item" *ngFor="let item of movie_reying_data">
-              <ion-thumbnail item-start>
+            <ion-item class="movie-list-item" *ngFor="let item of movie_reying_data" (click)="goMovieDetailPage(item)">
+              <ion-thumbnail class="movie-poster" item-start>
                 <img src="{{item.images.small}}" alt="{{item.alt}}">
               </ion-thumbnail>
               <h2>{{item.title}}</h2>
               <p>上映地区：<span>中国大陆、香港</span></p>
-              <p>豆瓣评分<span class="badge-ios-danger">{{item.rating.average}}</span></p>
-              <p>导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span>
+              <p class="douban-grade">豆瓣评分<span class="badge-ios-danger">{{item.rating.average}}</span></p>
+              <p class="directors">导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span>
               </p>
-              <p>主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span>
+              <p class="casts">主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span>
               </p>
               <button ion-button clear item-end>购买</button>
             </ion-item>
@@ -36,16 +36,16 @@
       <ion-slide>
         <ion-scroll scrollY="true" [hidden]="!(MovieListTabs == '即将上映')">
           <ion-list class="comesoon-movie-list">
-            <ion-item class="movie-list-item" *ngFor="let item of movie_comesoon_data">
-              <ion-thumbnail item-start>
+            <ion-item class="movie-list-item" *ngFor="let item of movie_comesoon_data" (click)="goMovieDetailPage(item)">
+              <ion-thumbnail class="movie-poster" item-start>
                 <img src="{{item.images.small}}" alt="{{item.alt}}">
               </ion-thumbnail>
               <h2>{{item.title}}</h2>
               <p>上映日期：<span>11月30号 周五</span></p>
-              <p>有<span>{{item.collect_count}}</span>人想看</p>
-              <p>导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span>
+              <p class="wish-number">有<span>{{item.collect_count}}</span>人想看</p>
+              <p class="directors">导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span>
               </p>
-              <p>主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span>
+              <p class="casts">主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span>
               </p>
               <button ion-button clear item-end>预售</button>
             </ion-item>

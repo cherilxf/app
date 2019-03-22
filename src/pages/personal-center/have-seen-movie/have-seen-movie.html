@@ -20,24 +20,19 @@
       <p item-end>1部待评价</p>
     </ion-item>
     <div>
-
-      <ion-item>
+      <ion-item *ngFor="let item of haveseen_movie_data">
         <ion-thumbnail item-start>
-          <img src="assets/imgs/MEAN.jpg">
+          <img src="{{item.movie_poster}}">
         </ion-thumbnail>
-        <h2>碟中谍6：全面瓦解</h2>
-        <p><span>2018-08-31</span>上映</p>
-        <!--<p>导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span>-->
-        <p>导演：克里斯托夫迈考利
+        <h2>{{item.movie_title}}</h2>
+        <p><span>{{item.release_time}}</span>上映</p>
+        <p>导演：<span *ngFor="let director of item.directors; index as i">{{director}}{{(i === item.directors.length-1)?'':'、'}}</span>
         </p>
-        <!--<p>主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span>-->
-        <p>主演：汤姆克鲁斯 亨利卡维尔 西蒙佩吉
+        <p>主演：<span *ngFor="let actor of item.actors; index as i">{{actor}}{{(i === item.actors.length-1)?'':'、'}}</span>
         </p>
+        <button class="rating-btn" item-end ion-button>评分</button>
         <!--<ion-icon name></ion-icon>-->
       </ion-item>
-      <div>
-        <button ion-button class="floatRight">评分</button>
-      </div>
     </div>
   </ion-list>
 </ion-content>

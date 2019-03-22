@@ -1,0 +1,20 @@
+page-go-login {
+
+}
+.has-not-login{
+  width: 100%;
+  text-align: center;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.has-not-login p{
+  color: #1296db;
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+.go-login-btn{
+  height: 3.2rem;
+  font-size: 1.6rem;
+}

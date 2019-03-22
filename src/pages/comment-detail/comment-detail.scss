@@ -2,89 +2,80 @@ page-comment-detail {
 
 }
 
-.commentDetail-content ion-item img{
-  width: 3.4rem;
-  height: 3.4rem;
-  border-radius: 1.7rem;
-}
 .comment-own{
   border-bottom: .8rem solid #eee;
 }
-.comment-other{
+.comment-own-top{
+  margin-top: 1rem;
+}
+.comment-own-top .comment-own-nickname{
+  color: #000;
+  font-size: 1.8rem;
+  margin-left: .8rem;
+}
+.comment-own img{
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 1.8rem;
+}
+.comment-own-content{
+  color: #888;
+  font-size: 1.6rem;
+  text-align: justify;
+  text-indent: 2.3rem;
+  padding: 0 .8rem;
+  margin: .4rem 0 .4rem;
+}
+
+.comment-reply{
+
+}
+.comment-reply-item{
   border-bottom: 1px solid #eee;
 }
-.comment-other ion-item img{
+.comment-reply-count{
+  padding-left: .8rem;
+  margin: .4rem 0;
+}
+.comment-reply-count span{
+  font-size: 1.6rem;
+  color: #FF2C25;
+  font-weight: 600;
+}
+.comment-reply img{
   width: 3rem;
   height: 3rem;
   border-radius: 1.5rem;
 }
-.commentDetail-content .item-md [item-start]{
-  margin-bottom: 0;
-}
-.commentDetail-content ion-item p{
+.comment-reply .comment-reply-nickname{
   color: #000;
-  font-size: 1.8rem;
-  margin-left: .8rem;
-  margin-bottom: 0;
-  overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
-}
-.comment-other ion-item p{
   font-size: 1.6rem;
+  margin-left: .8rem;
 }
-.commentDetail-content .comment-content{
-  font-size: 1.4rem;
-  text-align: left;
-  text-indent: 32px;
+.comment-reply-content{
+  color: #888;
+  font-size: 1.5rem;
+  text-align: justify;
+  text-indent: 2.3rem;
   padding: 0 .8rem;
-  margin: 1rem 0 .4rem;
+  margin: .4rem 0 .4rem;
 }
-.commentDetail-content.comment-top{
-  border-bottom: 0;
-}
-.comment-num p{
-  padding-left: .8rem;
-  margin: .4rem 0;
-}
-.commentDetail-content .comment-bottom{
 
-}
-.comment-bottom .item-md [item-left],
-.comment-bottom .item-md [item-right]{
-  margin: 0;
-  margin-bottom: .4rem;
-}
-.comment-bottom .item-block{
-  padding-left: .8rem;
-  min-height: 0;
-}
-.comment-bottom .comment-time{
-  font-size: 1.4rem;
-  color: #666;
-}
-.comment-bottom .dianzan{
+.dianzan{
   font-size: 1.2rem;
   color: #666;
   margin: 0 .4rem;
 }
 
-.commentDetail-bottom .input-box{
+.comment-detail-bottom .reply-content-box{
   width: 100%;
   height: 2.4rem;
   padding-left: .4rem;
   border: 1px solid #aaa;
 }
-.commentDetail-bottom .input-box input{
+.comment-detail-bottom .reply-content-box input{
   width: 100%;
   height: 100%;
   border: 0;
   margin: 0;
-}
-.item-md.item-block .item-inner,
-.item-block{
-  border-bottom: 0;
-}
-.item-block{
-  min-height: 0;
 }

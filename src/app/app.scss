@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,41 +13,107 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-a{
+a {
   color: #333;
   text-align: center;
   text-decoration: none;
   cursor: pointer !important;
 }
-.floatLeft{
+
+.floatLeft {
   float: left;
 }
-.floatRight{
+
+.floatRight {
   float: right;
 }
-.clearFix{
+
+.clearFix {
   overflow: hidden;
 }
-ul{
+
+ul {
   margin: 0;
   padding: 0;
   list-style: none outside none;
   list-style-type: none;
 }
-.back-button.show-back-button{
+
+.back-button.show-back-button {
   position: absolute;
   z-index: 9999;
 }
-.toolbar-title-md{
+
+.toolbar-title-md {
   text-align: center;
   color: #000;
   font-weight: 600;
 }
-.list-md{
+
+.list-md {
   margin: 0;
 }
-.load-more{
+
+.item-md.item-block .item-inner,
+.item-block {
+  border-bottom: 0;
+}
+
+.item-md [item-left],
+.item-md [item-right],
+.item-md [item-top],
+.item-md [item-bottom],
+.item-md [item-start],
+.item-md [item-end],
+.item-md ion-icon[item-left],
+.item-md ion-icon[item-right],
+.item-md ion-icon[item-start],
+.item-md ion-icon[item-end],
+.item-md ion-icon[item-left] + .item-inner,
+.item-md ion-icon[item-start] + .item-inner{
+  margin: 0;
+}
+
+.load-more {
   font-size: 1.4rem;
 }
 
+.slide-zoom {
+  height: 100%;
+}
+
+.movie-poster {
+  margin-right: .6rem !important;
+}
+
+.douban-grade {
+  position: relative;
+}
+
+.douban-grade span {
+  font-size: .6rem;
+  padding: 0 .1rem;
+  position: absolute;
+  top: 0.2rem;
+  left: 5rem;
+}
+
+.directors {
+
+}
+
+.casts {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.wish-count span,
+.collect_count span,
+.box-office span {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #FF2C25;
+  margin: 0 .4rem;
+}
 

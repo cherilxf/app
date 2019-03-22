@@ -38,25 +38,25 @@ page-ranking-list {
 }
 
 .ranking-tabs{
-  position: fixed;
-  top: 50px;
-  left: 0;
-  z-index: 999;
+  width: 100%;
+  overflow: hidden;
 }
 .ranking-tabs .ranking-tab{
   font-size: 1.6rem;
+  color: #000;
   height: 3.2rem;
   line-height: 3.2rem;
-  color: #fff;
-  background-color: #61C3E3;
+  background-color: #eee;
 }
-.ranking-tabs .ranking-tab:nth-of-type(2){
-  border-left: 1px solid #f4f4f4;
-  border-right: 1px solid #f4f4f4;
+.ranking-tabs .segment-button.segment-activated{
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #00A0E2;
 }
 
 .ranking-movieList{
-  margin-top: 3.2rem;
+
 }
 .ranking-movieList,
 .ranking-todayTop,
@@ -72,25 +72,8 @@ page-ranking-list {
   white-space: nowrap;
 }
 
-.ranking-movieList ion-item ion-thumbnail img{
-  width: 80px;
-  height: 100px;
+.ranking-movieList .movie-poster img{
+  width: 6.4rem;
+  height: 8.6rem;
 }
-.ranking-todayTop p:nth-of-type(2),
-.ranking-newMovie p:nth-of-type(2){
-  position: relative;
-}
-.ranking-todayTop p:nth-of-type(2) span,
-.ranking-newMovie p:nth-of-type(2) span{
-  font-size: .6rem;
-  padding: 0 .1rem;
-  position: absolute;
-  top: 0.2rem;
-  left: 5rem;
-}
-.ranking-todayTop p:nth-of-type(3) span,
-.ranking-newMovie p:nth-of-type(3) span,
-.ranking-boxOffice p:nth-of-type(1) span{
-  padding: 0 .2rem;
-  color: #F51933;
-}
+

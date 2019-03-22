@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MovieService} from "../movie/movie.service";
+import {MovieDetailPage} from "../movie-detail/movie-detail";
 
 /**
  * Generated class for the ComesoonPage page.
@@ -24,18 +25,36 @@ export class ComesoonPage {
     loadingText: '正在加载更多...'
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private movieService: MovieService) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private movieService: MovieService) {
     this.loadMore.start = 0;
     this.getComesoonMovie();
   }
 
-  ionViewDidLoad() {
-    // console.log('ionViewDidLoad ComesoonPage');
+  ionViewDidLoad() {}
+  ionViewWillEnter(){
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'none';
+      });
+    }
+  }
+  ionViewDidEnter(){}
+  ionViewWillLeave() {
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'flex';
+      });
+    }
   }
 
 
   getComesoonMovie() {
-    this.movieService.getComesoonMovieData(this.loadMore.start, this.loadMore.count).subscribe(data => {
+    this.movieService.getComesoonMovieData_service(this.loadMore.start, this.loadMore.count).subscribe(data => {
       this.movie_comesoon_data = data.data;
       this.loadMore.start = this.loadMore.count;
     }, error => {
@@ -43,9 +62,15 @@ export class ComesoonPage {
     });
   }
 
+  goMovieDetailPage(movie) {
+    this.navCtrl.push(MovieDetailPage, {
+      movieId: movie.id
+    });
+  }
+
   doInfinite(infiniteScroll) {
     setTimeout(() => {
-      this.movieService.getComesoonMovieData(this.loadMore.start, this.loadMore.count).subscribe(data => {
+      this.movieService.getComesoonMovieData_service(this.loadMore.start, this.loadMore.count).subscribe(data => {
         let newData = data.data;
         this.movie_comesoon_data = this.movie_comesoon_data.concat(newData);
         this.loadMore.start += this.loadMore.count;

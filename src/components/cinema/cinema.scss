@@ -2,54 +2,68 @@ cinema {
 
 }
 
-.cinema-sort ion-item{
-  width: 100%;
-  height: 4rem;
+.cinema-item{
+  border-bottom: 2px solid #eee;
+  padding: .6rem 0 .6rem .6rem;
 }
-
-.cinema-list-item{
-  position: relative;
-  padding-left: 2rem;
-  border-bottom: 1px solid #eee;
+.cinema-item .item-block{
+  min-height: 0;
 }
-.cinema-list-item .cinema-icon{
-  position: absolute;
-  top: 1.22rem;
-  left: .2rem;
+.cinema-item-top{
+  padding: 0;
 }
-.cinema-list-item h2 {
+.cinema-item-top .label-md {
+  margin: 0;
+}
+.cinema-item .cinema-icon{}
+.cinema-item .cinema-name {
   font-weight: 700;
-  position: relative;
+  padding-left: .4rem;
 }
-.cinema-list-item-price {
+.cinema-item .cinema-ticket-price {
   font-size: 1.4rem;
-  font-weight: normal;
+  font-weight: 600;
   color: #F51933;
-  position: absolute;
-  top: 0;
-  right: 0;
 }
-.cinema-list-item p:nth-of-type(2) span {
+.cinema-item p{
+  margin: .2rem 0;
+}
+.cinema-item .cinema-address{
+  color: #888;
+}
+.cinema-item .cinema-characteristic span {
   display: inline-block;
   font-size: 1rem;
+  color: #fff;
   padding: .1rem .2rem;
+  margin: 0 .2rem;
   border: 1px solid #00A0E2;
-}
-.cinema-list-item p:nth-of-type(2) span:first-child {
   background-color: #00A0E2;
 }
-.cinema-list-item p:nth-of-type(3) span {
+.cinema-item .cinema-characteristic span:nth-of-type(1){
+  margin-left: 0;
+}
+.cinema-item .cinema-characteristic-icon span {
   display: inline-block;
-  border: 1px solid #00A0E2;
   padding: 0.1rem .2rem 0;
 }
-.cinema-list-item p:nth-of-type(4) {
-  font-size: 1rem;
-  color: #a8a8a8;
+.cinema-item .cinema-favourable {
+  position: relative;
 }
-.cinema-list-item p:nth-of-type(4) span {
+.cinema-favourable .cinema-favourable-title{
+  font-size: 1.2rem;
   color: #fff;
-  padding: .2rem;
-  margin-right: .4rem;
+  border-radius: 1rem;
+  padding: .2rem .6rem;
   background-color: #FF7500;
+}
+.cinema-favourable .cinema-favourable-icon{
+  position: absolute;
+  top: .1rem;
+  left: 3.4rem;
+}
+.cinema-favourable .cinema-favourable-content{
+  font-size: 1rem;
+  color: #FF7500;
+  padding-left: 1.4rem;
 }

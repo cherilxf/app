@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from "rxjs/Observable";
 import {AppConfig} from "../../app/app.config";
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
 
 @Injectable()
 export class MovieDetailService {
@@ -9,12 +15,21 @@ export class MovieDetailService {
 
   }
 
-  getMovieDetailData (movieId): Observable<any> {
-    let url = "/movie/detail";
-    return this.http.get<any>(AppConfig.getUrl() + url,{
-      params: {
-        movieId: movieId
-      }
-    }).pipe();
+  getMovieDetailData_service (movieId): Observable<any> {
+    const url = `${AppConfig.getUrl()}/movie/detail`;
+
+    let reqParam = {
+      movieId: movieId
+    };
+    return this.http.post<any>(url, reqParam, httpOptions).pipe();
+  }
+
+  getCommentData_service (movieId): Observable<any> {
+    const url = `${AppConfig.getUrl()}/movie/comment`;
+
+    let reqParam = {
+      movieId: movieId
+    };
+    return this.http.post<any>(url, reqParam, httpOptions).pipe();
   }
 }

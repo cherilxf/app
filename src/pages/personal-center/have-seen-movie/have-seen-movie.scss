@@ -5,7 +5,7 @@ page-have-seen-movie {
   background-color: #eee;
 }
 .have-seen-movie-list ion-item{
-  border-bottom: 1px solid #eee;
+  border-bottom: .2rem solid #eee;
 }
 .have-seen-movie-list .item-md ion-thumbnail img{
   width: 6rem;
@@ -15,4 +15,6 @@ page-have-seen-movie {
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
+}
+.rating-btn{
 }

@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header class="buy-ticket-header">
 
   <ion-navbar>
     <ion-title>购票详情</ion-title>
@@ -13,63 +13,73 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="buy-ticket-content">
 
-  <div class="buyTicket-top">
-    <ion-item class="">
-      <h2>
-        金逸影城IMAX店
-      </h2>
-      <p>海珠区江南大道中180号富力海珠城商业广场B区7层金逸影城电影院</p>
-      <p>
-        <span>影城卡</span>
-        <span>观影小食</span>
-        <span>IMAX厅</span>
-        <span>4K厅</span>
+  <div class="buy-ticket-top">
+    <ion-item>
+      <h2 class="cinema-name">{{cinema_data?.name}}</h2>
+      <p class="cinema-address">{{cinema_data?.address}}</p>
+      <p class="cinema-characteristic">
+        <span *ngFor="let characteristic of cinema_data?.characteristics">{{characteristic}}</span>
       </p>
     </ion-item>
   </div>
 
-  <div class="buyTicket-middle">
-    <ion-item>
-      <ion-thumbnail slot="start">
-        <ion-img src="assets/imgs/MEAN.jpg"></ion-img>
-      </ion-thumbnail>
-      <h2>海王<span>9.3分</span></h2>
-      <p>143分钟 | 动作 | 杰森莫玛 艾梅伯希尔德 威廉达福</p>
-    </ion-item>
+  <div class="buy-ticket-middle">
+    <ion-slides (ionSlideDidChange)="movieSlideChanged()" #movie_item_slides>
+      <ion-slide class="buy-movie-item" *ngFor="let item of cinema_data?.movie; index as i;first as isFirst;last as isLast">
+        <ion-item>
+          <ion-thumbnail class="movie-poster" item-left>
+            <img src="{{item?.images?.medium}}" alt="">
+          </ion-thumbnail>
+          <div class="mocie-info">
+            <h2 class="movie-title">{{item?.title}}&nbsp;&nbsp;<span class="douban-grade">{{item?.rating?.average}}</span></h2>
+            <p>
+              <span *ngFor="let genre of item?.genres; index as i">{{genre}}{{(i === item?.genres.length-1)?'':' | '}}</span>
+              <span> | {{item?.duration}}分钟</span>
+            </p>
+            <p>超过&nbsp;<span class="wish-count">{{item?.wish_count}}</span>&nbsp;人想看</p>
+            <p>已有&nbsp;<span class="good-comment-count">{{item?.reviews_count}}</span>&nbsp;人表示影片好评</p>
+            <p class="casts">主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span>
+            </p>
+          </div>
+        </ion-item>
+        <p class="slide-tip"><ion-icon name="slideLeft" [hidden]="isFirst"></ion-icon><span>滑动选择影片</span><ion-icon name="slideRight" [hidden]="isLast"></ion-icon></p>
+      </ion-slide>
+    </ion-slides>
   </div>
 
-  <div class="buyTicket-bottom">
-    <div class="buyTicket-tabs">
-      <ion-segment [(ngModel)]="buyTicketTab" (ionChange)="segmentChanged($event)">
-        <ion-segment-button *ngFor="let item of tabArr" value="{{item.tabName}}" class="buyTicket-tab"
-                            [ngClass]="{'movieDetail-tabActive': tabActive == item.index}">
+  <div class="buy-ticket-bottom">
+    <div class="buy-ticket-tabs">
+      <ion-segment [(ngModel)]="buyTicketTab">
+        <ion-segment-button  class="buyTicket-tab" *ngFor="let item of tabArr" value="{{item.tabName}}" (click)="segmentChanged(item.index)">
           {{item.tabName}}
         </ion-segment-button>
       </ion-segment>
     </div>
-    <div class="buyTicket-tabsContent">
+    <p class="broadcast"><ion-icon class="laba-icon" name="laba"></ion-icon><span>影城卡首单，最高立减6元</span></p>
+    <div class="buy-ticket-tabsContent">
       <div [ngSwitch]="buyTicketTab">
-        <ion-slides (ionSlideDidChange)="slideChanged()">
+        <ion-slides (ionSlideDidChange)="sceneSlideChanged()" #movie_scene_slides>
           <ion-slide>
             <div *ngSwitchCase="'今天'" class="movie-scene">
               <ion-list>
-                <ion-item>
-                  <div item-left class="movie-scene-time">
-                    <h2>20:55</h2>
-                    <p>23:18 散场</p>
+                <ion-item class="movie-scene-item" *ngFor="let scene of movie_data
+                ?.film_scenes">
+                  <div item-left class="movie-time">
+                    <p class="movie-start-time"><span>{{scene?.time_start}}</span></p>
+                    <p class="movie-end-time"><span>{{scene?.time_end}}</span>&nbsp;散场</p>
                   </div>
-                  <div item-left class="movie-scene-type">
-                    <p>英语 3D</p>
-                    <p>4号厅气味电影床厅</p>
-                  </div>
-                  <div item-right class="movie-scene-price">
-                    <p>特惠<span>85.9</span>元</p>
-                    <p>会员卡56.7元</p>
+                  <div item-left>
+                    <p class="movie-type">{{scene?.type}}</p>
+                    <p class="movie-play-room">{{scene?.hall}}</p>
                   </div>
                   <div item-right>
-                    <button ion-button class="movie-scene-buyBtn">购买</button>
+                    <p class="movie-price">特惠&nbsp;<span>{{scene?.price}}</span>&nbsp;元</p>
+                    <p  class="movie-cart-price">会员卡&nbsp;<span>{{scene?.cinema_cart_price}}</span>&nbsp;元</p>
+                  </div>
+                  <div item-right>
+                    <button ion-button class="buy-btn">购买</button>
                   </div>
                 </ion-item>
               </ion-list>

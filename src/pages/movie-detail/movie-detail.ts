@@ -1,13 +1,12 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 
 import {CommentDetailPage} from "../comment-detail/comment-detail";
 import {CinemaPage} from "../cinema/cinema";
 import {MovieDetailService} from "./movie-detail.service";
 
-
+declare let $: any;
 declare let Swiper: any;
-declare let $;
 
 /**
  * Generated class for the MovieDetailPage page.
@@ -24,46 +23,105 @@ declare let $;
 })
 export class MovieDetailPage {
   @ViewChild(Slides) slides: Slides;
-  movieDetailSwiper: any;
+
+  public loadFinish: boolean = false;
+  public buyBtn_Show: boolean = false;
+  public movie_id : String;
+  public movieDetailData: any;
+  public commentData: any = [];
 
   public movieDetailTab = '影片简介';
-  public tabActive = '0';
   public tabArr: any[] = [
     {"index": "0", "tabName": "影片简介"},
     {"index": "1", "tabName": "影评"},
     {"index": "2", "tabName": "讨论区"}
   ];
-  public buyBtn_Show: boolean = true;
 
-  public movieDetailData: any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private movieDetailService: MovieDetailService) {
-    this.initSwiper();
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    private movieDetailService: MovieDetailService) {
+    this.movie_id = this.navParams.get('movieId');
   }
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad MovieDetailPage');
   }
 
-  ngAfterViewInit() {
+  ionViewWillEnter() {
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'none';
+      });
+    }
+
+    this.loadFinish = false;
+    this.buyBtn_Show = false;
+    this.movieDetailTab = '影片简介';
+  }
+  ionViewDidEnter() {
     this.getMovieDetailData();
+    this.getCommentlData();
+  }
+  ionViewWillLeave() {
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'flex';
+      });
+    }
+  }
+  ionViewDidLeave() {}
+
+  goCommentPage(item) {
+    this.navCtrl.push(CommentDetailPage, {
+      "comment_data": item
+    });
+  }
+
+  goCinemaPage() {
+    this.navCtrl.push(CinemaPage, {
+      movieId: this.movieDetailData.id
+    });
   }
 
   getMovieDetailData() {
-    let movieId = this.navParams.get('movieId');
-    // console.log(movieId);
-    this.movieDetailService.getMovieDetailData(movieId).subscribe(data => {
-      this.movieDetailData = data.data;
-      console.log(this.movieDetailData);
+    this.movieDetailService.getMovieDetailData_service(this.movie_id).subscribe(data => {
+      if (data.data) {
+        this.movieDetailData = data.data;
+        this.loadFinish = true;
+        this.buyBtn_Show = true;
+      } else {
+        this.showAlert("亲，找不到数据！");
+      }
     }, error => {
       alert(error);
     });
   }
-
-  initSwiper() {
-    this.movieDetailSwiper = new Swiper('.movieDetail-actor .swiper-container', {
-      spaceBetween: 0,
+  getCommentlData() {
+    this.movieDetailService.getCommentData_service(this.movie_id).subscribe(data => {
+      if(data.data){
+        this.commentData = data.data;
+      }else{
+        this.commentData = [];
+      }
+    }, error => {
+      this.showAlert(error);
     });
+  }
+
+  showAlert(warnText) {
+    const alert = this.alertCtrl.create({
+      title: warnText,
+      buttons: [{
+        text: '确定',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      }],
+    });
+    alert.present();
   }
 
   wantWatch() {
@@ -83,96 +141,19 @@ export class MovieDetailPage {
     }
   }
 
-  scrollContentEvent(event) {
-    if (event.scrollTop >= 389) {
-      this.navFixed();
-    } else {
-      this.navUnFixed();
-    }
-  }
-
-  navFixed() {
-    $('.movieDetail-bottom .movieDetail-tabs').css({
-      position: 'fixed',
-      top: 50,
-      left: 0,
-      z_index: 999
-    });
-    $('.movieDetail-tabsContent ion-slides ion-slide').css({
-      'padding-top': '40px',
-    });
-    $('.film-summary').css({
-      'overflow-y': 'scroll'
-    });
-    $('.film-comment').css({
-      'overflow-y': 'scroll'
-    });
-    $('.discussion').css({
-      'overflow-y': 'scroll'
-    });
-    $('.movieDetail-footer').css({
-      'display': 'none'
-    })
-  }
-
-  navUnFixed() {
-    $('.movieDetail-bottom .movieDetail-tabs').css({
-      position: 'static',
-    });
-    $('.movieDetail-tabsContent ion-slides ion-slide').css({
-      'padding-top': 0
-    });
-    $('.film-summary').css({
-      'overflow-y': 'hidden'
-    });
-    $('.film-comment').css({
-      'overflow-y': 'hidden'
-    });
-    $('.discussion').css({
-      'overflow-y': 'hidden'
-    });
-    $('.movieDetail-footer').css({
-      'display': 'block'
-    });
-  }
-
-  segmentChanged(event) {
-    let tabName = event.value;
-    let index;
-    for (let i = 0; i < this.tabArr.length; i++) {
-      if (this.tabArr[i].tabName == tabName) {
-        index = i;
-        break;
-      }
-    }
-    this.slides.slideTo(index);
-    this.tabActive = index.toString();
-  }
-
-  slideChanged() {
-    let currentIndex = this.slides.getActiveIndex();
-    // this.setStyle(index);
-    this.slides.slideTo(currentIndex, 300);
-    // console.log(index);
-    for (let i = 0; i < this.tabArr.length; i++) {
-      if (this.tabArr[i].index === currentIndex.toString()) {
-        this.tabActive = currentIndex.toString();
-        this.movieDetailTab = this.tabArr[i].tabName;
-        // console.log(this.fenleiNav);
-        return;
-      }
-    }
-  }
-
-  dianzanDo(index) {
-    let dianzanBtn = $('.dianzan').eq(index - 1);
+  dianzanDo(index,item) {
+    let dianzanBtn = $('.dianzan').eq(index);
     let iconName = dianzanBtn.attr('name');
     if (iconName == 'dianzan') {
+      this.commentData[index].useful_count++;
+
       dianzanBtn.css({
         'color': '#d81e06',
       });
       dianzanBtn.attr('name', 'dianzan-outline').removeClass('ion-md-dianzan').addClass('ion-md-dianzan-outline');
     } else if (iconName == 'dianzan-outline') {
+      this.commentData[index].useful_count--;
+
       dianzanBtn.css({
         'color': '#000'
       });
@@ -180,19 +161,59 @@ export class MovieDetailPage {
     }
   }
 
-  goCommentPage(index) {
-    this.navCtrl.push(CommentDetailPage, {
-      id: 10001
+  scrollContentEvent(event) {
+    if (event.scrollTop >= 378) {
+      this.navFixed();
+    } else {
+      this.navUnFixed();
+    }
+  }
+  navFixed() {
+    let $tabsEle = $('.movieDetail-bottom-tabs');
+    let $headerEle = $('.movieDetail-header');
+    let headerHeight = $headerEle.height();
+    let tabsHeight = $tabsEle.height();
+    $headerEle.css({
+      'background-image': 'url(\'../../assets/imgs/bg-image-02.jpg\')'
     });
-    // this.navCtrl.pop();
+    $tabsEle.addClass('movieDetail-bottom-tabsFixed').css({
+      'top': headerHeight,
+    });
+    $('.movieDetail-bottom-content').css({
+      'padding-top': tabsHeight,
+    });
+    $('.movieDetail-footer').css({
+      'visibility': 'hidden'
+    })
+  }
+  navUnFixed() {
+    $('.movieDetail-header').css({
+      'background-image': 'none'
+    });
+    $('.movieDetail-bottom-tabs').removeClass('movieDetail-bottom-tabsFixed');
+    $('.movieDetail-bottom-content').css({
+      'padding-top': 0
+    });
+    $('.movieDetail-footer').css({
+      'visibility': 'visible'
+    });
   }
 
-  goCinemaPage() {
-    this.navCtrl.push(CinemaPage, {
-      movieId: this.movieDetailData.id
-    });
+  segmentChanged(index) {
+    this.slides.slideTo(index, 300);
   }
+  slideChanged() {
+    let currentIndex = this.slides.getActiveIndex();
+    // this.setStyle(index);
+    for (let i = 0; i < this.tabArr.length; i++) {
+      if (this.tabArr[i].index === currentIndex.toString()) {
+        this.movieDetailTab = this.tabArr[i].tabName;
+        break;
+      }
+    }
 
-  // this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length() - 3));
-
+    this.slides.lockSwipes(true);
+    this.slides.slideTo(currentIndex, 300);
+    this.slides.lockSwipes(false);
+  }
 }

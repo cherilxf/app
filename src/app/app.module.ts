@@ -20,7 +20,8 @@ import { AppConfig } from "./app.config";
 /* 页面自定义组件 */
 import { WelcomePage } from "../pages/welcome/welcome";
 
-import { LoginPage } from "../pages/login/login";
+import { GoLoginPage } from "../pages/go-login/go-login";
+import { LoginPage } from "../pages/go-login/login/login";
 
 import { HomePage } from '../pages/home/home';
 
@@ -29,7 +30,8 @@ import { ComesoonPage } from "../pages/comesoon/comesoon";
 
 import { MoviePage } from '../pages/movie/movie';
 import { RankingListPage } from '../pages/ranking-list/ranking-list';
-import { FenleiPage } from '../pages/fenlei/fenlei';
+
+import { GenrePage } from "../pages/genre/genre";
 
 import { PersonalCenterPage } from '../pages/personal-center/personal-center';
 import { SettingPage } from "../pages/personal-center/setting/setting";
@@ -61,6 +63,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
     WelcomePage,
 
+    GoLoginPage,
     LoginPage,
 
     HomePage,
@@ -69,7 +72,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
     MoviePage,
     RankingListPage,
-    FenleiPage,
+    GenrePage,
 
     PersonalCenterPage,
     SettingPage,
@@ -98,7 +101,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
       headerName: 'My-Xsrf-Header',
     }),
     IonicModule.forRoot(MyApp,{
-      tabsHideOnSubPages: "true",
+      // tabsHideOnSubPages: "true",
       backButtonText: "" /*配置返回按钮*/
     }),
     IonicStorageModule.forRoot()
@@ -109,6 +112,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
     WelcomePage,
 
+    GoLoginPage,
     LoginPage,
 
     HomePage,
@@ -117,7 +121,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
     MoviePage,
     RankingListPage,
-    FenleiPage,
+    GenrePage,
 
     PersonalCenterPage,
     SettingPage,

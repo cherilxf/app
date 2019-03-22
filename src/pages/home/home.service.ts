@@ -12,16 +12,16 @@ export class HomeService {
 
   }
 
-  getBannerImgsData (): Observable<any> {
+  getBannerImgsData_service (): Observable<any> {
     let url = "/home/banners";
     return this.http.get<any>(AppConfig.getUrl() + url).pipe();
   }
-  getReyingMovieData (): Observable<any> {
+  getReyingMovieData_service (): Observable<any> {
     let url = "/home/reying_movie";
     return this.http.get<any>(AppConfig.getUrl() + url).pipe();
   }
 
-  getComesoonMovieData (): Observable<any> {
+  getComesoonMovieData_service (): Observable<any> {
     let url = "/home/comesoon_movie";
     return this.http.get<any>(AppConfig.getUrl() + url).pipe();
   }

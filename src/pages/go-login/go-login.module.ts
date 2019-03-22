@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { FenleiPage } from './fenlei';
+import { GoLoginPage } from './go-login';
 
 @NgModule({
   declarations: [
-    FenleiPage,
+    GoLoginPage,
   ],
   imports: [
-    IonicPageModule.forChild(FenleiPage),
+    IonicPageModule.forChild(GoLoginPage),
   ],
 })
-export class FenleiPageModule {}
+export class GoLoginPageModule {}

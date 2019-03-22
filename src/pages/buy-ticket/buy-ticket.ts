@@ -1,6 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
-import {CinemaService} from "../cinema/cinema.service";
+import {AlertController, IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
 import {BuyTicketService} from "./buy-ticket.service";
 
 /**
@@ -17,7 +16,8 @@ import {BuyTicketService} from "./buy-ticket.service";
   providers: [BuyTicketService]
 })
 export class BuyTicketPage {
-  @ViewChild(Slides) slides: Slides;
+  @ViewChild("movie_item_slides") movie_item_slides: Slides;
+  @ViewChild("movie_scene_slides") movie_scene_slides: Slides;
 
   public tabArr: any[] = [
     {"index": "0", "tabName": "今天"},
@@ -26,54 +26,102 @@ export class BuyTicketPage {
   ];
   public buyTicketTab = '今天';
 
-  public movieId : String;
-  public cinemaId : String;
-  public cinemaDeatilData: any;
+  public movie_id : String = "";
+  public cinema_id: String = "";
+  public cinema_data: any = {};
+  public movie_data: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private buyTicketService: BuyTicketService) {
-    this.movieId = this.navParams.get('movieId');
-    this.cinemaId = this.navParams.get('cinemaId');
-    this.getCinemaDetail(this.cinemaId);
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private buyTicketService: BuyTicketService,
+    public alertCtrl: AlertController) {
+
   }
 
   ionViewDidLoad() {
     // console.log('ionViewDidLoad BuyTicketPage');
   }
+  ionViewWillEnter() {
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'none';
+      });
+    }
 
-  getCinemaDetail(cinemaId){
-    this.buyTicketService.getCinemaDetailData(this.movieId).subscribe(data => {
-      console.log(data.data);
-      this.cinemaDeatilData = data.data;
+    this.movie_id = this.navParams.get('movieId');
+    this.cinema_id = this.navParams.get('cinemaId');
+  }
+  ionViewDidEnter() {
+    this.getCinemaData(this.cinema_id);
+  }
+  ionViewWillLeave() {
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'flex';
+      });
+    }
+  }
+  ionViewDidLeave() {}
+
+  getCinemaData(cinemaId){
+    this.buyTicketService.getCinemaData_service(cinemaId).subscribe(data => {
+      if (data.data) {
+        this.cinema_data = data.data;
+        this.setMovieData();
+      } else {
+        this.showAlert("数据无法获取！");
+      }
     }, error => {
       alert(error);
     });
   }
-
-  segmentChanged(event) {
-
-    let tabName = event.value;
-    let index;
-    for (let i = 0; i < this.tabArr.length; i++) {
-      if (this.tabArr[i].tabName == tabName) {
-        index = i;
-        break;
+  setMovieData(){
+    let movies = this.cinema_data.movies;
+    if(this.movie_id){
+      for(let i = 0;i < movies.length;i++){
+        if(this.movie_id == movies[i].movie_id){
+          this.cinema_data.movies.unshift(movies[i]);
+          this.cinema_data.movies.splice(i,1);
+        }
       }
     }
-    this.slides.slideTo(index);
+    this.movie_data = movies[0];
   }
 
-  slideChanged() {
-    let currentIndex = this.slides.getActiveIndex();
+  showAlert(warnText) {
+    const alert = this.alertCtrl.create({
+      title: warnText,
+      buttons: [{
+        text: '确定',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      }],
+    });
+    alert.present();
+  }
+
+  segmentChanged(index) {
+    this.movie_scene_slides.slideTo(index);
+  }
+  movieSlideChanged(){
+
+  }
+  sceneSlideChanged() {
+    let currentIndex = this.movie_scene_slides.getActiveIndex();
     // this.setStyle(index);
-    this.slides.slideTo(currentIndex, 300);
-    // console.log(index);
     for (let i = 0; i < this.tabArr.length; i++) {
       if (this.tabArr[i].index === currentIndex.toString()) {
         this.buyTicketTab = this.tabArr[i].tabName;
-        // console.log(this.fenleiNav);
-        return;
+        break;
       }
+
+      this.movie_scene_slides.lockSwipes(true);
+      this.movie_scene_slides.slideTo(currentIndex, 300);
+      this.movie_scene_slides.lockSwipes(false);
     }
   }
-
 }

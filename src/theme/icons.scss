@@ -1,3 +1,7 @@
+.ion-md-goback:before {
+  content: url("../assets/fonts/goback.svg");
+}
+
 .ion-md-dianying:before {
   content: url("../assets/fonts/dianying_1.svg");
 }
@@ -38,16 +42,16 @@
 }
 
 .ion-md-fenlei:before {
-  content: url("../assets/fonts/fenlei_1.svg");
+  content: url("../assets/fonts/genre_1.svg");
 }
 .ion-md-fenlei-outline:before {
-  content: url("../assets/fonts/fenlei.svg");
+  content: url("../assets/fonts/genre.svg");
 }
 .tab-button[aria-selected=false] .ion-md-fenlei-outline:before {
-  content: url("../assets/fonts/fenlei.svg");
+  content: url("../assets/fonts/genre.svg");
 }
 .tab-button[aria-selected=true] .ion-md-fenlei-outline:before {
-  content: url("../assets/fonts/fenlei_1.svg");
+  content: url("../assets/fonts/genre_1.svg");
 }
 
 .ion-md-wode:before {
@@ -65,6 +69,15 @@
 
 .ion-md-search:before {
   content: url("../assets/fonts/search.svg");
+}
+.ion-md-laba:before {
+  content: url("../assets/fonts/laba.svg");
+}
+.ion-md-slideLeft:before {
+  content: url("../assets/fonts/slide-left-double.svg");
+}
+.ion-md-slideRight:before {
+  content: url("../assets/fonts/slide-right-double.svg");
 }
 
 .ion-md-moreIcon:before {
@@ -132,6 +145,10 @@
   content: url("../assets/fonts/commentIcon.svg");
 }
 
+.ion-md-notLoginIcon:before {
+  content: url("../assets/fonts/notLogin_icon.svg");
+}
+
 .ion-md-movieTicket:before {
   content: url("../assets/fonts/movie-ticket.svg");
 }
@@ -148,7 +165,6 @@
 .ion-md-accoundIcon:before {
   content: url("../assets/fonts/accoundIcon.svg");
 }
-
 .ion-md-passwordIcon:before {
   content: url("../assets/fonts/passwordIcon.svg");
 }

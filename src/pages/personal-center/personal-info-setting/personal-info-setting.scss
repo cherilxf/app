@@ -59,6 +59,15 @@ page-personal-info-setting {
   padding-right: 0;
 }
 
+.show-description{
+  background-color: #eee;
+}
+.show-description p{
+  color: #1296db;
+  text-indent: 2em;
+  padding: 0 1rem;
+}
+
 .descriptionSetting-content .item-input ion-textarea{
   height: 16rem;
   padding: 0 .4rem;

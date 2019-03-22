@@ -1,8 +1,21 @@
 page-login {
 
 }
+.login-header{
+
+}
+.login-header .goback{
+  width: 4rem;
+  height: 2.8rem;
+  background-color: #00A0E2;
+  border-radius: 1.4rem;
+  position: absolute;
+  top: .9rem;
+  left: .6rem;
+  z-index: 999;
+}
 .login-content{
-  margin-top: .6rem;
+  margin: .6rem 0 .4rem;
   background-color: #eee;
 }
 .login-content .item-md ion-icon[item-right]{

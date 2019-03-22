@@ -12,7 +12,7 @@ export class MovieService {
 
   }
 
-  getReyingMovieData(start, count): Observable<any> {
+  getReyingMovieData_service(start, count): Observable<any> {
 
     let url = "/movie/reying_movie";
     return this.http.get<any>(AppConfig.getUrl() + url, {
@@ -23,7 +23,7 @@ export class MovieService {
     }).pipe();
   }
 
-  getComesoonMovieData(start,count): Observable<any> {
+  getComesoonMovieData_service(start,count): Observable<any> {
 
     let url = "/movie/comesoon_movie";
     return this.http.get<any>(AppConfig.getUrl() + url, {

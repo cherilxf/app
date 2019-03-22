@@ -6,256 +6,79 @@
 -->
 <ion-header class="ranking-header">
   <ion-icon name="paihangbangHeader"></ion-icon>
-  <ion-title class="ranking-title" >
+  <ion-title class="ranking-title">
     最新最热电影排行榜
   </ion-title>
+  <ion-toolbar>
+    <ion-segment class="ranking-tabs" [(ngModel)]="rankingTab" (ionChange)="segmentChanged($event)">
+      <ion-segment-button class="ranking-tab" value="今日Top">
+        今日Top
+      </ion-segment-button>
+      <ion-segment-button class="ranking-tab" value="口碑高分">
+        口碑高分
+      </ion-segment-button>
+      <ion-segment-button class="ranking-tab" value="实时票房">
+        实时票房
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="ranking-content">
-  <ion-segment class="ranking-tabs" [(ngModel)]="MovieRanking" (ionChange)="segmentChanged($event)">
-    <ion-segment-button class="ranking-tab" value="todayTopRanking">
-      今日Top
-    </ion-segment-button>
-    <ion-segment-button class="ranking-tab" value="newMovieRanking">
-      口碑高评
-    </ion-segment-button>
-    <ion-segment-button class="ranking-tab" value="boxOfficeRanking">
-      实时票房
-    </ion-segment-button>
-  </ion-segment>
   <div class="ranking-movieList">
-    <div class="ranking-todayTop" [hidden]="!(MovieRanking == 'todayTopRanking')">
+    <div class="ranking-todayTop" [hidden]="!(rankingTab == '今日Top')">
       <ion-scroll scrollY="true">
         <ion-list class="todayTop-list">
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
+          <ion-item *ngFor="let item of movie_list" (click)="goMovieDetailPage(item)">
+            <ion-thumbnail class="movie-poster" item-start>
+              <img src="{{item.images.small}}">
             </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者aaa</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
+            <h2>{{item.title}}&nbsp;({{item.year}})</h2>
+            <p>上映地区：&nbsp;<span *ngFor="let country of item.countries; index as i">{{country}}{{(i === item.countries.length-1)?'':'/'}}</span>
+            </p>
+            <p class="collect_count">超过<span>{{item.collect_count}}</span>人收藏</p>
+            <p class="directors">导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span>
+            </p>
+            <p class="casts">主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span>
+            </p>
           </ion-item>
         </ion-list>
       </ion-scroll>
     </div>
 
-    <div class="ranking-newMovie" [hidden]="!(MovieRanking == 'newMovieRanking')">
+    <div class="ranking-newMovie" [hidden]="!(rankingTab == '口碑高分')">
       <ion-scroll scrollY="true">
         <ion-list class="newMovie-list">
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
+          <ion-item *ngFor="let item of movie_list" (click)="goMovieDetailPage(item)">
+            <ion-thumbnail class="movie-poster" item-start>
+              <img src="{{item.images.small}}">
             </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者aaa</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
+            <h2>{{item.title}}&nbsp;({{item.year}})</h2>
+            <p class="douban-grade">豆瓣评分<span class="badge-ios-danger">{{item.rating.average}}</span></p>
+            <p>影片类型：<span *ngFor="let genre of item.genres; index as i">{{genre}}{{(i === item.genres.length-1)?'':'/'}}</span></p>
+            <p class="directors">导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span>
+            </p>
+            <p class="casts">主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span>
+            </p>
           </ion-item>
         </ion-list>
       </ion-scroll>
     </div>
 
-    <div class="ranking-boxOffice" [hidden]="!(MovieRanking == 'boxOfficeRanking')" >
+    <div class="ranking-boxOffice" [hidden]="!(rankingTab == '实时票房')">
       <ion-scroll scrollY="true">
         <ion-list class="boxOffice-list">
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
+          <ion-item *ngFor="let item of movie_list" (click)="goMovieDetailPage(item)">
+            <ion-thumbnail class="movie-poster" item-start>
+              <img src="{{item.images.small}}">
             </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
-          </ion-item>
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="assets/imgs/MEAN.jpg">
-            </ion-thumbnail>
-            <h2>毒液：致命守护者aaa</h2>
-            <p>导演：<span>李安</span></p>
-            <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
-            <p>观影人数<span>2222</span>万</p>
+            <h2>{{item.title}}&nbsp;({{item.year}})</h2>
+            <p class="douban-grade">豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+            <p class="box-office">实时票房<span>{{item.box_office}}</span>万</p>
+            <p class="directors">导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span>
+            </p>
+            <p class="casts">主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span>
+            </p>
           </ion-item>
         </ion-list>
       </ion-scroll>

@@ -1,13 +1,13 @@
 <ion-header class="infoSetting-header">
   <ion-navbar>
     <ion-title text-center>个性签名</ion-title>
-    <a href="#" class="saveInfo" (click)="saveDescriptionInfo()">保存</a>
+    <a href="javascript:;" class="saveInfo" (click)="saveDescription(description)">保存</a>
   </ion-navbar>
 </ion-header>
 <ion-content class="descriptionSetting-content">
   <ion-list>
     <ion-item>
-      <ion-textarea type="text" placeholder="不超过150字"></ion-textarea>
+      <ion-textarea type="text" placeholder="不超过150字" #description></ion-textarea>
     </ion-item>
   </ion-list>
 </ion-content>

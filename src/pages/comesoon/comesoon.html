@@ -14,15 +14,15 @@
 <ion-content>
   <div class="comesoon-movie-content">
     <ion-list class="comesoon-movie-list">
-      <ion-item class="movie-list-item" *ngFor="let item of movie_comesoon_data">
-        <ion-thumbnail item-start>
+      <ion-item class="movie-list-item" *ngFor="let item of movie_comesoon_data" (click)="goMovieDetailPage(item)">
+        <ion-thumbnail class="movie-poster" item-start>
           <img src="{{item.images.small}}">
         </ion-thumbnail>
         <h2>{{item.title}}</h2>
         <p>上映日期：<span>11月30号 周五</span></p>
         <p>有<span>{{item.collect_count}}</span>人想看</p>
-        <p>导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span></p>
-        <p>主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span></p>
+        <p class="directors">导演：<span *ngFor="let director of item.directors; index as i">{{director.name}}{{(i === item.directors.length-1)?'':'、'}}</span></p>
+        <p class="casts">主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span></p>
         <button ion-button clear item-end>预售</button>
       </ion-item>
     </ion-list>

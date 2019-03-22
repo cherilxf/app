@@ -1,20 +1,13 @@
 .movieDetail-header{
 
 }
-
-.movieDetail-header .toolbar-md{
-  padding: 0;
-  min-height: 48px;
-}
-
 .movieDetail-content{
+
+}
+.content-box{
   width: 100%;
   height: 100%;
 }
-.movieDetail-content .scroll-content{
-  margin-bottom: 0 !important;
-}
-
 .movieDetail-top .item-md.item-block,
 .movieDetail-top .item-md.item-block .item-inner{
   border-bottom: 0;
@@ -27,14 +20,9 @@
   font-size: 1.8rem;
   font-weight: 700;
 }
-.movieDetail-top ion-item p:nth-of-type(3) span{
-  font-size: 1rem;
-  padding: .2rem;
-  margin-left: .6rem;
-}
-.movieDetail-top ion-item p:nth-of-type(4) span{
-  font-weight: 700;
-  color: #F51933;
+.detail-douban-grade span{
+  color: #FF2C25;
+  font-weight: 600;
 }
 
 .watch-btn{
@@ -65,19 +53,17 @@
   font-weight: 700;
   border-top: 1px solid #eee;
   padding: .8rem 0 .8rem 1rem;
-
 }
 
 .movieDetail-actor .swiper-container{
   overflow-x: scroll;
-  background-color: #eeeeee;
+  background-color: #fff;
 }
 .movieDetail-actor .swiper-container .swiper-wrapper .swiper-slide{
   width: 25%;
   height: 100%;
 }
-.movieDetail-actor .label-md,
-.discussion-bottom .label-md{
+.movieDetail-actor .label-md{
   margin: 0;
 }
 .movieDetail-actor .item-md{
@@ -94,7 +80,7 @@
   text-overflow:ellipsis;
   white-space: nowrap;
 }
-.movieDetail-actor .swiper-slide img{
+.movieDetail-actor .movieDetail-actor-item img{
   width: 6.4rem;
   height: 8rem;
 }
@@ -104,39 +90,35 @@
 }
 
 .movieDetail-bottom{
+  display: block;
   width: 100%;
   height: 100%;
-  margin-top: .8rem;
-}
-.movieDetail-tabsContent{
-  height: 100%;
-}
-.movieDetail-tabsContent ion-scroll{
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.movieDetail-tabsContent .list-md{
-  margin-bottom: 0;
-  border: 1px solid #eee;
-}
-.movieDetail-tabsContent ion-label{
-  white-space: normal;
+  position: relative;
 }
 
-.movieDetail-tabs{
+.movieDetail-bottom-header{
   width: 100%;
-  background-color: #eee;
 }
 
-.movieDetail-tabs .toolbar-md{
+.movieDetail-bottom-header .toolbar-md{
   padding: 0;
   min-height: 0;
 }
-.movieDetail-tabs .movieDetail-tab{
+.movieDetail-bottom-tabs{
+  background-color: #eee;
+}
+.movieDetail-bottom-tabsFixed{
+  color: #fff;
+  background-color: #fff;
+  background-image: url('../../assets/imgs/bg-image-02.jpg');
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.movieDetail-bottom-tabs .movieDetail-bottom-tab{
   width: 33%;
-  height: 38px;
+  height: 3rem;
   font-size: 1.5rem;
   color: #333;
   line-height: 38px;
@@ -144,113 +126,96 @@
   padding: 0;
   margin: 0 2.4rem;
 }
-.movieDetail-tabs .movieDetail-tabActive{
+.movieDetail-bottom-header .segment-button.segment-activated{
   color: #00A0E2;
   font-weight: 700;
   border-bottom: 2px solid #00A0E2;
 }
 
-.movieDetail-tabsContent .swiper-slide{
-  align-items: normal;
-}
-.film-summary,
-.film-comment,
-.discussion{
-  height: 100%;
-  display: block;
-  overflow-y: hidden;
-}
-.film-summary{
+.movieDetail-bottom-content,
+.movieDetail-bottom-content ion-scroll{
   width: 100%;
-  background-color: #fff;
+  height: 100%;
 }
+
 .film-summary p{
   font-size: 1.6rem;
   margin-top: .8rem;
   padding: 0 .8rem;
   line-height: 2rem;
-  text-align: left;
-  text-indent: 35px;
+  text-align: justify;
+  text-indent: 2.7rem;
 }
-
 .film-comment{
 
 }
-.film-comment ion-item img{
-  width: 3.4rem;
-  height: 3.4rem;
-  border-radius: 1.7rem;
+.film-comment .item-block {
+  min-height: 0;
 }
-.film-comment .item-md [item-start]{
-  margin-bottom: 0;
+.film-comment-item,
+.film-discussion-item{
+  border: 2px solid #eee;
 }
-.film-comment ion-item p,
-.discussion ion-item p{
+.film-comment-top{
+  margin-top: .6rem;
+}
+.film-comment-top img{
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 1.8rem;
+}
+.film-comment-top .film-comment-nickname{
   color: #000;
   font-size: 1.8rem;
   margin-left: .8rem;
-  margin-bottom: 0;
-  overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap;
 }
-.film-comment-item .comment-content,
-.discussion-item .discussion-content{
+.film-comment-content,
+.film-discussion-content{
+  color: #888;
   font-size: 1.4rem;
-  text-align: left;
-  text-indent: 32px;
+  text-align: justify;
+  text-indent: 2.3rem;
   padding: 0 .8rem;
-  margin: 1rem 0 .4rem;
+  margin: .4rem 0 .4rem;
 }
-.film-comment-item .comment-top{
-  border-bottom: 0;
+.film-comment-bottom{
+  padding-bottom: .4rem;
 }
-.film-comment-item .comment-bottom{
-
-}
-.comment-bottom .item-md [item-left],
-.comment-bottom .item-md [item-right],
-.discussion-bottom .item-md [item-left],
-.discussion-bottom .item-md [item-right]{
-  margin: 0;
-  margin-bottom: .4rem;
-}
-.comment-bottom .item-block,
-.discussion-bottom .item-block{
+.film-comment-bottom .item-block{
   padding-left: .8rem;
-  min-height: 0;
 }
-.comment-bottom .comment-time{
+.film-comment-time{
   font-size: 1.4rem;
   color: #666;
 }
-.comment-bottom .dianzan,
-.comment-bottom .commentIcon,
-.discussion-bottom .dianzan,
-.discussion-bottom .commentIcon{
+.dianzan,
+.commentIcon{
   font-size: 1.2rem;
   color: #666;
   margin: 0 .4rem;
 }
-.discussion{
 
-}
-.discussion ion-item img{
+.film-discussion img{
   width: 2.4rem;
   height: 2.4rem;
   border-radius: 1.2rem;
 }
-.discussion ion-item p{
+.film-discussion-bottom{}
+.film-discussion-bottom img{
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 1.2rem;
+}
+.film-discussion-bottom .film-discussion-nickname{
   font-size: 1.6rem;
   color: #666;
-  margin-bottom: .3rem;
-}
-.discussion .item-block{
-  min-height: 0;
+  margin-left: .6rem;
 }
 
-.movieDetail-footer .button-md{
+.movieDetail-footer{}
+.movieDetail-footer .gobuy-btn{
   width: 100%;
   padding: 0;
   margin: 0;
 }
+

@@ -4,6 +4,9 @@ page-movie-ticket {
 .ticket-content{
   background-color: #eee;
 }
+.ticket-list ion-item{
+  border-bottom: .2rem solid #eee;
+}
 .ticket-list ion-item:nth-of-type(1){
   margin-top: .6rem;
 }

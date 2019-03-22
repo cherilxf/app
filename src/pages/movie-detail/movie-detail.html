@@ -6,545 +6,145 @@
 -->
 <ion-header class="movieDetail-header">
   <ion-navbar>
-    <ion-title>毒液：致命守护者</ion-title>
+    <ion-title>影片详情</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content class="movieDetail-content" (ionScroll)="scrollContentEvent($event)">
-  <div class="movieDetail-top">
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="{{movieDetailData?.images?.small}}">
-      </ion-thumbnail>
-      <h2>{{movieDetailData?.title}}({{movieDetailData?.year}})</h2>
-      <p>
-        <span *ngFor="let genre of movieDetailData?.genres; index as i">{{genre}}{{(i === movieDetailData?.genres.length-1)?'':' / '}}</span>
-        <span> / {{movieDetailData?.movie_duration}}分钟</span>
-      </p>
-      <p>
-        上映地区
-        <span *ngFor="let region of movieDetailData?.movie_regions; index as i">{{region}}{{(i === movieDetailData?.movie_regions.length-1)?'':' / '}}</span>
-      </p>
-      <p>豆瓣评分<span class="badge-ios-danger">{{movieDetailData?.rating?.average}}</span>
-        ({{movieDetailData?.ratings_count}}人评)</p>
-      <p>有<span>{{movieDetailData?.wish_count}}</span>人想看</p>
-    </ion-item>
-  </div>
+  <div class="content-box" *ngIf="loadFinish">
+    <div class="movieDetail-top">
+      <ion-item>
+        <ion-thumbnail class="movie-poster" item-start>
+          <img src="{{movieDetailData?.images?.small}}">
+        </ion-thumbnail>
+        <h2>{{movieDetailData?.title}}({{movieDetailData?.year}})</h2>
+        <p>
+          <span *ngFor="let genre of movieDetailData?.genres; index as i">{{genre}}{{(i === movieDetailData?.genres.length-1)?'':' / '}}</span>
+          <span> / {{movieDetailData?.movie_duration}}</span>
+        </p>
+        <p>
+          地区：
+          <span *ngFor="let country of movieDetailData?.countries; index as i">{{country}}{{(i === movieDetailData?.countries.length-1)?'':' / '}}</span>
+        </p>
+        <p class="detail-douban-grade">豆瓣评分&nbsp;<span>{{movieDetailData?.rating?.average}}</span>&nbsp;(超过<span>&nbsp;{{movieDetailData?.ratings_count}}&nbsp;</span>人评)
+        </p>
+        <p class="wish-count">有<span>{{movieDetailData?.wish_count}}</span>人想看</p>
+      </ion-item>
+    </div>
 
-  <ion-buttons class="watch-btn">
-    <button class="wantWatch" ion-button color="light" (click)="wantWatch()">
-      <span>想看</span>
-      <ion-icon name="xiangkan"></ion-icon>
-    </button>
-    <button ion-button color="light">
-      <span>看过</span>
-      <ion-icon name="xiangkan"></ion-icon>
-    </button>
-  </ion-buttons>
+    <ion-buttons class="watch-btn">
+      <button class="wantWatch" ion-button color="light" (click)="wantWatch()">
+        <span>想看</span>
+        <ion-icon name="xiangkan"></ion-icon>
+      </button>
+      <button ion-button color="light">
+        <span>看过</span>
+        <ion-icon name="xiangkan"></ion-icon>
+      </button>
+    </ion-buttons>
 
-  <div class="movieDetail-actor">
-    <span>演职人员</span>
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide" *ngFor="let director of movieDetailData?.directors">
-          <ion-item>
-            <img src="{{director?.avatars?.small}}" alt="{{director?.alt}}">
-            <p>{{director?.name}}</p>
-            <p>导演</p>
-          </ion-item>
-        </div>
-        <div class="swiper-slide" *ngFor="let cast of movieDetailData?.casts">
-          <ion-item>
-            <img src="{{cast?.avatars?.small}}" alt="{{cast?.alt}}">
-            <p>{{cast?.name}}</p>
-            <p>主演</p>
-          </ion-item>
+    <div class="movieDetail-actor">
+      <span>演职人员</span>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" *ngFor="let director of movieDetailData?.directors">
+            <ion-item class="movieDetail-actor-item">
+              <img src="{{director?.avatars?.small}}" alt="{{director?.alt}}">
+              <p>{{director?.name}}</p>
+              <p>导演</p>
+            </ion-item>
+          </div>
+          <div class="swiper-slide" *ngFor="let cast of movieDetailData?.casts">
+            <ion-item class="movieDetail-actor-item">
+              <img src="{{cast?.avatars?.small}}" alt="{{cast?.alt}}">
+              <p>{{cast?.name}}</p>
+              <p>主演</p>
+            </ion-item>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="movieDetail-bottom">
-
-    <div class="movieDetail-tabs">
-      <ion-segment [(ngModel)]="movieDetailTab" (ionChange)="segmentChanged($event)">
-        <ion-segment-button *ngFor="let item of tabArr" value="{{item.tabName}}" class="movieDetail-tab"
-                            [ngClass]="{'movieDetail-tabActive': tabActive == item.index}">
-          {{item.tabName}}
-        </ion-segment-button>
-      </ion-segment>
-    </div>
-    <div class="movieDetail-tabsContent">
-      <ion-slides (ionSlideDidChange)="slideChanged()">
-        <ion-slide>
-          <div class="film-summary" [hidden]="!(movieDetailTab=='影片简介')">
-            <p>{{movieDetailData?.summary}}</p>
-          </div>
-        </ion-slide>
-
-        <ion-slide>
-          <div class="film-comment" [hidden]="!(movieDetailTab=='影评')">
-            <!--<ion-buttons>
-              <button ion-button>全部</button>
-              <button ion-button>最新</button>
-            </ion-buttons>-->
-            <ion-list>
-              <div class="film-comment-item">
-                <ion-item class="comment-top">
-                  <div item-start>
-                    <img src="assets/imgs/MEAN.jpg">
+    <div class="movieDetail-bottom">
+      <div class="movieDetail-bottom-header">
+        <ion-segment class="movieDetail-bottom-tabs" [(ngModel)]="movieDetailTab">
+          <ion-segment-button class="movieDetail-bottom-tab" *ngFor="let item of tabArr" value="{{item.tabName}}"
+                              (click)="segmentChanged(item.index)">
+            {{item.tabName}}
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      <div class="movieDetail-bottom-content">
+        <ion-slides (ionSlideDidChange)="slideChanged()" [zoom]="false">
+          <ion-slide>
+            <ion-scroll class="film-summary" scrollY="true" *ngIf="movieDetailTab == '影片简介'">
+              <p>{{movieDetailData?.summary}}</p>
+            </ion-scroll>
+          </ion-slide>
+          <ion-slide>
+            <ion-scroll class="film-comment" scrollY="true" *ngIf="movieDetailTab == '影评'">
+              <ion-list>
+                <div class="film-comment-item" *ngFor="let item of commentData;index as i">
+                  <ion-item class="film-comment-top">
+                    <div item-start>
+                      <img src="{{item?.author?.avatar}}">
+                    </div>
+                    <p class="film-comment-nickname">{{item?.author?.name}}</p>
+                  </ion-item>
+                  <p class="film-comment-content">
+                    {{item?.content}}
+                  </p>
+                  <div class="film-comment-bottom">
+                    <ion-item>
+                      <div item-left class="film-comment-time">
+                        {{item?.created_at}}
+                      </div>
+                      <div item-right>
+                        <ion-icon class="dianzan" name="dianzan" (click)="dianzanDo(i)">{{item?.useful_count}}</ion-icon>
+                        <ion-icon class="commentIcon" name="commentIcon" (click)="goCommentPage(item)">1</ion-icon>
+                      </div>
+                    </ion-item>
                   </div>
-                  <p>cherilxf</p>
-                </ion-item>
-                <p class="comment-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-                <div class="comment-bottom">
-                  <ion-item>
-                    <div item-left class="comment-time">
-                      12-04 21:18
-                    </div>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">1</ion-icon>
-                    </div>
-                  </ion-item>
                 </div>
-              </div>
-              <div class="film-comment-item">
-                <ion-item class="comment-top">
-                  <div item-start>
-                    <img src="assets/imgs/MEAN.jpg">
+              </ion-list>
+              <p [hidden] = "!commentData">影片还没人开始评论，快点来评论吧！</p>
+            </ion-scroll>
+          </ion-slide>
+          <ion-slide>
+            <ion-scroll class="film-discussion" scrollY="true" *ngIf="movieDetailTab == '讨论区'">
+              <ion-list>
+                <div class="film-discussion-item">
+                  <p class="film-discussion-content">
+                    艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
+                    饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
+                    饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
+                  </p>
+
+                  <div class="film-discussion-bottom">
+                    <ion-item>
+                      <div item-left>
+                        <img src="assets/imgs/MEAN.jpg">
+                      </div>
+                      <p class="film-discussion-nickname">cherilxf</p>
+                      <div item-right>
+                        <ion-icon class="dianzan" name="dianzan" (click)="dianzanDo(1)">14</ion-icon>
+                        <ion-icon class="commentIcon" name="commentIcon" (click)="goCommentPage(1)">20</ion-icon>
+                      </div>
+                    </ion-item>
                   </div>
-                  <p>cherilxf</p>
-                </ion-item>
-                <p class="comment-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-                <div class="comment-bottom">
-                  <ion-item>
-                    <div item-left class="comment-time">
-                      12-04 21:18
-                    </div>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">1</ion-icon>
-                    </div>
-                  </ion-item>
                 </div>
-              </div>
-              <div class="film-comment-item">
-                <ion-item class="comment-top">
-                  <div item-start>
-                    <img src="assets/imgs/MEAN.jpg">
-                  </div>
-                  <p>cherilxf</p>
-                </ion-item>
-                <p class="comment-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-                <div class="comment-bottom">
-                  <ion-item>
-                    <div item-left class="comment-time">
-                      12-04 21:18
-                    </div>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">1</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="film-comment-item">
-                <ion-item class="comment-top">
-                  <div item-start>
-                    <img src="assets/imgs/MEAN.jpg">
-                  </div>
-                  <p>cherilxf</p>
-                </ion-item>
-                <p class="comment-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-                <div class="comment-bottom">
-                  <ion-item>
-                    <div item-left class="comment-time">
-                      12-04 21:18
-                    </div>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">1</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="film-comment-item">
-                <ion-item class="comment-top">
-                  <div item-start>
-                    <img src="assets/imgs/MEAN.jpg">
-                  </div>
-                  <p>cherilxf</p>
-                </ion-item>
-                <p class="comment-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-                <div class="comment-bottom">
-                  <ion-item>
-                    <div item-left class="comment-time">
-                      12-04 21:18
-                    </div>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">1</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="film-comment-item">
-                <ion-item class="comment-top">
-                  <div item-start>
-                    <img src="assets/imgs/MEAN.jpg">
-                  </div>
-                  <p>cherilxf</p>
-                </ion-item>
-                <p class="comment-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-                <div class="comment-bottom">
-                  <ion-item>
-                    <div item-left class="comment-time">
-                      12-04 21:18
-                    </div>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">1</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="film-comment-item">
-                <ion-item class="comment-top">
-                  <div item-start>
-                    <img src="assets/imgs/MEAN.jpg">
-                  </div>
-                  <p>cherilxf</p>
-                </ion-item>
-                <p class="comment-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-                <div class="comment-bottom">
-                  <ion-item>
-                    <div item-left class="comment-time">
-                      12-04 21:18
-                    </div>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">1</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="film-comment-item">
-                <ion-item class="comment-top">
-                  <div item-start>
-                    <img src="assets/imgs/MEAN.jpg">
-                  </div>
-                  <p>cherilxf</p>
-                </ion-item>
-                <p class="comment-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-                <div class="comment-bottom">
-                  <ion-item>
-                    <div item-left class="comment-time">
-                      12-04 21:18
-                    </div>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">1</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="film-comment-item">
-                <ion-item class="comment-top">
-                  <div item-start>
-                    <img src="assets/imgs/MEAN.jpg">
-                  </div>
-                  <p>cherilxf</p>
-                </ion-item>
-                <p class="comment-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-                <div class="comment-bottom">
-                  <ion-item>
-                    <div item-left class="comment-time">
-                      12-04 21:18
-                    </div>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">1</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="film-comment-item">
-                <ion-item class="comment-top">
-                  <div item-start>
-                    <img src="assets/imgs/MEAN.jpg">
-                  </div>
-                  <p>cherilxf</p>
-                </ion-item>
-                <p class="comment-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-                <div class="comment-bottom">
-                  <ion-item>
-                    <div item-left class="comment-time">
-                      12-04 21:18
-                    </div>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">1</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-            </ion-list>
-          </div>
-        </ion-slide>
-
-        <ion-slide>
-          <div class="discussion" [hidden]="!(movieDetailTab=='讨论区')">
-            <ion-list>
-              <div class="discussion-item">
-                <p class="discussion-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-
-                <div class="discussion-bottom">
-                  <ion-item>
-                    <div item-left>
-                      <img src="assets/imgs/MEAN.jpg">
-                    </div>
-                    <p>cherilxf</p>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">20</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="discussion-item">
-                <p class="discussion-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-
-                <div class="discussion-bottom">
-                  <ion-item>
-                    <div item-left>
-                      <img src="assets/imgs/MEAN.jpg">
-                    </div>
-                    <p>cherilxf</p>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">20</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="discussion-item">
-                <p class="discussion-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-
-                <div class="discussion-bottom">
-                  <ion-item>
-                    <div item-left>
-                      <img src="assets/imgs/MEAN.jpg">
-                    </div>
-                    <p>cherilxf</p>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">20</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="discussion-item">
-                <p class="discussion-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-
-                <div class="discussion-bottom">
-                  <ion-item>
-                    <div item-left>
-                      <img src="assets/imgs/MEAN.jpg">
-                    </div>
-                    <p>cherilxf</p>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">20</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="discussion-item">
-                <p class="discussion-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-
-                <div class="discussion-bottom">
-                  <ion-item>
-                    <div item-left>
-                      <img src="assets/imgs/MEAN.jpg">
-                    </div>
-                    <p>cherilxf</p>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">20</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="discussion-item">
-                <p class="discussion-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-
-                <div class="discussion-bottom">
-                  <ion-item>
-                    <div item-left>
-                      <img src="assets/imgs/MEAN.jpg">
-                    </div>
-                    <p>cherilxf</p>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">20</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="discussion-item">
-                <p class="discussion-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-
-                <div class="discussion-bottom">
-                  <ion-item>
-                    <div item-left>
-                      <img src="assets/imgs/MEAN.jpg">
-                    </div>
-                    <p>cherilxf</p>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">20</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="discussion-item">
-                <p class="discussion-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-
-                <div class="discussion-bottom">
-                  <ion-item>
-                    <div item-left>
-                      <img src="assets/imgs/MEAN.jpg">
-                    </div>
-                    <p>cherilxf</p>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">20</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="discussion-item">
-                <p class="discussion-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-
-                <div class="discussion-bottom">
-                  <ion-item>
-                    <div item-left>
-                      <img src="assets/imgs/MEAN.jpg">
-                    </div>
-                    <p>cherilxf</p>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">20</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-              <div class="discussion-item">
-                <p class="discussion-content">
-                  艾迪（汤姆·哈迪 Tom Hardy 饰）是一位深受观众喜爱的新闻记者，和女友安妮（米歇尔·威廉姆斯 Michelle Williams
-                  饰）相恋多年，彼此之间感情十分要好。安妮是一名律师，接手了生命基金会的案件，在女友的邮箱里，艾迪发现了基金会老板德雷克（里兹·阿迈德 Riz Ahmed
-                  饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。饰）不为人知的秘密。为此，艾迪不仅丢了工作，女友也离他而去。
-                </p>
-
-                <div class="discussion-bottom">
-                  <ion-item>
-                    <div item-left>
-                      <img src="assets/imgs/MEAN.jpg">
-                    </div>
-                    <p>cherilxf</p>
-                    <div item-right>
-                      <ion-icon name="dianzan" class="dianzan" (click)="dianzanDo(1)">14</ion-icon>
-                      <ion-icon name="commentIcon" class="commentIcon" (click)="goCommentPage(1)">20</ion-icon>
-                    </div>
-                  </ion-item>
-                </div>
-              </div>
-            </ion-list>
-          </div>
-        </ion-slide>
-      </ion-slides>
+              </ion-list>
+            </ion-scroll>
+          </ion-slide>
+        </ion-slides>
+      </div>
     </div>
   </div>
 </ion-content>
 
-<ion-footer class="movieDetail-footer" [hidden]="!buyBtn_Show">
-  <button ion-button (click)="goCinemaPage()">选座购票</button>
+<ion-footer class="movieDetail-footer" *ngIf="loadFinish">
+  <!--<div *ngIf="loadFinish">-->
+  <button class="gobuy-btn" ion-button (click)="goCinemaPage()">选座购票</button>
+  <!--</div>-->
 </ion-footer>

@@ -13,9 +13,9 @@ page-wish-movie {
   margin: 0;
 }
 .wish-movie-list ion-item{
-  border-bottom: 1px solid #eee;
+  border-bottom: .2rem solid #eee;
 }
-.wish-movie-list .item-md ion-thumbnail img{
+.wish-movie-list .item-md .movie-poster img{
   width: 6rem;
   height: 8rem;
 }

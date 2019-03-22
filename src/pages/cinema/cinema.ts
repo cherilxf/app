@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 
 import {BuyTicketPage} from "../buy-ticket/buy-ticket";
 import {CinemaService} from "./cinema.service";
@@ -18,30 +18,69 @@ import {CinemaService} from "./cinema.service";
   providers: [CinemaService]
 })
 export class CinemaPage {
-  public movieId :any;
-  public cinemaData: any;
+  public movie_id :any;
+  public cinema_data: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private cinemaService: CinemaService) {
-    this.movieId = this.navParams.get('movieId');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private cinemaService: CinemaService,
+    public alertCtrl: AlertController) {
+    this.movie_id = this.navParams.get('movieId');
+  }
+
+  ionViewDidLoad() {}
+
+  ionViewWillEnter() {
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'none';
+      });
+    }
+  }
+  ionViewDidEnter() {
     this.getCinemaData();
   }
-
-  ionViewDidLoad() {
-    // console.log('ionViewDidLoad CinemaPage');
+  ionViewWillLeave() {
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'flex';
+      });
+    }
   }
+  ionViewDidLeave() {}
 
   getCinemaData(){
-    this.cinemaService.getCinemaData(this.movieId).subscribe(data => {
-      console.log(data.data);
-      this.cinemaData = data.data;
+    this.cinemaService.getCinemaData_service(this.movie_id).subscribe(data => {
+      if (data.data) {
+        this.cinema_data = data.data;
+      } else {
+        this.showAlert("该影片未有影院放映！");
+      }
     }, error => {
       alert(error);
     });
   }
-  goBuyTicketPage(){
+
+  goBuyTicketPage(item){
+    let cinemaId = item.id;
     this.navCtrl.push(BuyTicketPage,{
-      movieId: this.movieId,
-      cinemaId: this.cinemaData.id
+      "cinemaId": cinemaId,
+      "movieId": this.movie_id
     })
+  }
+  showAlert(warnText) {
+    const alert = this.alertCtrl.create({
+      title: warnText,
+      buttons: [{
+        text: '确定',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      }],
+    });
+    alert.present();
   }
 }

@@ -14,23 +14,23 @@
   <ion-list>
     <ion-item class="head-portrait">
       <ion-label item-left>头像</ion-label>
-      <img item-right src="assets/imgs/MEAN.jpg" alt="">
+      <img item-right src="{{user_data.user_head_sculpture}}" alt="">
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>
     <ion-item (click)="nameSetting()">
       <ion-label item-left>昵称</ion-label>
-      <p item-right>廖</p>
+      <p item-right>{{user_data.user_nickname}}</p>
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>
     <ion-item (click)="sexSetting()">
       <ion-label item-left>性别</ion-label>
-      <p item-right>男</p>
+      <p item-right>{{user_data.user_sex}}</p>
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>
     <ion-item class="birthdaySetting-content">
       <ion-label item-left>生日</ion-label>
       <p item-right>
-        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="birthdayEvent.month" doneText="确定" cancelText="取消"></ion-datetime>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="user_data.user_birthday" doneText="确定" cancelText="取消" (ionChange)="saveBirthday()"></ion-datetime>
       </p>
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>
@@ -39,4 +39,7 @@
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>
   </ion-list>
+  <div class="show-description">
+    <p>{{user_data.user_description}}</p>
+  </div>
 </ion-content>

@@ -1,19 +1,19 @@
 <ion-header class="infoSetting-header">
   <ion-navbar>
     <ion-title text-center>性别</ion-title>
-    <a href="#" class="saveInfo" (click)="saveSexInfo()">保存</a>
+    <a href="javascript:;" class="saveInfo" (click)="saveSex()">保存</a>
   </ion-navbar>
 </ion-header>
 <ion-content class="sexSetting-content">
-  <ion-list radio-group [(ngModel)]="sex">
+  <ion-list radio-group [(ngModel)]="user_sex">
     <ion-item>
       <ion-label>男</ion-label>
-      <ion-radio value="男" [checked]="true"></ion-radio>
+      <ion-radio value="男" [checked]="user_sex == '男'"></ion-radio>
     </ion-item>
 
     <ion-item>
       <ion-label>女</ion-label>
-      <ion-radio value="女"></ion-radio>
+      <ion-radio value="女" [checked]="user_sex == '女'"></ion-radio>
     </ion-item>
   </ion-list>
 </ion-content>

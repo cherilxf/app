@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header class="cinema-header">
 
   <ion-navbar>
     <ion-title>选择电影院</ion-title>
@@ -13,30 +13,30 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content class="cinema-content">
   <ion-list>
-    <ion-item class="cinema-content" (click)="goBuyTicketPage()">
-      <ion-icon name="cinemaIcon" class="cinema-icon"></ion-icon>
-      <h2>
-        金逸影城IMAX店
-        <span class="cinema-content-price">39.9元起</span>
-      </h2>
-      <p>海珠区江南大道中180号富力海珠城商业广场B区7层金逸影城电影院</p>
-      <p>
-        <span>影城卡</span>
-        <span>观影小食</span>
-        <span>IMAX厅</span>
-        <span>4K厅</span>
+    <div class="cinema-item" *ngFor="let item of cinema_data" (click)="goBuyTicketPage(item)">
+      <ion-item class="cinema-item-top">
+        <ion-icon item-left class="cinema-icon" name="cinemaIcon"></ion-icon>
+        <h2 class="cinema-name">
+          {{item?.name}}
+        </h2>
+        <p item-right class="cinema-ticket-price">39.9元起</p>
+      </ion-item>
+      <p class="cinema-address">{{item?.address}}</p>
+      <p class="cinema-characteristic">
+        <span *ngFor="let characteristic of item.characteristics">{{characteristic}}</span>
       </p>
-      <p>
-      <span>
-        <ion-icon name="cinemaTuipiao"></ion-icon>
-        <ion-icon name="cinema3dGlass"></ion-icon>
-        <ion-icon name="cinemaWifi"></ion-icon>
-        <ion-icon name="cinemaPark"></ion-icon>
-      </span>
+      <p class="cinema-characteristic-icon">
+        <span>
+          <ion-icon name="cinemaTuipiao"></ion-icon>
+          <ion-icon name="cinema3dGlass"></ion-icon>
+          <ion-icon name="cinemaWifi"></ion-icon>
+          <ion-icon name="cinemaPark"></ion-icon>
+        </span>
       </p>
-      <p><span>特惠</span>毒液：致命守护者等</p>
-    </ion-item>
+      <p class="cinema-favourable">
+        <span class="cinema-favourable-title">特惠</span>&nbsp;<ion-icon class="cinema-favourable-icon" name="laba"></ion-icon><span class="cinema-favourable-content">{{item?.favourable}}</span></p>
+    </div>
   </ion-list>
 </ion-content>

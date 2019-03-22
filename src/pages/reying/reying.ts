@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MovieService} from "../movie/movie.service";
+import {MovieDetailPage} from "../movie-detail/movie-detail";
 
 /**
  * Generated class for the ReyingPage page.
@@ -24,17 +25,35 @@ export class ReyingPage {
     loadingText: '正在加载更多...'
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private movieService: MovieService) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private movieService: MovieService) {
     this.loadMore.start = 0;
     this.getReyingMovie();
   }
 
-  ionViewDidLoad() {
-    // console.log('ionViewDidLoad ReyingPage');
+  ionViewDidLoad() {}
+  ionViewWillEnter(){
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'none';
+      });
+    }
+  }
+  ionViewDidEnter(){}
+  ionViewWillLeave() {
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'flex';
+      });
+    }
   }
 
   getReyingMovie() {
-    this.movieService.getReyingMovieData(this.loadMore.start, this.loadMore.count).subscribe(data => {
+    this.movieService.getReyingMovieData_service(this.loadMore.start, this.loadMore.count).subscribe(data => {
       this.movie_reying_data = data.data;
       this.loadMore.start = this.loadMore.count;
     }, error => {
@@ -42,10 +61,16 @@ export class ReyingPage {
     });
   }
 
+  goMovieDetailPage(movie) {
+    this.navCtrl.push(MovieDetailPage, {
+      movieId: movie.id
+    });
+  }
+
   /*上拉更新*/
   doInfinite(infiniteScroll) {  /*接收事件对象传值*/
     setTimeout(() => {
-      this.movieService.getReyingMovieData(this.loadMore.start, this.loadMore.count).subscribe(data => {
+      this.movieService.getReyingMovieData_service(this.loadMore.start, this.loadMore.count).subscribe(data => {
         let newData = data.data;
         this.movie_reying_data = this.movie_reying_data.concat(newData);
         this.loadMore.start += this.loadMore.count;

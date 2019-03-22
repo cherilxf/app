@@ -23,7 +23,7 @@ export class HomePage {
 
   public home_comesoon_movie: any;
 
-  public banner_imgs: any[];
+  public banner_imgs: any = [];
 
   constructor(public navCtrl: NavController, private homeService: HomeService) {  // 实例化
     this.getBannerImgs();
@@ -32,24 +32,29 @@ export class HomePage {
     this.initSwiper();
   }
 
-  ionViewWillEnter() {
-  }
+  ionViewDidLoad() {}
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
+    // 解决轮播手动滑动后不能自动轮播问题
+    this.slides.autoplayDisableOnInteraction = false;
   }
 
   ionViewDidEnter() {
     this.slides.startAutoplay();
-    // 解决轮播手动滑动后不能自动轮播问题
-    this.slides.autoplayDisableOnInteraction = false;
   }
 
   ionViewDidLeave() {
     this.slides.stopAutoplay();
   }
 
+  initSwiper() {
+    this.homeSwiper = new Swiper('.home-reying-content .swiper-container', {
+      spaceBetween: 0,
+    });
+  }
+
   getBannerImgs(){
-    this.homeService.getBannerImgsData().subscribe(data => {
+    this.homeService.getBannerImgsData_service().subscribe(data => {
       // console.log(data.data);
       this.banner_imgs = data.data;
     }, error => {
@@ -57,24 +62,17 @@ export class HomePage {
     });
   }
   getReyingMovie() {
-    this.homeService.getReyingMovieData().subscribe(data => {
+    this.homeService.getReyingMovieData_service().subscribe(data => {
       this.home_reying_movie = data.data;
     }, error => {
       alert(error);
     });
   }
-
   getComesoonMovie() {
-    this.homeService.getComesoonMovieData().subscribe(data => {
+    this.homeService.getComesoonMovieData_service().subscribe(data => {
       this.home_comesoon_movie = data.data;
     }, error => {
       alert(error);
-    });
-  }
-
-  initSwiper() {
-    this.homeSwiper = new Swiper('.home-reying-content .swiper-container', {
-      spaceBetween: 0,
     });
   }
 
@@ -88,7 +86,6 @@ export class HomePage {
   goReyingMorePage() {
     this.navCtrl.push(ReyingPage, {})
   }
-
   goComesoonMorePage() {
     this.navCtrl.push(ComesoonPage, {})
   }

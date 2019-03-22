@@ -11,26 +11,24 @@
 </ion-header>
 <ion-content class="setting-content">
   <ion-list>
-    <ion-item>
-      <img item-left src="assets/imgs/MEAN.jpg">
-      <h2>
-        cherilxf
-      </h2>
+    <ion-item (click)="goInfoSetting();">
+      <img item-left src="{{user_data.user_head_sculpture}}">
+      <h2>{{user_data.user_nickname}}</h2>
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="clearCache();">
       <ion-label item-left>
         清除缓存
       </ion-label>
+      <p item-right>
+        128.1 MB
+      </p>
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>
     <ion-item>
       <ion-label item-left>
         给我们评分
       </ion-label>
-      <p item-right>
-        128.1 MB
-      </p>
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>
     <ion-item>
@@ -43,7 +41,7 @@
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>
     <div class="login-out">
-      <button ion-button color="danger" (click)="login()">退出登录</button>
+      <button ion-button color="danger" (click)="logout();">退出登录</button>
     </div>
   </ion-list>
 </ion-content>

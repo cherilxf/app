@@ -14,10 +14,10 @@
 
 <ion-content class="home-content clearFix">
   <!-- 轮播图 -->
-  <div class="banner">
-    <ion-slides pager loop="true" autoplay="2000">
+  <div class="banner" *ngIf="banner_imgs?.length > 1">
+    <ion-slides autoplay="2000" [loop]="true" [pager]="true">
       <ion-slide *ngFor="let item of banner_imgs">
-        <img src="{{item.bannerImg}}" alt="" class="slide-image">
+        <img class="slide-image" src="{{item.bannerImg}}" alt="">
       </ion-slide>
     </ion-slides>
   </div>

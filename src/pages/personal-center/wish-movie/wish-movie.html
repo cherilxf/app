@@ -16,19 +16,20 @@
 <ion-content class="wish-movie-content">
   <ion-list class="wish-movie-list">
     <ion-item>
-      <p item-start>共<span class="wish-movie-number">1</span>部电影</p>
+      <p item-start>共<span>1</span>部电影</p>
       <p item-end>按标记时间</p>
     </ion-item>
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="assets/imgs/MEAN.jpg">
+    <ion-item *ngFor="let item of wish_movie_data">
+      <ion-thumbnail class="movie-poster" item-start>
+        <img src="{{item.movie_poster}}">
       </ion-thumbnail>
-      <h2>大黄蜂</h2>
-      <p>豆瓣评分<span>9.0</span></p>
-      <p>特拉维斯·奈特 海莉斯坦菲尔得...</p>
+      <h2>{{item.movie_title}}</h2>
+      <p class="douban-grade">豆瓣评分<span>{{item.rating}}</span></p>
+      <p class="directors">主演：<span *ngFor="let actor of item.actors; index as i">{{actor}}{{(i === item.actors.length-1)?'':'、'}}</span>
+      </p>
       <p>
-        <span>2019-01-04</span>
-        在<span>中国大陆</span>上映
+        <span>{{item.release_time}}</span>
+        在<span>{{item.exhibition_area}}</span>上映
       </p>
       <button ion-button item-end>购票</button>
     </ion-item>
