@@ -1,9 +1,16 @@
 /* 根组件 */
+<<<<<<< HEAD
 import {Component} from '@angular/core';
 import {Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Storage} from "@ionic/storage";
+=======
+import { Component } from '@angular/core';
+import { Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+>>>>>>> first commit
 
 import {TabsPage} from '../pages/tabs/tabs';
 import {WelcomePage} from "../pages/welcome/welcome";
@@ -22,8 +29,9 @@ export class MyApp {
       splashScreen.hide();
     });
 
+    this.storage.set('first_in',true);
     this.storage.get('first_in').then((result) => {
-      console.log('first_in', result);
+      console.log('first_in',result);
       // result = false;
       if (result) {
         this.storage.set('first_in', false);

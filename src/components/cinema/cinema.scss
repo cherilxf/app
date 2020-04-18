@@ -4,7 +4,7 @@ cinema {
 
 .cinema-item{
   border-bottom: 2px solid #eee;
-  padding: .6rem 0 .6rem .6rem;
+  padding: .6rem;
 }
 .cinema-item .item-block{
   min-height: 0;
@@ -27,6 +27,9 @@ cinema {
 }
 .cinema-item p{
   margin: .2rem 0;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .cinema-item .cinema-address{
   color: #888;

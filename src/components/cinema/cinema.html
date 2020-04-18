@@ -1,6 +1,6 @@
 <!-- Generated template for the CinemaComponent component -->
 <ion-list>
-  <div class="cinema-item" (click)="goBuyTicketPage()" *ngFor="let item of cinema_data">
+  <div class="cinema-item" *ngFor="let item of cinema_data" (click)="goBuyTicketPage(item)">
     <ion-item class="cinema-item-top">
       <ion-icon item-left class="cinema-icon" name="cinemaIcon"></ion-icon>
       <h2 class="cinema-name">

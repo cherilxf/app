@@ -1,7 +1,29 @@
+<<<<<<< HEAD
 .ion-md-goback:before {
   content: url("../assets/fonts/goback.svg");
 }
 
+.ion-md-cinemaScreen:before {
+  content: url("../assets/fonts/cinemaScreen.svg");
+}
+.ion-md-seat01:before {
+  content: url("../assets/fonts/seat_01.svg");
+}
+.ion-md-seat02:before {
+  content: url("../assets/fonts/seat_02.svg");
+}
+.ion-md-cartPay:before {
+  content: url("../assets/fonts/cartPay.svg");
+}
+.ion-md-zfbPay:before {
+  content: url("../assets/fonts/zfbPay.svg");
+}
+.ion-md-wechatPay:before {
+  content: url("../assets/fonts/wechatPay.svg");
+}
+
+=======
+>>>>>>> first commit
 .ion-md-dianying:before {
   content: url("../assets/fonts/dianying_1.svg");
 }
@@ -42,6 +64,7 @@
 }
 
 .ion-md-fenlei:before {
+<<<<<<< HEAD
   content: url("../assets/fonts/genre_1.svg");
 }
 .ion-md-fenlei-outline:before {
@@ -52,6 +75,18 @@
 }
 .tab-button[aria-selected=true] .ion-md-fenlei-outline:before {
   content: url("../assets/fonts/genre_1.svg");
+=======
+  content: url("../assets/fonts/fenlei_1.svg");
+}
+.ion-md-fenlei-outline:before {
+  content: url("../assets/fonts/fenlei.svg");
+}
+.tab-button[aria-selected=false] .ion-md-fenlei-outline:before {
+  content: url("../assets/fonts/fenlei.svg");
+}
+.tab-button[aria-selected=true] .ion-md-fenlei-outline:before {
+  content: url("../assets/fonts/fenlei_1.svg");
+>>>>>>> first commit
 }
 
 .ion-md-wode:before {
@@ -70,6 +105,7 @@
 .ion-md-search:before {
   content: url("../assets/fonts/search.svg");
 }
+<<<<<<< HEAD
 .ion-md-laba:before {
   content: url("../assets/fonts/laba.svg");
 }
@@ -79,6 +115,8 @@
 .ion-md-slideRight:before {
   content: url("../assets/fonts/slide-right-double.svg");
 }
+=======
+>>>>>>> first commit
 
 .ion-md-moreIcon:before {
   content: url("../assets/fonts/more.svg");
@@ -111,10 +149,13 @@
   content: url("../assets/fonts/paihangbangHeader.svg");
 }
 
+<<<<<<< HEAD
 .ion-md-fenleiHeader:before {
   content: url("../assets/fonts/fenleiHeader.svg");
 }
 
+=======
+>>>>>>> first commit
 .ion-md-setting:before {
   content: url("../assets/fonts/setting.svg");
 }
@@ -128,6 +169,7 @@
    content: url("../assets/fonts/youjiantou.svg");
 }
 
+<<<<<<< HEAD
 .ion-md-xiangkan:before {
   content: url("../assets/fonts/xiangkan.svg");
 }
@@ -185,3 +227,5 @@
   content: url("../assets/fonts/pwSeeIcon_1.svg");
 }
 
+=======
+>>>>>>> first commit

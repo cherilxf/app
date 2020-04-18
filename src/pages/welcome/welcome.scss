@@ -3,13 +3,22 @@ page-welcome {
 }
 .welcome-content {
   .skipBtn{
-    color: #000;
-    font-size: 1.6rem;
+    color: #fff;
+    font-size: 1.8rem;
     padding: .6rem;
     position: absolute;
     top: 1rem;
     right: 1rem;
     background-color: rgba(255,255,255,0);
+  }
+
+  .slide-title{
+    width: 100%;
+    font-size: 1.8rem;
+    position: absolute;
+    top: 16%;
+    left: 50%;
+    transform: translate(-50%,-50%);
   }
 
   .slide-zoom {

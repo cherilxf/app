@@ -59,10 +59,10 @@ export class NameSettingPage {
         this.storage.set('user_data', user_data);
         this.showAlert("保存成功！");
       } else {
-        this.showAlert("服务器出错！");
+        this.showAlert("保存失败！");
       }
     }, error => {
-      alert(error);
+      this.showAlert("服务器出错啦！");
     });
   }
 
@@ -127,10 +127,10 @@ export class SexSettingPage {
         this.storage.set('user_data', user_data);
         this.showAlert("保存成功！");
       } else {
-        this.showAlert("服务器出错！");
+        this.showAlert("保存失败！");
       }
     }, error => {
-      alert(error);
+      this.showAlert("服务器出错啦！");
     });
   }
 
@@ -194,10 +194,10 @@ export class DescriptionSettingPage {
         this.storage.set('user_data', user_data);
         this.showAlert("保存成功！");
       } else {
-        this.showAlert("服务器出错！");
+        this.showAlert("保存失败！");
       }
     }, error => {
-      alert(error);
+      this.showAlert("服务器出错啦！");
     });
   }
 
@@ -241,11 +241,15 @@ export class PersonalInfoSettingPage {
     this.accound = this.navParams.get("accound");
   }
 
-  ionViewDidLoad() {
-    // console.log('ionViewDidLoad PersonalInfoSettingPage');
-  }
-
+  ionViewDidLoad() {}
   ionViewWillEnter() {
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'none';
+      });
+    }
+
     this.storage.get("user_data").then((data) => {
       this.user_data = {
         accound: data.accound,
@@ -256,13 +260,6 @@ export class PersonalInfoSettingPage {
         user_description: data.description
       };
     });
-
-    let elements = document.querySelectorAll(".tabbar");
-    if (elements != null) {
-      Object.keys(elements).map((key) => {
-        elements[key].style.display = 'none';
-      });
-    }
   }
   ionViewDidEnter() {}
   ionViewWillLeave() {
@@ -294,10 +291,10 @@ export class PersonalInfoSettingPage {
       if (editState === true) {
         this.storage.set('user_data', user_data);
       } else {
-        this.showAlert("服务器出错！");
+        this.showAlert("保存失败！");
       }
     }, error => {
-      this.showAlert(error);
+      this.showAlert("服务器出错啦！");
     });
   }
   descriptionSetting() {

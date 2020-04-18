@@ -2,76 +2,77 @@ page-personal-center {
 
 }
 .personal-center-header{
+<<<<<<< HEAD
   background-image: url('../../assets/imgs/personalCenterHeader.jpg');
   background-size: cover;
 }
 .personal-center-header ion-list{
   margin-bottom: 0;
 }
+=======
+  width: 100%;
+  height: 25%;
+  background-image: url('../../assets/imgs/personalCenterHeader.jpg');
+  background-size: cover;
+}
+>>>>>>> first commit
 .personal-center-header ion-list ion-item{
   width: 100%;
   height: 100%;
   border: 0;
   background:rgba(255,255,255,0);
 }
-.personal-center-header ion-list ion-item:last-of-type{
+<<<<<<< HEAD
+.personal-center-header .center-user-title{
   margin-top: 1.4rem;
 }
-.personal-center-header ion-list ion-item h2{
+.center-user-title .center-user-nickname{
   font-size: 2.2rem;
+=======
+.personal-center-header ion-list ion-item h2{
+  font-size: 2.6rem;
+>>>>>>> first commit
   color: #fff;
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
 }
+<<<<<<< HEAD
+.center-user-title .center-user-headImg img{
+=======
 .personal-center-header ion-list ion-item img{
+>>>>>>> first commit
   width: 6rem;
   height: 6rem;
   border-radius: 3rem;
 }
+<<<<<<< HEAD
 
 .personal-center-content{
   background-color: #eee;
+}
+.personal-center-content p{
+  margin: 0;
+}
+.personal-center-content .item-block{
+  border: 1px solid #eee;
+}
+.personal-center-content ion-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .personal-center-content ion-grid{
   background-color: #fff;
   margin: .6rem 0;
 }
-.personal-center-content .item-block,
-.setting-content .item-block {
-  border: 1px solid #eee;
-}
-.personal-center-content p{
-  margin: 0;
-}
 .personal-center-content .col{
   text-align: center;
+=======
+.list-md .item-block .item-inner{
+  border: 0;
 }
-.setting-content{
-  background-color: #eee;
-}
-.setting-content ion-label{
-  color: #000;
-  font-size: 1.6rem;
-}
-.setting-content p{
-  color: #666;
-}
-.setting-content ion-item img{
-  width: 6rem;
-  height: 6rem;
-  border-radius: 3rem;
-}
-.setting-content ion-item:first-of-type{
-  margin: .6rem 0;
-}
-.setting-content .login-out{
-  margin: .8rem .8rem;
-}
-.setting-content .login-out button{
-  width: 100%;
-  font-size: 1.6rem;
-}
-.setting-content .button-md{
-  margin: 0;
+.item-block{
+  border-bottom: 1px solid #eee;
+>>>>>>> first commit
 }

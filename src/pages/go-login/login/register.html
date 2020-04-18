@@ -1,0 +1,33 @@
+<ion-header class="register-header">
+
+  <ion-navbar>
+    <ion-title>注册</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="register-content">
+  <ion-list>
+    <ion-item>
+      <ion-label>手机号</ion-label>
+      <ion-input type="tel" placeholder="请输入手机号码" [(ngModel)]="registerData.accound" (ionBlur)="accoundCheck()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>密码</ion-label>
+      <ion-input type="password" minlength="8" maxlength="16" placeholder="请输入密码" [(ngModel)]="registerData.password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>确认密码</ion-label>
+      <ion-input type="password" minlength="8" maxlength="16" placeholder="请重新输入密码" [(ngModel)]="registerData.confirmPassword" (ionBlur)="confirmPw()"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="contract-box">
+    <ion-checkbox (ionChange)="contractConfirm($event)"></ion-checkbox>
+    <p class="contract">我已阅读并同意以下协议<a href="javascript:;">《XXX票服务协议》</a></p>
+  </div>
+
+  <div class="register-btn-box">
+    <button class="goRegister registerBtn" ion-button  [disabled]="registerBtnState" (click)="registerDo()">立即注册</button>
+  </div>
+</ion-content>

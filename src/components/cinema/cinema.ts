@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {NavController, NavParams} from "ionic-angular";
+import {Component} from '@angular/core';
+import {AlertController, LoadingController, NavController, NavParams} from "ionic-angular";
 import {CinemaService} from "../../pages/cinema/cinema.service";
 import {BuyTicketPage} from "../../pages/buy-ticket/buy-ticket";
 
@@ -27,23 +27,51 @@ export class CinemaComponent {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private cinemaService: CinemaService) {
-    this.getCinemaData();
+    private cinemaService: CinemaService,
+    public alertCtrl: AlertController,
+    private loadingCtrl: LoadingController) {
+
+    let loading = this.loadingCtrl.create({
+      content: '加载数据中...'//数据加载中显示
+    });
+    //显示等待样式
+    loading.present();
+
+    setTimeout(()=>{
+      loading.dismiss().then(()=>{
+        this.getCinemaData();
+      });
+    },1000);
   }
 
-  getCinemaData(){
+  getCinemaData() {
     this.cinemaService.getCinemaData_service(null).subscribe(data => {
       this.cinema_data = data.data;
     }, error => {
-      alert(error);
+      this.showAlert('服务器出错啦！');
     });
   }
-  goBuyTicketPage(){
-    this.navCtrl.push(BuyTicketPage,{
+
+  goBuyTicketPage(item) {
+    this.navCtrl.push(BuyTicketPage, {
       "movieId": null,
-      "cinemaId": this.cinema_data.id
+      "cinemaId": item.id
     })
   }
+
+  showAlert(warnText) {
+    const alert = this.alertCtrl.create({
+      title: warnText,
+      buttons: [{
+        text: '确定',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      }],
+    });
+    alert.present();
+  }
+
   /*上拉更新*/
   /*loadMoreReyingMovie(infiniteScroll) {  /!*接收事件对象传值*!/
     setTimeout(() => {
@@ -58,7 +86,7 @@ export class CinemaComponent {
           // this.loadMore.loadingText = '亲，我是有底线的';
         }
       }, error => {
-        alert(error);
+        this.showAlert(error);
       });
     }, 500);
   }*/

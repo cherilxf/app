@@ -3,7 +3,7 @@ import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angula
 import {Storage} from "@ionic/storage";
 
 import {PersonalInfoSettingPage} from "../personal-info-setting/personal-info-setting";
-import {GoLoginPage} from "../../go-login/go-login";
+import {LoginPage} from "../../go-login/login/login";
 
 
 /**
@@ -37,6 +37,13 @@ export class SettingPage {
 
   ionViewDidLoad() {}
   ionViewWillEnter() {
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'none';
+      });
+    }
+
     this.storage.get("user_data").then((data) => {
       this.user_data = {
         accound: data.accound,
@@ -44,16 +51,16 @@ export class SettingPage {
         user_nickname: data.nickname
       };
     });
-
+  }
+  ionViewDidEnter() {}
+  ionViewWillLeave() {
     let elements = document.querySelectorAll(".tabbar");
     if (elements != null) {
       Object.keys(elements).map((key) => {
-        elements[key].style.display = 'none';
+        elements[key].style.display = 'flex';
       });
     }
   }
-  ionViewDidEnter() {}
-  ionViewWillLeave() {}
   ionViewDidLeave() {}
 
   goInfoSetting() {
@@ -64,7 +71,7 @@ export class SettingPage {
 
   logout() {
     this.resetData();
-    this.navCtrl.push(GoLoginPage,{});
+    this.navCtrl.push(LoginPage,{});
   }
 
   resetData(){

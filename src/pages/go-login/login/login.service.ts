@@ -25,4 +25,13 @@ export class LoginService {
     };
     return this.http.post<any>(url, reqParam, httpOptions).pipe();
   }
+
+  register_service(registerData): Observable<any> {
+    const url = `${AppConfig.getUrl()}/personal_center/register`;
+
+    let reqParam = {
+      "registerData": registerData
+    };
+    return this.http.post<any>(url, reqParam, httpOptions).pipe();
+  }
 }

@@ -3,6 +3,7 @@
   "integrations": {
     "cordova": {}
   },
+<<<<<<< HEAD
   "type": "ionic-angular",
   "proxies": [
     {
@@ -15,4 +16,7 @@
       "rejectUnuthorized": false
     }
   ]
+=======
+  "type": "ionic-angular"
+>>>>>>> first commit
 }

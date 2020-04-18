@@ -2,32 +2,38 @@ page-personal-info-setting {
 
 }
 
-.personalInfo-setting-header,
+.personalInfo-setting-content-header,
 .infoSetting-header{
   position: relative;
 }
 
-.personalInfo-setting{
+.personalInfo-setting-content{
   background-color: #eee;
 }
-.personalInfo-setting .item-select .label-md,
-.personalInfo-setting .item-input .label-md,
-.personalInfo-setting .item-datetime .label-md{
+.personalInfo-setting-content .item-select .label-md,
+.personalInfo-setting-content .item-input .label-md,
+.personalInfo-setting-content .item-datetime .label-md{
   color: #000;
 }
-.personalInfo-setting .item-md ion-icon[item-right]{
-  margin-top: 15px;
-}
-.personalInfo-setting .item-block{
+.personalInfo-setting-content .item-block{
   border: 1px solid #eee;
 }
+.personalInfo-setting-content .userInfo-setting-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.personalInfo-setting p{
+.personalInfo-setting-content p{
   font-size: 1.6rem;
 }
-.personalInfo-setting .head-portrait img{
-  width: 3rem;
-  height: 3rem;
+
+.userInfo-setting-item .youjiantou{
+  padding-left: .4rem;
+}
+.personalInfo-setting-content .head-portrait img{
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
 .infoSetting-header .saveInfo{
@@ -51,6 +57,9 @@ page-personal-info-setting {
 
 .nameSetting-content .text-input-md{
   margin: .2rem 1rem;
+}
+.sexSetting-content .man-option{
+  border-bottom: 1px solid #eee;
 }
 .birthdaySetting-content .datetime-text{
   color: #666;

@@ -1,0 +1,93 @@
+page-ticket-info {
+
+}
+.seatTip {
+  .toast-message {
+    color: #fff;
+  }
+  .toast-wrapper {
+    background: #FF8a8a;
+    @extend .box;
+  }
+}
+
+.ticketInfo-header {
+
+}
+
+.ticketInfo-content {
+  background-color: #e9e9e9;
+}
+
+.seat-box{
+  margin: 1rem .4rem;
+  background-color: #fff;
+  box-shadow: 0 0 5px #00A0E2;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  border-radius: 1rem;
+  padding-bottom: .4rem;
+}
+.seat-box .item-block{
+  width: inherit;
+  padding: 0;
+}
+.seat-box .label-md{
+  margin: .4rem 0;
+  text-align: center;
+  line-height: inherit;
+}
+.seat-box .item-md.item-block .item-inner{
+  padding: 0;
+}
+.seat-box .seat-label{
+  font-size: 1.4rem;
+  transform: scale(0.75);
+}
+.seat-box .cinema-screen .toolbar-title-md{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cinema-screen-icon{
+  margin-right: 1rem;
+}
+.seat-box .seat-col{
+  display: inline-block;
+  padding: 0 .2rem;
+}
+.seat-box .seat-row{
+  text-align: center;
+}
+.seat-box .seat{
+  margin: 0 .4rem;
+}
+
+.select-ticket-info{
+  margin: 1rem .4rem;
+  box-shadow: 0 0 5px #FF2C25;
+}
+.ticket-seat-info .ticket-seat-title,
+.ticket-count-info .ticket-count,
+.ticket-price-info .ticket-price-title{
+  font-size: 1.6rem;
+  color: #000;
+}
+.ticket-count span,
+.ticket-price-info .ticket-sumPrice,
+.ticket-price-info .ticket-singlePrice{
+  font-weight: 600;
+  color: #FF2C25;
+}
+
+.pay-box {
+  width: 100%;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.pay-box .go-pay {
+  width: 100%;
+  font-size: 1.6rem;
+  background-color: #FE4343;
+}

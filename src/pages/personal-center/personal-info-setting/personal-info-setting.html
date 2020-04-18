@@ -10,33 +10,33 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="personalInfo-setting">
+<ion-content class="personalInfo-setting-content">
   <ion-list>
-    <ion-item class="head-portrait">
+    <ion-item class="userInfo-setting-item head-portrait">
       <ion-label item-left>头像</ion-label>
       <img item-right src="{{user_data.user_head_sculpture}}" alt="">
-      <ion-icon item-right name="youjiantou"></ion-icon>
+      <ion-icon class="youjiantou" item-right name="youjiantou"></ion-icon>
     </ion-item>
-    <ion-item (click)="nameSetting()">
+    <ion-item class="userInfo-setting-item" (click)="nameSetting()">
       <ion-label item-left>昵称</ion-label>
       <p item-right>{{user_data.user_nickname}}</p>
-      <ion-icon item-right name="youjiantou"></ion-icon>
+      <ion-icon class="youjiantou" item-right name="youjiantou"></ion-icon>
     </ion-item>
-    <ion-item (click)="sexSetting()">
+    <ion-item class="userInfo-setting-item" (click)="sexSetting()">
       <ion-label item-left>性别</ion-label>
       <p item-right>{{user_data.user_sex}}</p>
-      <ion-icon item-right name="youjiantou"></ion-icon>
+      <ion-icon class="youjiantou" item-right name="youjiantou"></ion-icon>
     </ion-item>
-    <ion-item class="birthdaySetting-content">
+    <ion-item class="userInfo-setting-item birthdaySetting-content">
       <ion-label item-left>生日</ion-label>
       <p item-right>
-        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="user_data.user_birthday" doneText="确定" cancelText="取消" (ionChange)="saveBirthday()"></ion-datetime>
+        <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="user_data.user_birthday" doneText="保存" cancelText="取消" (ionChange)="saveBirthday()"></ion-datetime>
       </p>
-      <ion-icon item-right name="youjiantou"></ion-icon>
+      <ion-icon class="youjiantou" item-right name="youjiantou"></ion-icon>
     </ion-item>
-    <ion-item (click)="descriptionSetting()">
+    <ion-item class="userInfo-setting-item" (click)="descriptionSetting()">
       <ion-label item-left>个性签名</ion-label>
-      <ion-icon item-right name="youjiantou"></ion-icon>
+      <ion-icon class="youjiantou" item-right name="youjiantou"></ion-icon>
     </ion-item>
   </ion-list>
   <div class="show-description">

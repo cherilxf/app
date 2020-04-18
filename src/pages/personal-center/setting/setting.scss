@@ -8,18 +8,24 @@ page-setting {
   color: #000;
   font-size: 1.6rem;
 }
-.setting-content ion-label h2{
+.setting-content .item-block {
+  border: 1px solid #eee;
+}
+.setting-content .setting-nickname{
   font-size: 2.2rem;
+  margin-left: .4rem;
 }
 .setting-content p{
   color: #666;
 }
-.setting-content ion-item img{
+.setting-user-item img{
   width: 5rem;
   height: 5rem;
   border-radius: 2.5rem;
 }
-.setting-content ion-item:first-of-type{
+.setting-content .setting-user-item{
+  padding-top: .4rem;
+  padding-bottom: .4rem;
   margin: .6rem 0;
 }
 .setting-content .login-out{

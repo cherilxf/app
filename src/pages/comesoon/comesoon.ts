@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MovieService} from "../movie/movie.service";
 import {MovieDetailPage} from "../movie-detail/movie-detail";
 
@@ -28,7 +28,8 @@ export class ComesoonPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private movieService: MovieService) {
+    private movieService: MovieService,
+    public alertCtrl: AlertController) {
     this.loadMore.start = 0;
     this.getComesoonMovie();
   }
@@ -58,7 +59,7 @@ export class ComesoonPage {
       this.movie_comesoon_data = data.data;
       this.loadMore.start = this.loadMore.count;
     }, error => {
-      alert(error);
+      this.showAlert(error);
     });
   }
 
@@ -66,6 +67,19 @@ export class ComesoonPage {
     this.navCtrl.push(MovieDetailPage, {
       movieId: movie.id
     });
+  }
+
+  showAlert(warnText) {
+    const alert = this.alertCtrl.create({
+      title: warnText,
+      buttons: [{
+        text: '确定',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      }],
+    });
+    alert.present();
   }
 
   doInfinite(infiniteScroll) {
@@ -80,7 +94,7 @@ export class ComesoonPage {
           // this.loadMore.loadingText = '亲，我是有底线的';
         }
       }, error => {
-        alert(error);
+        this.showAlert('服务器出错啦！');
       });
     }, 500);
   }

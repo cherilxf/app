@@ -7,14 +7,15 @@ page-login {
 .login-header .goback{
   width: 4rem;
   height: 2.8rem;
-  background-color: #00A0E2;
+  background-color: #a0eee1;
   border-radius: 1.4rem;
   position: absolute;
   top: .9rem;
   left: .6rem;
   z-index: 999;
 }
-.login-content{
+.login-content,
+.register-content{
   margin: .6rem 0 .4rem;
   background-color: #eee;
 }
@@ -22,44 +23,56 @@ page-login {
   margin: 0 .2rem 0 0;
   padding-top: .6rem;
 }
-.login-content .item-input .label-md {
+.login-content .item-input .label-md,
+.register-content .item-input .label-md{
   color: #000;
   margin: .6rem .2rem .6rem 0;
 }
-.login-content .text-input-md{
+.login-content .text-input-md,
+.register-content .text-input-md{
   font-size: 1.4rem;
   margin: 0;
   padding-left: .6rem;
 }
-.login-content .list-md .item-input:last-child{
-  border: 0;
-}
-.login-content .item-input-has-focus{
-  border-bottom-color: #000;
-}
 
-.login-box{
-  margin: 0 1rem;
+.login-btn-box{
+  margin: 1rem 1rem 0;
   overflow: hidden;
 }
-.login-box .loginBtn{
+.login-btn-box .loginBtn{
   font-size: 1.6rem;
   background-color: #F51933;
 }
-.login-box .forgot-password{
+.login-btn-box .forgot-password{
   font-size: 1.4rem;
   margin: .4rem 0 2rem;
   background-color: #eee;
 }
-.login-box .forgot-password:active {
+.login-btn-box .forgot-password:active {
   color: #F51933;
 }
 
-.register-box{
+.register-btn-box{
   width: 100%;
   text-align: center;
 }
-.register-box .registerBtn{
+.register-btn-box .registerBtn{
   height: 3rem;
   background-color: #00A0E2;
+}
+
+.contract-box{
+  font-size: 1.3rem;
+  color: #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contract{
+  margin-left: 1rem;
+}
+.contract a{
+  color: #FF2C25;
+}
+.goRegister{
 }

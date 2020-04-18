@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MovieService} from "../movie/movie.service";
 import {MovieDetailPage} from "../movie-detail/movie-detail";
 
@@ -28,7 +28,8 @@ export class ReyingPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private movieService: MovieService) {
+    private movieService: MovieService,
+    public alertCtrl: AlertController,) {
     this.loadMore.start = 0;
     this.getReyingMovie();
   }
@@ -57,7 +58,7 @@ export class ReyingPage {
       this.movie_reying_data = data.data;
       this.loadMore.start = this.loadMore.count;
     }, error => {
-      alert(error);
+      this.showAlert('服务器出错啦！');
     });
   }
 
@@ -80,9 +81,21 @@ export class ReyingPage {
           infiniteScroll.enable(false);
         }
       }, error => {
-        alert(error);
+        this.showAlert('服务器出错啦！');
       });
     }, 500);
   }
 
+  showAlert(warnText) {
+    const alert = this.alertCtrl.create({
+      title: warnText,
+      buttons: [{
+        text: '确定',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      }],
+    });
+    alert.present();
+  }
 }

@@ -15,89 +15,126 @@
 
 <ion-content class="buy-ticket-content">
 
-  <div class="buy-ticket-top">
-    <ion-item>
-      <h2 class="cinema-name">{{cinema_data?.name}}</h2>
-      <p class="cinema-address">{{cinema_data?.address}}</p>
-      <p class="cinema-characteristic">
-        <span *ngFor="let characteristic of cinema_data?.characteristics">{{characteristic}}</span>
-      </p>
-    </ion-item>
-  </div>
-
-  <div class="buy-ticket-middle">
-    <ion-slides (ionSlideDidChange)="movieSlideChanged()" #movie_item_slides>
-      <ion-slide class="buy-movie-item" *ngFor="let item of cinema_data?.movie; index as i;first as isFirst;last as isLast">
-        <ion-item>
-          <ion-thumbnail class="movie-poster" item-left>
-            <img src="{{item?.images?.medium}}" alt="">
-          </ion-thumbnail>
-          <div class="mocie-info">
-            <h2 class="movie-title">{{item?.title}}&nbsp;&nbsp;<span class="douban-grade">{{item?.rating?.average}}</span></h2>
-            <p>
-              <span *ngFor="let genre of item?.genres; index as i">{{genre}}{{(i === item?.genres.length-1)?'':' | '}}</span>
-              <span> | {{item?.duration}}分钟</span>
-            </p>
-            <p>超过&nbsp;<span class="wish-count">{{item?.wish_count}}</span>&nbsp;人想看</p>
-            <p>已有&nbsp;<span class="good-comment-count">{{item?.reviews_count}}</span>&nbsp;人表示影片好评</p>
-            <p class="casts">主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span>
-            </p>
-          </div>
-        </ion-item>
-        <p class="slide-tip"><ion-icon name="slideLeft" [hidden]="isFirst"></ion-icon><span>滑动选择影片</span><ion-icon name="slideRight" [hidden]="isLast"></ion-icon></p>
-      </ion-slide>
-    </ion-slides>
-  </div>
-
-  <div class="buy-ticket-bottom">
-    <div class="buy-ticket-tabs">
-      <ion-segment [(ngModel)]="buyTicketTab">
-        <ion-segment-button  class="buyTicket-tab" *ngFor="let item of tabArr" value="{{item.tabName}}" (click)="segmentChanged(item.index)">
-          {{item.tabName}}
-        </ion-segment-button>
-      </ion-segment>
+  <div *ngIf="loadFinish">
+    <div class="buy-ticket-top">
+      <ion-item>
+        <h2 class="cinema-name">{{cinema_data?.name}}</h2>
+        <p class="cinema-address">{{cinema_data?.address}}</p>
+        <p class="cinema-characteristic">
+          <span *ngFor="let characteristic of cinema_data?.characteristics">{{characteristic}}</span>
+        </p>
+      </ion-item>
     </div>
-    <p class="broadcast"><ion-icon class="laba-icon" name="laba"></ion-icon><span>影城卡首单，最高立减6元</span></p>
-    <div class="buy-ticket-tabsContent">
-      <div [ngSwitch]="buyTicketTab">
-        <ion-slides (ionSlideDidChange)="sceneSlideChanged()" #movie_scene_slides>
-          <ion-slide>
-            <div *ngSwitchCase="'今天'" class="movie-scene">
-              <ion-list>
-                <ion-item class="movie-scene-item" *ngFor="let scene of movie_data
-                ?.film_scenes">
-                  <div item-left class="movie-time">
-                    <p class="movie-start-time"><span>{{scene?.time_start}}</span></p>
-                    <p class="movie-end-time"><span>{{scene?.time_end}}</span>&nbsp;散场</p>
-                  </div>
-                  <div item-left>
-                    <p class="movie-type">{{scene?.type}}</p>
-                    <p class="movie-play-room">{{scene?.hall}}</p>
-                  </div>
-                  <div item-right>
-                    <p class="movie-price">特惠&nbsp;<span>{{scene?.price}}</span>&nbsp;元</p>
-                    <p  class="movie-cart-price">会员卡&nbsp;<span>{{scene?.cinema_cart_price}}</span>&nbsp;元</p>
-                  </div>
-                  <div item-right>
-                    <button ion-button class="buy-btn">购买</button>
-                  </div>
-                </ion-item>
-              </ion-list>
-            </div>
-          </ion-slide>
 
-          <ion-slide>
-            <div *ngSwitchCase="'明天'" class="movie-scene">
-              明天
+    <div class="buy-ticket-middle">
+      <ion-slides (ionSlideDidChange)="movieSlideChanged()" #movie_item_slides>
+        <ion-slide class="buy-movie-item" *ngFor="let item of cinema_data?.movies; index as i;first as isFirst;last as isLast">
+          <ion-item>
+            <ion-thumbnail class="movie-poster" item-left>
+              <img src="{{item?.images?.medium}}" alt="">
+            </ion-thumbnail>
+            <div class="mocie-info">
+              <h2 class="movie-title">{{item?.title}}&nbsp;&nbsp;<span class="douban-grade">{{item?.rating?.average}}</span></h2>
+              <p>
+                <span *ngFor="let genre of item?.genres; index as i">{{genre}}{{(i === item?.genres.length-1)?'':' | '}}</span>
+                <span> | {{item?.duration}}分钟</span>
+              </p>
+              <p>超过&nbsp;<span class="wish-count">{{item?.wish_count}}</span>&nbsp;人想看</p>
+              <p>已有&nbsp;<span class="good-comment-count">{{item?.reviews_count}}</span>&nbsp;人表示影片好评</p>
+              <p class="casts">主演：<span *ngFor="let cast of item.casts; index as i">{{cast.name}}{{(i === item.casts.length-1)?'':'、'}}</span>
+              </p>
             </div>
-          </ion-slide>
+          </ion-item>
+          <p class="slide-tip"><ion-icon name="slideLeft" [hidden]="isFirst"></ion-icon><span>滑动选择影片</span><ion-icon name="slideRight" [hidden]="isLast"></ion-icon></p>
+        </ion-slide>
+      </ion-slides>
+    </div>
 
-          <ion-slide>
-            <div *ngSwitchCase="'后天'" class="movie-scene">
-              后天
-            </div>
-          </ion-slide>
-        </ion-slides>
+    <div class="buy-ticket-bottom">
+      <div class="buy-ticket-tabs">
+        <ion-segment [(ngModel)]="buyTicketTab">
+          <ion-segment-button  class="buyTicket-tab" *ngFor="let item of tabArr; index as i;" value="{{item.tabName}}" (click)="segmentChanged(item.index)">
+            {{item.tabName}}<span class="scene-date">({{date[i]}})</span>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      <p class="broadcast"><ion-icon class="laba-icon" name="laba"></ion-icon><span>影城卡首单，最高立减6元</span></p>
+      <div class="buy-ticket-tabsContent">
+        <div [ngSwitch]="buyTicketTab">
+          <ion-slides (ionSlideDidChange)="sceneSlideChanged()" #movie_scene_slides>
+            <ion-slide>
+              <div *ngSwitchCase="'今天'" class="movie-scene">
+                <ion-list>
+                  <ion-item class="movie-scene-item" *ngFor="let scene of current_movie_data?.film_scenes">
+                    <div item-left class="movie-time">
+                      <p class="movie-start-time"><span>{{scene?.time_start}}</span></p>
+                      <p class="movie-end-time"><span>{{scene?.time_end}}</span>&nbsp;散场</p>
+                    </div>
+                    <div item-left>
+                      <p class="movie-type">{{scene?.type}}</p>
+                      <p class="movie-play-room">{{scene?.hall?.hall_name}}</p>
+                    </div>
+                    <div item-right>
+                      <p class="movie-price">特惠&nbsp;<span>{{scene?.single_price}}</span>&nbsp;元</p>
+                      <p  class="movie-cart-price">会员卡&nbsp;<span>{{scene?.cinema_cart_price}}</span>&nbsp;元</p>
+                    </div>
+                    <div item-right>
+                      <button ion-button class="buy-btn" (click)="goPayPage(scene)">购买</button>
+                    </div>
+                  </ion-item>
+                </ion-list>
+              </div>
+            </ion-slide>
+
+            <ion-slide>
+              <div *ngSwitchCase="'明天'" class="movie-scene">
+                <ion-list>
+                  <ion-item class="movie-scene-item" *ngFor="let scene of current_movie_data?.film_scenes">
+                    <div item-left class="movie-time">
+                      <p class="movie-start-time"><span>{{scene?.time_start}}</span></p>
+                      <p class="movie-end-time"><span>{{scene?.time_end}}</span>&nbsp;散场</p>
+                    </div>
+                    <div item-left>
+                      <p class="movie-type">{{scene?.type}}</p>
+                      <p class="movie-play-room">{{scene?.hall?.hall_name}}</p>
+                    </div>
+                    <div item-right>
+                      <p class="movie-price">特惠&nbsp;<span>{{scene?.single_price}}</span>&nbsp;元</p>
+                      <p  class="movie-cart-price">会员卡&nbsp;<span>{{scene?.cinema_cart_price}}</span>&nbsp;元</p>
+                    </div>
+                    <div item-right>
+                      <button ion-button class="buy-btn" (click)="goPayPage(scene)">购买</button>
+                    </div>
+                  </ion-item>
+                </ion-list>
+              </div>
+            </ion-slide>
+
+            <ion-slide>
+              <div *ngSwitchCase="'后天'" class="movie-scene">
+                <ion-list>
+                  <ion-item class="movie-scene-item" *ngFor="let scene of current_movie_data?.film_scenes">
+                    <div item-left class="movie-time">
+                      <p class="movie-start-time"><span>{{scene?.time_start}}</span></p>
+                      <p class="movie-end-time"><span>{{scene?.time_end}}</span>&nbsp;散场</p>
+                    </div>
+                    <div item-left>
+                      <p class="movie-type">{{scene?.type}}</p>
+                      <p class="movie-play-room">{{scene?.hall?.hall_name}}</p>
+                    </div>
+                    <div item-right>
+                      <p class="movie-price">特惠&nbsp;<span>{{scene?.single_price}}</span>&nbsp;元</p>
+                      <p  class="movie-cart-price">会员卡&nbsp;<span>{{scene?.cinema_cart_price}}</span>&nbsp;元</p>
+                    </div>
+                    <div item-right>
+                      <button ion-button class="buy-btn" (click)="goPayPage(scene)">购买</button>
+                    </div>
+                  </ion-item>
+                </ion-list>
+              </div>
+            </ion-slide>
+          </ion-slides>
+        </div>
       </div>
     </div>
   </div>

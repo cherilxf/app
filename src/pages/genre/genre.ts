@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams, Slides} from 'ionic-angular';
 import {GenreService} from "./genre.service";
 import {MovieDetailPage} from "../movie-detail/movie-detail";
 
@@ -35,11 +35,15 @@ export class GenrePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private genreService: GenreService) {
-    this.getMovieGenreData();
+    private genreService: GenreService,
+    public alertCtrl: AlertController,
+    private loadingCtrl: LoadingController) {
+
   }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+    this.getMovieGenreData();
+  }
   ionViewWillEnter() {}
   ionViewDidEnter() {}
   ionViewWillLeave() {}
@@ -68,10 +72,20 @@ export class GenrePage {
   }
 
   getMovieGenreData() {
+    let loading = this.loadingCtrl.create({
+      content: '加载数据中...'//数据加载中显示
+    });
+    //显示等待样式
+    loading.present();
+
     this.genreService.getMovieGenreData_service(this.genreNav).subscribe(data => {
-      this.movie_list = data.data;
+      setTimeout(()=>{
+        loading.dismiss().then(()=>{
+          this.movie_list = data.data;
+        });
+      },1000);
     }, error => {
-      alert(error);
+      this.showAlert('服务器出错啦！');
     });
   }
 
@@ -79,5 +93,18 @@ export class GenrePage {
     this.navCtrl.push(MovieDetailPage, {
       movieId: movie.id
     });
+  }
+
+  showAlert(warnText) {
+    const alert = this.alertCtrl.create({
+      title: warnText,
+      buttons: [{
+        text: '确定',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      }],
+    });
+    alert.present();
   }
 }

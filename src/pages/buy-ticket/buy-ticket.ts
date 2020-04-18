@@ -1,6 +1,17 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
+import {
+  AlertController,
+  ActionSheetController,
+  IonicPage,
+  NavController,
+  NavParams,
+  Slides,
+  LoadingController
+} from 'ionic-angular';
 import {BuyTicketService} from "./buy-ticket.service";
+import {Storage} from "@ionic/storage";
+import {GoLoginPage} from "../go-login/go-login";
+import {TicketInfoPage} from "./ticket-info/ticket-info";
 
 /**
  * Generated class for the BuyTicketPage page.
@@ -26,22 +37,42 @@ export class BuyTicketPage {
   ];
   public buyTicketTab = '今天';
 
-  public movie_id : String = "";
+  public loadFinish: boolean = false;
+  public has_login: boolean;
+  public user_data: any = {};
+  public movie_id: String = "";
   public cinema_id: String = "";
   public cinema_data: any = {};
-  public movie_data: any = [];
+  public current_movie_data: any = [];
+  public date: any = [];
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private storage: Storage,
     private buyTicketService: BuyTicketService,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    private loadingCtrl: LoadingController) {
 
   }
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad BuyTicketPage');
+    this.loadFinish = false;
+
+    this.movie_id = this.navParams.get('movieId');
+    this.cinema_id = this.navParams.get('cinemaId');
+
+    this.storage.get("has_login").then((result) => {
+      this.has_login = result;
+    });
+    this.storage.get("user_data").then((data) => {
+      this.user_data = data;
+    });
+
+    this.setDate();  // 获取当天日期
+    this.getCinemaData(this.cinema_id);
   }
+
   ionViewWillEnter() {
     let elements = document.querySelectorAll(".tabbar");
     if (elements != null) {
@@ -49,13 +80,8 @@ export class BuyTicketPage {
         elements[key].style.display = 'none';
       });
     }
-
-    this.movie_id = this.navParams.get('movieId');
-    this.cinema_id = this.navParams.get('cinemaId');
   }
-  ionViewDidEnter() {
-    this.getCinemaData(this.cinema_id);
-  }
+  ionViewDidEnter() {}
   ionViewWillLeave() {
     let elements = document.querySelectorAll(".tabbar");
     if (elements != null) {
@@ -66,29 +92,80 @@ export class BuyTicketPage {
   }
   ionViewDidLeave() {}
 
-  getCinemaData(cinemaId){
+  getCinemaData(cinemaId) {
+    let loading = this.loadingCtrl.create({
+      content: '加载数据中...'//数据加载中显示
+    });
+    //显示等待样式
+    loading.present();
+
     this.buyTicketService.getCinemaData_service(cinemaId).subscribe(data => {
-      if (data.data) {
-        this.cinema_data = data.data;
-        this.setMovieData();
+      if (data.state) {
+        if(data.data !== null){
+          setTimeout(()=>{
+            loading.dismiss().then(()=>{
+              this.cinema_data = data.data;
+              this.setMovieData();
+              this.loadFinish = true;
+            });//显示多久消失
+          },1000);
+        }else{
+          setTimeout(()=>{
+            loading.dismiss().then(()=>{
+              this.showAlert("影院暂无数据！");
+            });//显示多久消失
+          },1000);
+        }
       } else {
-        this.showAlert("数据无法获取！");
+        setTimeout(()=>{
+          loading.dismiss().then(()=>{
+            this.showAlert("数据获取失败！");
+          });//显示多久消失
+        },1000);
       }
     }, error => {
-      alert(error);
+      this.showAlert('服务器出错啦！');
     });
   }
-  setMovieData(){
+
+  setMovieData() {
     let movies = this.cinema_data.movies;
-    if(this.movie_id){
-      for(let i = 0;i < movies.length;i++){
-        if(this.movie_id == movies[i].movie_id){
+
+    if (this.movie_id) {
+      for (let i = 0; i < movies.length; i++) {
+        if (this.movie_id == movies[i].movie_id) {
           this.cinema_data.movies.unshift(movies[i]);
-          this.cinema_data.movies.splice(i,1);
+          this.cinema_data.movies.splice(i + 1, 1);
         }
       }
     }
-    this.movie_data = movies[0];
+    this.current_movie_data = movies[0];
+  }
+
+  setDate() {
+    for (let i = 0; i <= 2; i++) {
+      this.date.push(this.getDate(i));
+    }
+  }
+  getDate(AddDayCount) {
+    let today = new Date();
+    today.setDate(today.getDate() + AddDayCount);//获取AddDayCount天后的日期
+    let m = today.getMonth() + 1;//获取当前月份的日期
+    let d = today.getDate();
+    return m + "-" + d;
+  }
+
+  goPayPage(scene) {
+    if (this.has_login) {
+      this.navCtrl.push(TicketInfoPage, {
+        user_accound: this.user_data.accound,
+        movie_scene: scene,
+        cinema_data: this.cinema_data,
+        movie_data: this.current_movie_data
+      });
+    } else {
+      this.navCtrl.push(GoLoginPage, {});
+    }
   }
 
   showAlert(warnText) {
@@ -107,9 +184,15 @@ export class BuyTicketPage {
   segmentChanged(index) {
     this.movie_scene_slides.slideTo(index);
   }
-  movieSlideChanged(){
 
+  movieSlideChanged() {
+    let currentIndex = this.movie_item_slides.getActiveIndex();
+    let movies = this.cinema_data.movies;
+    if (currentIndex < movies.length) {
+      this.current_movie_data = movies[currentIndex];
+    }
   }
+
   sceneSlideChanged() {
     let currentIndex = this.movie_scene_slides.getActiveIndex();
     // this.setStyle(index);

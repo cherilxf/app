@@ -11,9 +11,9 @@
 </ion-header>
 <ion-content class="setting-content">
   <ion-list>
-    <ion-item (click)="goInfoSetting();">
+    <ion-item (click)="goInfoSetting();" class="setting-user-item">
       <img item-left src="{{user_data.user_head_sculpture}}">
-      <h2>{{user_data.user_nickname}}</h2>
+      <h2 class="setting-nickname">{{user_data.user_nickname}}</h2>
       <ion-icon item-right name="youjiantou"></ion-icon>
     </ion-item>
     <ion-item (click)="clearCache();">

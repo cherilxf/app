@@ -4,6 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<<<<<<< HEAD
 <ion-header class="movie-ion-header">
 
   <ion-navbar>
@@ -41,4 +42,29 @@
     </ion-scroll>
     <!--</div>-->
   </div>
+=======
+<ion-header class="movie-header">
+  <nav>
+    <a class="location" href="#">
+      广州
+      <ion-icon name="md-arrow-dropdown"></ion-icon>
+    </a>
+    <ul class="movie-category">
+      <li [ngClass]="{'active': flag}" (click)="goMovieList()">
+        <span>电影</span>
+      </li>
+      <li [ngClass]="{'active': !flag}" (click)="goCinema()">
+        <span>影院</span>
+      </li>
+    </ul>
+    <ion-icon name="saoyisao" class="floatRight"></ion-icon>
+    <!--<ion-icon name="search" class="floatRight"></ion-icon>-->
+  </nav>
+</ion-header>
+
+
+<ion-content>
+  <movie-list [hidden]="!flag"></movie-list>
+  <movie-cinema [hidden]="flag"></movie-cinema>
+>>>>>>> first commit
 </ion-content>

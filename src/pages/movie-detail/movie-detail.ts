@@ -1,12 +1,11 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, Slides} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, Loading, NavController, NavParams, Slides} from 'ionic-angular';
 
 import {CommentDetailPage} from "../comment-detail/comment-detail";
 import {CinemaPage} from "../cinema/cinema";
 import {MovieDetailService} from "./movie-detail.service";
 
 declare let $: any;
-declare let Swiper: any;
 
 /**
  * Generated class for the MovieDetailPage page.
@@ -40,12 +39,18 @@ export class MovieDetailPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private movieDetailService: MovieDetailService,
     public alertCtrl: AlertController,
-    private movieDetailService: MovieDetailService) {
+    private loadingCtrl: LoadingController) {
     this.movie_id = this.navParams.get('movieId');
   }
 
   ionViewDidLoad() {
+    this.loadFinish = false;
+    this.buyBtn_Show = false;
+
+    this.getMovieDetailData();
+    this.getCommentlData();
   }
 
   ionViewWillEnter() {
@@ -55,15 +60,8 @@ export class MovieDetailPage {
         elements[key].style.display = 'none';
       });
     }
-
-    this.loadFinish = false;
-    this.buyBtn_Show = false;
-    this.movieDetailTab = '影片简介';
   }
-  ionViewDidEnter() {
-    this.getMovieDetailData();
-    this.getCommentlData();
-  }
+  ionViewDidEnter() {}
   ionViewWillLeave() {
     let elements = document.querySelectorAll(".tabbar");
     if (elements != null) {
@@ -79,35 +77,57 @@ export class MovieDetailPage {
       "comment_data": item
     });
   }
-
   goCinemaPage() {
     this.navCtrl.push(CinemaPage, {
-      movieId: this.movieDetailData.id
+      movieId: this.movie_id
     });
   }
 
   getMovieDetailData() {
+    let loading = this.loadingCtrl.create({
+      content: '加载数据中...'//数据加载中显示
+    });
+    //显示等待样式
+    loading.present();
+
     this.movieDetailService.getMovieDetailData_service(this.movie_id).subscribe(data => {
-      if (data.data) {
-        this.movieDetailData = data.data;
-        this.loadFinish = true;
-        this.buyBtn_Show = true;
+      if (data.state) {
+        if(data.data !== null){
+          setTimeout(()=>{
+            loading.dismiss().then(()=>{
+              this.movieDetailData = data.data;
+              this.loadFinish = true;
+              this.buyBtn_Show = true;
+            });//显示多久消失
+          },1000);
+        }else {
+          setTimeout(()=>{
+            loading.dismiss().then(()=>{
+              this.showAlert("亲，找不到数据！");
+            });//显示多久消失
+          },1000);
+        }
       } else {
-        this.showAlert("亲，找不到数据！");
+        setTimeout(()=>{
+          loading.dismiss().then(()=>{
+            this.showAlert("获取数据失败！");
+          });//显示多久消失
+        },1000);
       }
     }, error => {
-      alert(error);
+      this.showAlert('服务器出错啦！');
     });
   }
+
   getCommentlData() {
     this.movieDetailService.getCommentData_service(this.movie_id).subscribe(data => {
-      if(data.data){
+      if(data.state){
         this.commentData = data.data;
       }else{
-        this.commentData = [];
+        this.commentData = []  ;
       }
     }, error => {
-      this.showAlert(error);
+      this.showAlert('服务器出错啦！');
     });
   }
 
@@ -140,6 +160,22 @@ export class MovieDetailPage {
       $('.watch-btn .wantWatch ion-icon').attr('name', 'xiangkan').removeClass('ion-md-xiangkan-outline').addClass('ion-md-xiangkan');
     }
   }
+  haveSeen() {
+    let iconName = $('.watch-btn .haveSeen ion-icon').attr('name');
+    if (iconName == 'xiangkan') {
+      $('.watch-btn .haveSeen').css({
+        'color': '#FFA146',
+        'background-color': '#FFF7C2'
+      });
+      $('.watch-btn .haveSeen ion-icon').attr('name', 'xiangkan-outline').removeClass('ion-md-xiangkan').addClass('ion-md-xiangkan-outline');
+    } else if (iconName == 'xiangkan-outline') {
+      $('.watch-btn .haveSeen').css({
+        'color': '#000',
+        'background-color': '#f8f8f8'
+      });
+      $('.watch-btn .haveSeen ion-icon').attr('name', 'xiangkan').removeClass('ion-md-xiangkan-outline').addClass('ion-md-xiangkan');
+    }
+  }
 
   dianzanDo(index,item) {
     let dianzanBtn = $('.dianzan').eq(index);
@@ -169,16 +205,9 @@ export class MovieDetailPage {
     }
   }
   navFixed() {
-    let $tabsEle = $('.movieDetail-bottom-tabs');
-    let $headerEle = $('.movieDetail-header');
-    let headerHeight = $headerEle.height();
+    let $tabsEle = $('.movieDetail-bottom-header');
     let tabsHeight = $tabsEle.height();
-    $headerEle.css({
-      'background-image': 'url(\'../../assets/imgs/bg-image-02.jpg\')'
-    });
-    $tabsEle.addClass('movieDetail-bottom-tabsFixed').css({
-      'top': headerHeight,
-    });
+    $tabsEle.addClass('movieDetail-bottom-tabsFixed');
     $('.movieDetail-bottom-content').css({
       'padding-top': tabsHeight,
     });
@@ -187,10 +216,7 @@ export class MovieDetailPage {
     })
   }
   navUnFixed() {
-    $('.movieDetail-header').css({
-      'background-image': 'none'
-    });
-    $('.movieDetail-bottom-tabs').removeClass('movieDetail-bottom-tabsFixed');
+    $('.movieDetail-bottom-header').removeClass('movieDetail-bottom-tabsFixed');
     $('.movieDetail-bottom-content').css({
       'padding-top': 0
     });

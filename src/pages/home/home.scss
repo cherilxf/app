@@ -32,23 +32,36 @@ page-home {
   height: 92%;
   line-height: 92%;
   margin: 0;
+<<<<<<< HEAD
   background-color: #00A0E2;
+=======
+  background-color: #62BEFF;
+>>>>>>> first commit
   border-radius: 4em;
   position: absolute;
   top: 0;
   right: .62em;
 }
 .banner{
+<<<<<<< HEAD
   margin-top: .2rem;
 }
 .banner .slide-image{
   width: 100%;
   height: 14rem;
+=======
+  margin-bottom: .6em;
+}
+.banner img{
+  width: 100%;
+  height: 16rem;
+>>>>>>> first commit
 }
 .banner ion-slides ion-slide{
   opacity: 1;
 }
 
+<<<<<<< HEAD
 .home-content-slide{
   width: 100%;
   overflow: hidden;
@@ -93,10 +106,13 @@ page-home {
   font-size: 1.4rem;
 }
 
+=======
+>>>>>>> first commit
 .home-reying,
 .home-comesoon{
   border-top: 2px solid #555;
   border-bottom: 2px solid #555;
+<<<<<<< HEAD
   margin-top: 1rem;
   border-radius: 1.4rem;
 }
@@ -106,6 +122,11 @@ page-home {
   width: 100%;
   max-height: 11rem;
 }
+=======
+  margin-top: 1.4rem;
+  border-radius: 1.4rem;
+}
+>>>>>>> first commit
 .home-recommend {
   margin-top: 1rem;
   border-top: 1px solid #eee;
@@ -117,7 +138,11 @@ page-home {
   display: inline-block;
   font-size: 1.6rem;
   font-weight: 700;
+<<<<<<< HEAD
   color: #F51933;
+=======
+  color: #FF282F;
+>>>>>>> first commit
   vertical-align: middle;
   margin: .1rem .45rem 0 .8rem;
 }
@@ -141,16 +166,36 @@ page-home {
   top: 0;
   right: 4.8rem;
 }
+<<<<<<< HEAD
 .home-recommend-content ion-col{
   text-align: center;
   padding: .6rem ;
   float: left;
 }
+=======
+.ion-row {
+  height: 100%;
+  flex-wrap: wrap;
+}
+.home-reying-content ion-col,
+.home-comesoon-content ion-col,
+.home-recommend-content ion-col{
+  text-align: center;
+  padding: .6rem ;
+}
+.home-reying-content img,
+.home-comesoon-content img,
+>>>>>>> first commit
 .home-recommend-content img{
   border: 1px solid #eee;
   width: 100%;
   height: 12rem;
 }
+<<<<<<< HEAD
+=======
+.home-reying-content span,
+.home-comesoon-content span,
+>>>>>>> first commit
 .home-recommend-content span{
   display: inline-block;
   width: 100%;

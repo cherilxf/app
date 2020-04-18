@@ -6,6 +6,7 @@
 -->
 <ion-header class="ranking-header">
   <ion-icon name="paihangbangHeader"></ion-icon>
+<<<<<<< HEAD
   <ion-title class="ranking-title">
     最新最热电影排行榜
   </ion-title>
@@ -18,10 +19,28 @@
         口碑高分
       </ion-segment-button>
       <ion-segment-button class="ranking-tab" value="实时票房">
+=======
+  <ion-title class="ranking-title" >
+    最新最热电影排行榜
+  </ion-title>
+</ion-header>
+
+<ion-content class="ranking-content">
+  <ion-toolbar class="ranking-tabs">
+    <ion-segment [(ngModel)]="MovieRanking">
+      <ion-segment-button class="ranking-tab" value="todayTopRanking">
+        今日Top
+      </ion-segment-button>
+      <ion-segment-button class="ranking-tab" value="newMovieRanking">
+        新片热映
+      </ion-segment-button>
+      <ion-segment-button class="ranking-tab" value="boxOfficeRanking">
+>>>>>>> first commit
         实时票房
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
+<<<<<<< HEAD
 </ion-header>
 
 <ion-content class="ranking-content">
@@ -83,5 +102,43 @@
         </ion-list>
       </ion-scroll>
     </div>
+=======
+  <div [ngSwitch]="MovieRanking" class="ranking-movieList">
+    <ion-list *ngSwitchCase="'todayTopRanking'" class="ranking-todayTop">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/imgs/MEAN.jpg">
+        </ion-thumbnail>
+        <h2>毒液：致命守护者</h2>
+        <p>导演：<span>李安</span></p>
+        <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+        <p>观影人数<span>2222</span>万</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'newMovieRanking'" class="ranking-newMovie">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/imgs/MEAN.jpg">
+        </ion-thumbnail>
+        <h2>毒液：致命守护者</h2>
+        <p>上映时间：<span>11月30号</span></p>
+        <p>豆瓣评分<span class="badge-ios-danger">9.0</span></p>
+        <p>观影人数<span>2222</span>万</p>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'boxOfficeRanking'" class="ranking-boxOffice">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="assets/imgs/MEAN.jpg">
+        </ion-thumbnail>
+        <h2>毒液：致命守护者</h2>
+        <p>累计票房<span>2222</span>万</p>
+        <p>导演：<span>李安</span></p>
+        <p>主演：<span>邓超</span></p>
+      </ion-item>
+    </ion-list>
+>>>>>>> first commit
   </div>
 </ion-content>

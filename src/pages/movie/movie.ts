@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MovieService} from "./movie.service";
 import {MovieDetailPage} from "../movie-detail/movie-detail";
 
 declare let $: any;
+=======
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+>>>>>>> first commit
 
 /**
  * Generated class for the MoviePage page.
@@ -16,6 +22,7 @@ declare let $: any;
 @Component({
   selector: 'page-movie',
   templateUrl: 'movie.html',
+<<<<<<< HEAD
   providers: [MovieService]
 })
 export class MoviePage {
@@ -45,7 +52,6 @@ export class MoviePage {
     setTimeout(() => {
       this.movieService.getReyingMovieData_service(this.loadData.startReying, this.loadData.count).subscribe(data => {
         let newData = data.data;
-        console.log(newData);
         this.movie_reying_data = this.movie_reying_data.concat(newData);
         this.loadData.startReying += this.loadData.count;
         infiniteScroll.complete();
@@ -61,5 +67,22 @@ export class MoviePage {
 
   scrollDo(){
     console.log(111)
+=======
+})
+export class MoviePage {
+  public flag = true;
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad MoviePage');
+  }
+
+  goMovieList(){
+    this.flag = true;
+  }
+  goCinema(){
+    this.flag = false;
+>>>>>>> first commit
   }
 }

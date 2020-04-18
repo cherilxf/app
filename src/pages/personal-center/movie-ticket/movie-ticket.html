@@ -15,16 +15,23 @@
 
 <ion-content class="ticket-content">
   <ion-list class="ticket-list">
-    <ion-item *ngFor="let ticketItem of ticket_data">
-      <p item-left class="seat">座</p>
+    <ion-item-sliding *ngFor="let ticketItem of ticket_data;index as i;">
+      <ion-item>
+        <p item-left class="seat">座</p>
 
-      <h2>
-        <span class="ticket-title">{{ticketItem.movie_title}}</span>
-        <span class="ticket-number">{{ticketItem.ticket_number}}</span>张
-      </h2>
-      <p>{{ticketItem.movie_time}}</p>
-      <p>{{ticketItem.cinema}}</p>
-      <p item-right class="ticket-state">{{ticketItem.state == 0 ? "未观看" : "已观看"}}</p>
-    </ion-item>
+        <h2>
+          <span class="ticket-title">{{ticketItem?.movie_title}}</span>
+          <span class="ticket-number">{{ticketItem?.ticket_count}}</span>张
+        </h2>
+        <p>座位：<span *ngFor="let seat of ticketItem?.seats; index as i">{{seat[0]}}排{{seat[1]}}座{{(i === ticketItem?.seats.length-1)?'':'、'}}</span>
+        </p>
+        <p><span>{{ticketItem?.cinema}}</span></p>
+        <p><span>{{ticketItem?.order_time}}</span></p>
+        <p item-right class="ticket-state">{{ticketItem?.state == 0 ? "未观看" : "已观看"}}</p>
+      </ion-item>
+      <ion-item-options side="right" (ionSwipe)="deleteOrder(ticketItem,i)">
+        <button ion-button expandable (click)="deleteOrder(ticketItem,i)">删除</button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

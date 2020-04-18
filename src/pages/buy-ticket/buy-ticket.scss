@@ -1,35 +1,44 @@
 page-buy-ticket {
 
 }
-.buy-ticket-header{
+
+.buy-ticket-header {
 
 }
-.buy-ticket-content{
+
+.buy-ticket-content {
 
 }
-.buy-ticket-content .item-md{
+
+.buy-ticket-content .item-md {
   padding-left: 0;
 }
-.buy-ticket-content .label-md{
+
+.buy-ticket-content .label-md {
   margin-right: 0;
 }
-.buy-ticket-top{
+
+.buy-ticket-top {
 
 }
-.buy-ticket-top .cinema-name{
+
+.buy-ticket-top .cinema-name {
   font-size: 2rem;
   font-weight: 600;
   color: #00A0E2;
   text-align: center;
 }
-.buy-ticket-top .cinema-address{
+
+.buy-ticket-top .cinema-address {
   color: #888;
   text-align: center;
 }
-.buy-ticket-top .cinema-characteristic{
+
+.buy-ticket-top .cinema-characteristic {
   text-align: center;
 }
-.buy-ticket-top .cinema-characteristic span{
+
+.buy-ticket-top .cinema-characteristic span {
   display: inline-block;
   font-size: 1rem;
   color: #8f8f8f;
@@ -37,53 +46,64 @@ page-buy-ticket {
   margin: 0 .2rem;
   box-shadow: inset 0 0 5px #FF2C25;
 }
-.buy-ticket-middle{
+
+.buy-ticket-middle {
 
 }
-.buy-movie-item{
+
+.buy-movie-item {
   padding: 1rem;
   box-shadow: inset 0 0 8px #00A0E2;
   text-align: center;
 }
-.mocie-info{
+
+.movie-info {
 
 }
-.buy-movie-item .movie-poster img{
+
+.buy-movie-item .movie-poster img {
   width: 7.4rem;
   height: 10rem;
 }
-.buy-movie-item .movie-title{
+
+.buy-movie-item .movie-title {
   font-size: 1.8rem;
 }
- .buy-movie-item .douban-grade{
-   font-size: 1.6rem;
-   color: #FF2C25;
-}
- .buy-movie-item .wish-count,
- .buy-movie-item .good-comment-count{
-   color: #FF2C25;
-   font-weight: 600;
- }
- .buy-movie-item .slide-tip{
-   font-size: 1.4rem;
-   font-weight: 700;
-   color: #FF2C25;
-   margin: 0;
-   display: flex;
-   justify-content: center;
-   align-items: center;
- }
- .slide-tip span{
-   margin: 0 2rem;
- }
 
-.buy-ticket-bottom{
+.buy-movie-item .douban-grade {
+  font-size: 1.6rem;
+  color: #FF2C25;
+}
+
+.buy-movie-item .wish-count,
+.buy-movie-item .good-comment-count {
+  color: #FF2C25;
+  font-weight: 600;
+}
+
+.buy-movie-item .slide-tip {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #FF2C25;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide-tip span {
+  margin: 0 2rem;
+}
+
+.buy-ticket-bottom {
   border-top: 2px solid #eee;
 }
-.buy-ticket-tabs{
+
+.buy-ticket-tabs {
 
 }
-.buy-ticket-tabs .segment-md .segment-button{
+
+.buy-ticket-tabs .segment-md .segment-button {
   height: 3.4rem;
   line-height: 3.6rem;
   font-size: 1.6rem;
@@ -93,12 +113,18 @@ page-buy-ticket {
   padding: 0;
   margin: 0 1.4rem;
 }
-.buy-ticket-tabs .segment-md .segment-button.segment-activated{
+
+.buy-ticket-tabs .segment-md .segment-button.segment-activated {
   font-size: 1.8rem;
   color: #1296db;
   border-bottom: 2px solid #1296db;
 }
-.buy-ticket-bottom .broadcast{
+
+.buyTicket-tab .scene-date {
+  font-size: 1.4rem;
+}
+
+.buy-ticket-bottom .broadcast {
   padding: .4rem;
   margin: 0;
   display: flex;
@@ -106,54 +132,66 @@ page-buy-ticket {
   align-items: center;
   background-color: #DEFFBE;
 }
-.broadcast span{
+
+.broadcast span {
   width: 100%;
   font-size: 1.4rem;
   font-weight: 300;
   margin-left: .4rem;
   color: #19FF18;
 }
+
 .movie-scene {
 
 }
-.movie-scene-item{
+
+.movie-scene-item {
   border-bottom: 2px solid #eee;
 }
-.movie-scene-item .movie-time{
+
+.movie-scene-item .movie-time {
   padding-left: .8rem;
   margin-right: .6rem;
 }
-.movie-time .movie-start-time{
+
+.movie-time .movie-start-time {
   font-size: 1.6rem;
   font-weight: 600;
   color: #000;
   text-align: center;
 }
+
 .movie-time .movie-end-time,
-.movie-scene-item .movie-play-room{
+.movie-scene-item .movie-play-room {
   font-size: 1rem;
   color: #8f8f8f;
 }
-.movie-scene-item .movie-type{
+
+.movie-scene-item .movie-type {
   line-height: 1.6rem;
 }
-.movie-scene-item .movie-price{
+
+.movie-scene-item .movie-price {
   font-size: 1.4rem;
   color: #FF2C25;
 }
-.movie-price span{
+
+.movie-price span {
   font-size: 1.8rem;
   font-weight: 700;
 }
+
 .movie-scene-item .movie-cart-price {
   font-size: 1.2rem;
   color: #19FF18;
   text-align: center;
 }
-.movie-cart-price span{
+
+.movie-cart-price span {
   font-weight: 600;
 }
 
-.buy-btn{
+.buy-btn {
   margin-left: .6rem;
 }
+

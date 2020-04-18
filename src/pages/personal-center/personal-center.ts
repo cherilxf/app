@@ -1,5 +1,6 @@
+<<<<<<< HEAD
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Storage} from "@ionic/storage";
 
 import {PersonalInfoSettingPage} from "./personal-info-setting/personal-info-setting";
@@ -11,6 +12,10 @@ import {GoLoginPage} from "../go-login/go-login";
 
 import {PersonalCenterService} from "./personal-center.service";
 
+=======
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+>>>>>>> first commit
 
 /**
  * Generated class for the PersonalCenterPage page.
@@ -23,6 +28,7 @@ import {PersonalCenterService} from "./personal-center.service";
 @Component({
   selector: 'page-personal-center',
   templateUrl: 'personal-center.html',
+<<<<<<< HEAD
   providers: [PersonalCenterService]
 })
 export class PersonalCenterPage {
@@ -38,12 +44,32 @@ export class PersonalCenterPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private storage: Storage,
+    private loadingCtrl: LoadingController,
     private personalCenterService: PersonalCenterService) {
   }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+    let loading = this.loadingCtrl.create({
+      content: '加载数据中...'//数据加载中显示
+    });
+    //显示等待样式
+    loading.present();
+
+    setTimeout(()=>{
+      loading.dismiss().then(()=>{
+
+      });//显示多久消失
+    },300);
+  }
 
   ionViewWillEnter() {
+    let elements = document.querySelectorAll(".tabbar");
+    if (elements != null) {
+      Object.keys(elements).map((key) => {
+        elements[key].style.display = 'flex';
+      });
+    }
+
     this.storage.get("has_login").then((result) => {
       this.has_login = result;
     });
@@ -104,4 +130,16 @@ export class PersonalCenterPage {
   goLogin() {
     this.navCtrl.push(GoLoginPage, {})
   }
+=======
+})
+export class PersonalCenterPage {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad PersonalCenterPage');
+  }
+
+>>>>>>> first commit
 }

@@ -22,4 +22,12 @@ export class BuyTicketService {
     };
     return this.http.post<any>(url, reqParam, httpOptions).pipe();
   }
+
+  addOrderData_service (orderData): Observable<any> {
+    const url = `${AppConfig.getUrl()}/buy_ticket/add_ticketOrder`;
+    let reqParam = {
+      orderData: orderData
+    };
+    return this.http.post<any>(url, reqParam, httpOptions).pipe();
+  }
 }

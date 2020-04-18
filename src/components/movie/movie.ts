@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {MovieService} from "../../pages/movie/movie.service";
-import {NavController, NavParams, Slides} from "ionic-angular";
+import {AlertController, LoadingController, NavController, NavParams, Slides} from "ionic-angular";
 import {MovieDetailPage} from "../../pages/movie-detail/movie-detail";
 
 
@@ -33,9 +33,21 @@ export class MovieComponent {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private movieService: MovieService) {
-    this.getReyingMovie();
-    this.getComesoonMovie();
+    private movieService: MovieService,
+    public alertCtrl: AlertController,
+    private loadingCtrl: LoadingController) {
+
+    let loading = this.loadingCtrl.create({
+      content: '加载数据中...'//数据加载中显示
+    });
+    //显示等待样式
+    loading.present();
+    setTimeout(()=>{
+      loading.dismiss().then(()=>{
+        this.getReyingMovie();
+        this.getComesoonMovie();
+      });
+    },1000);
   }
 
   getReyingMovie() {
@@ -43,7 +55,7 @@ export class MovieComponent {
       this.movie_reying_data = data.data;
       this.loadData.startReying = this.loadData.count;
     }, error => {
-      alert(error);
+      this.showAlert(error);
     });
   }
 
@@ -52,7 +64,7 @@ export class MovieComponent {
       this.movie_comesoon_data = data.data;
       this.loadData.startComesoon = this.loadData.count;
     }, error => {
-      alert(error);
+      this.showAlert(error);
     });
   }
 
@@ -60,6 +72,19 @@ export class MovieComponent {
     this.navCtrl.push(MovieDetailPage, {
       movieId: movie.id
     });
+  }
+
+  showAlert(warnText) {
+    const alert = this.alertCtrl.create({
+      title: warnText,
+      buttons: [{
+        text: '确定',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      }],
+    });
+    alert.present();
   }
 
   /*上拉更新*/
@@ -75,7 +100,7 @@ export class MovieComponent {
           this.loadData.loadingText = '亲，我是有底线的';
         }
       }, error => {
-        alert(error);
+        this.showAlert('服务器出错啦！');
       });
     }, 500);
 
@@ -93,7 +118,7 @@ export class MovieComponent {
           // this.loadData.loadingText = '亲，我是有底线的';
         }
       }, error => {
-        alert(error);
+        this.showAlert(error);
       });
     }, 500);
   }

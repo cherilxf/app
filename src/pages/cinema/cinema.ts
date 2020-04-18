@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 
 import {BuyTicketPage} from "../buy-ticket/buy-ticket";
 import {CinemaService} from "./cinema.service";
@@ -25,11 +25,15 @@ export class CinemaPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private cinemaService: CinemaService,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    private loadingCtrl: LoadingController) {
+
     this.movie_id = this.navParams.get('movieId');
   }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+    this.getCinemaData();
+  }
 
   ionViewWillEnter() {
     let elements = document.querySelectorAll(".tabbar");
@@ -39,9 +43,7 @@ export class CinemaPage {
       });
     }
   }
-  ionViewDidEnter() {
-    this.getCinemaData();
-  }
+  ionViewDidEnter() {}
   ionViewWillLeave() {
     let elements = document.querySelectorAll(".tabbar");
     if (elements != null) {
@@ -53,14 +55,30 @@ export class CinemaPage {
   ionViewDidLeave() {}
 
   getCinemaData(){
+    let loading = this.loadingCtrl.create({
+      content: '加载数据中...'//数据加载中显示
+    });
+    //显示等待样式
+    loading.present();
     this.cinemaService.getCinemaData_service(this.movie_id).subscribe(data => {
-      if (data.data) {
-        this.cinema_data = data.data;
+      if (data.state) {
+        if(data.data !== null){
+          setTimeout(()=>{
+            loading.dismiss().then(()=>{
+              this.cinema_data = data.data;
+            });//显示多久消失
+          },1000);
+        }else{
+          setTimeout(()=>{
+            loading.dismiss();//显示多久消失
+            this.showAlert("该影片未有影院放映！");
+          },1000);
+        }
       } else {
-        this.showAlert("该影片未有影院放映！");
+        this.showAlert('数据无法获取！');
       }
     }, error => {
-      alert(error);
+      this.showAlert('服务器出错啦！');
     });
   }
 

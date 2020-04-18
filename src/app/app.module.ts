@@ -3,10 +3,13 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+<<<<<<< HEAD
 import { FormsModule } from '@angular/forms' //引入表单模块
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientXsrfModule } from '@angular/common/http';
 import { IonicStorageModule } from "@ionic/storage";
+=======
+>>>>>>> first commit
 
 /* 引入components模块 */
 import { ComponentsModule } from '../components/components.module';
@@ -14,6 +17,7 @@ import { ComponentsModule } from '../components/components.module';
 /* 引入根组件 */
 import { MyApp } from './app.component';
 
+<<<<<<< HEAD
 /* 引入全局配置信息 */
 import { AppConfig } from "./app.config";
 
@@ -21,7 +25,7 @@ import { AppConfig } from "./app.config";
 import { WelcomePage } from "../pages/welcome/welcome";
 
 import { GoLoginPage } from "../pages/go-login/go-login";
-import { LoginPage } from "../pages/go-login/login/login";
+import { LoginPage, RegisterPage } from "../pages/go-login/login/login";
 
 import { HomePage } from '../pages/home/home';
 
@@ -47,12 +51,26 @@ import {
 
 import { MovieDetailPage } from '../pages/movie-detail/movie-detail';
 import { CommentDetailPage } from '../pages/comment-detail/comment-detail';
-import { BuyTicketPage } from "../pages/buy-ticket/buy-ticket";
+
+import {BuyTicketPage} from "../pages/buy-ticket/buy-ticket";
+import {TicketInfoPage} from "../pages/buy-ticket/ticket-info/ticket-info";
+
 import { CinemaPage } from "../pages/cinema/cinema";
 
 import { TabsPage } from '../pages/tabs/tabs';
 
+=======
+/* 页面自定义组件 */
+import { HomePage } from '../pages/home/home';
+import { MoviePage } from '../pages/movie/movie';
+import { RankingListPage } from '../pages/ranking-list/ranking-list';
+import { FenleiPage } from '../pages/fenlei/fenlei';
+import { PersonalCenterPage } from '../pages/personal-center/personal-center';
+import { TabsPage } from '../pages/tabs/tabs';
 
+
+
+>>>>>>> first commit
 /* ionic打包成app以后配置启动动画以及导航条的服务 不用管 */
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -60,11 +78,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [   /* 声明组件 */
     MyApp,
+<<<<<<< HEAD
 
     WelcomePage,
 
     GoLoginPage,
     LoginPage,
+    RegisterPage,
 
     HomePage,
     ReyingPage,
@@ -86,14 +106,26 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
     MovieDetailPage,
     CommentDetailPage,
+
     BuyTicketPage,
+    TicketInfoPage,
+
     CinemaPage,
 
     TabsPage,
+=======
+    HomePage,
+    MoviePage,
+    RankingListPage,
+    FenleiPage,
+    PersonalCenterPage,
+    TabsPage
+>>>>>>> first commit
   ],
   imports: [   /* 引入的模块 依赖的模块*/
     BrowserModule,
     ComponentsModule,
+<<<<<<< HEAD
     FormsModule,
     HttpClientModule,
     HttpClientXsrfModule.withOptions({
@@ -105,15 +137,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
       backButtonText: "" /*配置返回按钮*/
     }),
     IonicStorageModule.forRoot()
+=======
+    IonicModule.forRoot(MyApp)
+>>>>>>> first commit
   ],
   bootstrap: [IonicApp],   /* 默认启动的模块 */
   entryComponents: [  /* 配置不会在模板中使用的组件 */
     MyApp,
+<<<<<<< HEAD
 
     WelcomePage,
 
     GoLoginPage,
     LoginPage,
+    RegisterPage,
 
     HomePage,
     ReyingPage,
@@ -135,10 +172,21 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
     MovieDetailPage,
     CommentDetailPage,
+
     BuyTicketPage,
+    TicketInfoPage,
+
     CinemaPage,
 
     TabsPage,
+=======
+    HomePage,
+    MoviePage,
+    RankingListPage,
+    FenleiPage,
+    PersonalCenterPage,
+    TabsPage
+>>>>>>> first commit
   ],
   providers: [   /* 配置服务 */
     StatusBar,

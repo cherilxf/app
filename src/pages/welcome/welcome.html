@@ -6,16 +6,12 @@
 -->
 <ion-content class="welcome-content">
   <ion-slides [pager]="true">
-    <ion-slide *ngFor="let slide of slides">
-      <button end class="skipBtn">跳过</button>
+    <ion-slide *ngFor="let slide of slides; index as i;">
+      <button end class="skipBtn" (click)="goIndexPage()" *ngIf="i !== slides.length-1">跳过</button>
       <img [src]="slide.image" class="slide-image"/>
-      <!--<h2 class="slide-title" [innerHTML]="slide.title"></h2>
-      <p [innerHTML]="slide.description"></p>-->
-    </ion-slide>
-    <ion-slide>
-      <img src="assets/imgs/fenleiHeader.jpg" class="slide-image"/>
-      <h2 class="slide-title">Ready to Play?</h2>
-      <button ion-button icon-end color="primary" class="goIndexPage-btn" (click)="goIndexPage()">
+      <h2 class="slide-title">{{slide.title}}</h2>
+      <!--<p [innerHTML]="slide.description"></p>-->
+      <button ion-button icon-end color="primary" class="goIndexPage-btn" (click)="goIndexPage()" *ngIf="i === slides.length-1">
         进入首页
         <ion-icon name="arrow-forward"></ion-icon>
       </button>

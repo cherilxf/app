@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 
 import {RankingListService} from "./ranking-list.service";
 import {MovieDetailPage} from "../movie-detail/movie-detail";
+=======
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+>>>>>>> first commit
 
 /**
  * Generated class for the RankingListPage page.
@@ -15,6 +20,7 @@ import {MovieDetailPage} from "../movie-detail/movie-detail";
 @Component({
   selector: 'page-ranking-list',
   templateUrl: 'ranking-list.html',
+<<<<<<< HEAD
   providers: [RankingListService]
 })
 export class RankingListPage {
@@ -30,12 +36,17 @@ export class RankingListPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private rankingListService: RankingListService,
     public alertCtrl: AlertController,
-    private rankingListService: RankingListService) {
-    this.getMovieRankingData();
+    private loadingCtrl: LoadingController) {
+
   }
 
-  ionViewDidLoad() {}
+
+  ionViewDidLoad() {
+    this.getMovieRankingData();
+  }
+  ionViewWillEnter(){}
 
   segmentChanged(event) {
     this.movie_list = [];
@@ -79,10 +90,20 @@ export class RankingListPage {
   }
 
   getMovieRankingData(){
+    let loading = this.loadingCtrl.create({
+      content: '加载数据中...'//数据加载中显示
+    });
+    //显示等待样式
+    loading.present();
+
     this.rankingListService.getMovieRankingData_service(this.rankingTab).subscribe(data => {
-      this.movie_list = data.data;
+      setTimeout(()=>{
+        loading.dismiss().then(()=>{
+          this.movie_list = data.data;
+        });
+      },1000);
     }, error => {
-      alert(error);
+      this.showAlert('服务器出错啦！');
     });
   }
 
@@ -104,4 +125,16 @@ export class RankingListPage {
     });
     alert.present();
   }
+=======
+})
+export class RankingListPage {
+  public MovieRanking = "todayTopRanking";
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad RankingListPage');
+  }
+
+>>>>>>> first commit
 }

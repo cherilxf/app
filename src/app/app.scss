@@ -13,12 +13,17 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+<<<<<<< HEAD
 a {
+=======
+a{
+>>>>>>> first commit
   color: #333;
   text-align: center;
   text-decoration: none;
   cursor: pointer !important;
 }
+<<<<<<< HEAD
 
 .floatLeft {
   float: left;
@@ -33,10 +38,23 @@ a {
 }
 
 ul {
+=======
+.floatLeft{
+  float: left;
+}
+.floatRight{
+  float: right;
+}
+.clearFix{
+  overflow: hidden;
+}
+ul{
+>>>>>>> first commit
   margin: 0;
   padding: 0;
   list-style: none outside none;
   list-style-type: none;
+<<<<<<< HEAD
 }
 
 .back-button.show-back-button {
@@ -74,12 +92,112 @@ ul {
   margin: 0;
 }
 
+.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+.item-md.item-input.item-input-has-focus .item-inner,
+.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+.list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus):last-child,
+.list-md .item-input.item-input-has-focus:last-child,
+.list-md .item-input-has-focus:last-child{
+  border-bottom-color: #fff;
+  box-shadow: none;
+}
+
+.alert-md .alert-head{
+  text-align: center;
+}
+.alert-md .alert-button-group{
+  justify-content: center;
+  padding: 0;
+}
+.alert-md .alert-button{
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #00A0E2;
+  margin: 0;
+}
+.item.item-md .checkbox-md{
+  margin-right: 12px;
+}
+
+.box {
+  width: 66%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.toast-container {
+  width: 100%;
+  height: 100%;
+}
+.error {
+  .toast-message {
+    color: #000;
+  }
+  .toast-wrapper {
+    background: #FF9680;
+    @extend .box;
+  }
+}
+.success {
+  .toast-message {
+    color: #666;
+  }
+  .toast-wrapper {
+    background: #a0eee1;
+    @extend .box;
+  }
+}
+.tip {
+  .toast-message {
+    color: #000;
+  }
+  .toast-wrapper {
+    background: #93E0FF;
+    @extend .box;
+  }
+}
+.toast-md .toast-message {
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-sheet-md .action-sheet-title{
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #000;
+}
+.action-sheet-title,
+.action-sheet-md .action-sheet-group .button-inner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.action-sheet-md .action-sheet-icon{
+  margin-right: 1rem;
+}
+
+.loading-md .loading-wrapper{
+  -webkit-border-radius: .6rem;
+  -moz-border-radius: .6rem;
+  border-radius: .6rem;
+  padding: 1rem;
+}
+
+ion-icon{
+  min-height: 0 !important;
+}
 .load-more {
   font-size: 1.4rem;
 }
 
 .slide-zoom {
   height: 100%;
+}
+
+.list-md .item-input .input-has-focus:last-child{
+  box-shadow: none;
 }
 
 .movie-poster {
@@ -117,3 +235,6 @@ ul {
   margin: 0 .4rem;
 }
 
+=======
+}
+>>>>>>> first commit

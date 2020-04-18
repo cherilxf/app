@@ -1,0 +1,45 @@
+<!--
+  Generated template for the TicketInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="ticketInfo-header">
+  <ion-navbar>
+    <ion-title text-center>选择座位</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="ticketInfo-content">
+  <div class="seat-box">
+    <ion-title class="cinema-screen">
+      <ion-icon class="cinema-screen-icon" name="cinemaScreen"></ion-icon>
+      <p>银屏</p>
+    </ion-title>
+    <ion-list class="seat-row" *ngFor="let seatRow of seatData; index as row;">
+      <ion-item class="seat-col" *ngFor="let seatCol of seatRow; index as col" (click)="selectSeat(seatCol,row,col)">
+        <ion-icon class="seat" [name]="(seatCol == 0) ? 'seat01' : 'seat02'"></ion-icon>
+        <p class="seat-label">R{{row+1}},C{{col+1}}</p>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="select-ticket-info">
+    <ion-list>
+      <ion-item class="ticket-seat-info">
+        <p class="ticket-seat-title">影票座位号</p>
+        <p class="ticket-seat" *ngFor="let item of ticket_seats_data">
+          第&nbsp;{{item[0]}}&nbsp;排，第&nbsp;{{item[1]}}&nbsp;座
+        </p>
+      </ion-item>
+      <ion-item class="ticket-count-info">
+        <p class="ticket-count">影票数量（张）：&nbsp;<span>{{ticket_count}}</span></p>
+      </ion-item>
+      <ion-item class="ticket-price-info">
+        <p><span class="ticket-price-title">总价：</span><span class="ticket-sumPrice">{{sum_price}}</span>&nbsp;元（<span class="ticket-singlePrice">{{movieScene?.single_price}}</span>&nbsp;元/张）</p>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="pay-box">
+    <button class="go-pay" ion-button (click)="payStyleActionSheet()">立即支付</button>
+  </div>
+</ion-content>

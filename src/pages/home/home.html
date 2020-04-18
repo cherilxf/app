@@ -12,12 +12,93 @@
   </div>
 </ion-header>
 
+<<<<<<< HEAD
 <ion-content class="home-content clearFix">
+  <div *ngIf="loading">
+    <!-- 轮播图 -->
+    <div class="banner">
+      <ion-slides #banner_slides *ngIf="banner_imgs?.length > 1" autoplay="2000" [loop]="true" [pager]="true">
+        <ion-slide *ngFor="let item of banner_imgs" (click)="goMovieDetailPage(item.movie_id)">
+          <img class="slide-image" src="{{item.bannerImg}}" alt="">
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <div class="home-reying">
+      <div class="home-reying-title">
+        <strong>正在热映</strong>
+        <a class="home-content-more" (click)="goReyingMorePage()">更多正在热映<ion-icon name="moreIcon" class="moreIcon"></ion-icon></a>
+      </div>
+      <div class="home-reying-content home-content-slide">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let item of home_reying_movie">
+              <ion-item (click)="goMovieDetailPage(item.id)">
+                <img src="{{item.images.small}}" alt="{{item.alt}}">
+                <p>{{item.title}}</p>
+              </ion-item>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-comesoon">
+      <div class="home-comesoon-title">
+        <strong>即将上映</strong>
+        <a class="home-content-more" (click)="goComesoonMorePage()">更多即将上映<ion-icon name="moreIcon" class="moreIcon"></ion-icon></a>
+      </div>
+      <div class="home-comesoon-content home-content-slide">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let item of home_comesoon_movie">
+              <ion-item (click)="goMovieDetailPage(item.id)" >
+                <img src="{{item.images.small}}" alt="{{item.alt}}">
+                <p>{{item.title}}</p>
+              </ion-item>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-recommend">
+      <div class="home-recommend-title">
+        <strong>精彩推荐</strong>
+        <a class="home-content-refresh"><ion-icon name="freshIcon" class="freshIcon"></ion-icon>换一换</a>
+      </div>
+
+      <div class="home-recommend-content">
+        <!--<ion-grid>
+          <ion-row>
+            <ion-col col-4>
+              <img src="assets/imgs/default.jpg" alt="">
+              <span>毒液毒液毒液毒液</span>
+            </ion-col>
+            <ion-col col-4>
+              <img src="assets/imgs/default.jpg" alt="">
+              <span>毒液毒液毒液毒液</span>
+            </ion-col>
+            <ion-col col-4>
+              <img src="assets/imgs/default.jpg" alt="">
+              <span>毒液毒液毒液毒液</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>-->
+      </div>
+=======
+<ion-content class="clearFix">
   <!-- 轮播图 -->
-  <div class="banner" *ngIf="banner_imgs?.length > 1">
-    <ion-slides autoplay="2000" [loop]="true" [pager]="true">
-      <ion-slide *ngFor="let item of banner_imgs">
-        <img class="slide-image" src="{{item.bannerImg}}" alt="">
+  <div class="banner">
+    <ion-slides pager="true" loop="true" autoplay="2000">
+      <ion-slide>
+        <img src="assets/imgs/MEAN.jpg" alt="">
+      </ion-slide>
+      <ion-slide>
+        <img src="assets/imgs/MEAN.jpg" alt="">
+      </ion-slide>
+      <ion-slide>
+        <img src="assets/imgs/MEAN.jpg" alt="">
       </ion-slide>
     </ion-slides>
   </div>
@@ -25,38 +106,50 @@
   <div class="home-reying">
     <div class="home-reying-title">
       <strong>正在热映</strong>
-      <a class="home-content-more" (click)="goReyingMorePage()">更多正在热映<ion-icon name="moreIcon" class="moreIcon"></ion-icon></a>
+      <a class="home-content-more">更多正在热映<ion-icon name="moreIcon" class="moreIcon"></ion-icon></a>
     </div>
-    <div class="home-reying-content home-content-slide">
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" *ngFor="let item of home_reying_movie">
-            <ion-item (click)="goMovieDetailPage(item)">
-              <img src="{{item.images.small}}" alt="{{item.alt}}">
-              <p>{{item.title}}</p>
-            </ion-item>
-          </div>
-        </div>
-      </div>
+    <div class="home-reying-content">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液</span>
+          </ion-col>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液毒液毒液毒液</span>
+          </ion-col>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液毒液毒液毒液</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
   </div>
 
   <div class="home-comesoon">
     <div class="home-comesoon-title">
       <strong>即将上映</strong>
-      <a class="home-content-more" (click)="goComesoonMorePage()">更多即将上映<ion-icon name="moreIcon" class="moreIcon"></ion-icon></a>
+      <a class="home-content-more">更多即将上映<ion-icon name="moreIcon" class="moreIcon"></ion-icon></a>
     </div>
-    <div class="home-comesoon-content home-content-slide">
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" *ngFor="let item of home_comesoon_movie">
-            <ion-item (click)="goMovieDetailPage(item)" >
-              <img src="{{item.images.small}}" alt="{{item.alt}}">
-              <p>{{item.title}}</p>
-            </ion-item>
-          </div>
-        </div>
-      </div>
+    <div class="home-comesoon-content">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液</span>
+          </ion-col>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液毒液毒液毒液</span>
+          </ion-col>
+          <ion-col col-4>
+            <img src="assets/imgs/MEAN.jpg" alt="">
+            <span>毒液毒液毒液毒液</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
   </div>
 
@@ -65,7 +158,6 @@
       <strong>精彩推荐</strong>
       <a class="home-content-refresh"><ion-icon name="freshIcon" class="freshIcon"></ion-icon>换一换</a>
     </div>
-
     <div class="home-recommend-content">
       <ion-grid>
         <ion-row>
@@ -83,6 +175,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+>>>>>>> first commit
     </div>
   </div>
 

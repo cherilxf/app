@@ -18,19 +18,24 @@ export class WelcomePage {
 
   slides = [
     {
-      title: "Welcome to the Docs!",
-      description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
-      image: "assets/imgs/rankingHeader.jpg",
+      title: "Welcome to the Go-Watch App!",
+      description: "应用引导页面01",
+      image: "assets/imgs/start_01.png",
     },
     {
-      title: "What is Ionic?",
-      description: "<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.",
-      image: "assets/imgs/rankingHeader.jpg",
+      title: "Welcome to the Go-Watch App!",
+      description: "应用引导页面02",
+      image: "assets/imgs/start_02.png",
     },
     {
-      title: "What is Ionic Cloud?",
-      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
-      image: "assets/imgs/rankingHeader.jpg",
+      title: "Welcome to the Go-Watch App!",
+      description: "应用引导页面03",
+      image: "assets/imgs/start_03.png",
+    },
+    {
+      title: "Welcome to the Go-Watch App!",
+      description: "应用引导页面04",
+      image: "assets/imgs/start_04.png",
     }
   ];
 

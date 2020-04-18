@@ -38,7 +38,7 @@
         <span>想看</span>
         <ion-icon name="xiangkan"></ion-icon>
       </button>
-      <button ion-button color="light">
+      <button class="haveSeen" ion-button color="light" (click)="haveSeen()">
         <span>看过</span>
         <ion-icon name="xiangkan"></ion-icon>
       </button>
@@ -108,7 +108,7 @@
                   </div>
                 </div>
               </ion-list>
-              <p [hidden] = "!commentData">影片还没人开始评论，快点来评论吧！</p>
+              <p [hidden] = "!(commentData == [])">影片还没人开始评论，快点来评论吧！</p>
             </ion-scroll>
           </ion-slide>
           <ion-slide>
